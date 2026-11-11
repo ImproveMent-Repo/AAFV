@@ -1,0 +1,258 @@
+\documentclass[10pt, a4paper, twocolumn]{article}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Sans}
+
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\captionsetup{font=small,labelfont=bf}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+\newcommand{\sys}{AAFV-Net}
+
+\title{\textbf{AAFV-Net: Age-Aware Face Verification with a Measured, Bounded False-Accept Rate}}
+\author{\small Code: \url{https://github.com/anuragnayak01/AAFV_Net}}
+\date{}
+
+\begin{document}
+\twocolumn[\maketitle
+\begin{abstract}
+\noindent Verifying that two photographs taken years apart show the same person is hard for automated systems, and the cost of a false accept is high. We present \sys, a framework that turns age-gap face verification into a three-way decision (auto-accept, manual review, auto-reject) whose false-accept rate is measured and bounded rather than assumed. \sys\ combines direct face-similarity evidence with evidence from age-synthesised faces, fuses five similarity scores per branch with a small calibrated network, and applies quality and reliability guards. All thresholds are frozen on a calibration split before any test data are touched, and test access is logged. On a person-disjoint MORPH test split, \sys\ produced no false accepts on 1{,}149 random different-person pairs and on 277{,}822 pairs from a larger random pool, which bounds the false-accept rate at 0.32\% (95\% one-sided, two looks). At a 1\% false-reject target it auto-accepts 70.1\% of same-person pairs while rejecting 98.0\% of ArcFace-mined hard impostors, compared with 0\% for the ArcFace-only matcher, and 57.5\% versus 28.5\% on a neutral hard set mined with independent models. On FG-NET adults, using thresholds frozen on MORPH, it auto-accepts 51.9\% of same-person pairs against 40.4\% for ArcFace and improves in every age-gap bin, again with zero false accepts. Siamese CNN, Vision Transformer and vision-language baselines cannot auto-accept at the same operating point. We release code, frozen thresholds and the audit log.
+\end{abstract}
+\vspace{1em}]
+
+\section{Introduction}
+Identity documents, long-running accounts and watch-list screening all require comparing photographs taken years apart. Face embeddings degrade as the age gap grows, so a matcher tuned on same-age pairs either rejects genuine users or, if loosened, admits impostors. Operators of such systems need two things beyond accuracy: a decision they can automate, and a quantified statement of how often that automation is wrong.
+
+Existing work attacks the first problem. Age-invariant recognisers learn identity features that are decorrelated from age~\cite{wang2018oecnn,huang2021mtlface}, and generative aging models re-render a face at another age before matching~\cite{alaluf2021sam}. These methods report ranking metrics such as accuracy and ROC curves, which do not state what fraction of impostors a deployed threshold will let through, nor on which impostors it was verified.
+
+\begin{figure*}[t]
+\centering
+\framebox{\parbox{0.82\textwidth}{\centering\vspace{2cm}\textit{[Figure 1 Placeholder: AAFV-Net Concept \& Score Distributions]}\vspace{2cm}}}
+\caption{(a) A single-threshold matcher has an unknown false-accept rate at deployment. (b) \sys\ uses two thresholds fixed on calibration data; the accept region is placed above every different-person calibration pair, giving a rate that can be bounded on held-out test data. Schematic, not measured data.}
+\label{fig:concept}
+\end{figure*}
+
+We take a different framing (Fig.~\ref{fig:concept}). \sys\ outputs one of three decisions, and the accept threshold is set strictly above the highest-scoring different-person pair seen in calibration, after quality and reliability guards. If $N$ held-out person-disjoint different-person pairs then yield zero false accepts, the one-sided upper confidence bound on the false-accept rate is $1-\alpha^{1/N}$. With $N=1{,}149$ this is 0.26\% at $\alpha=0.05$ and 0.32\% at $\alpha=0.025$.
+
+\textbf{Contributions.}
+\begin{itemize}\itemsep0pt
+\item A three-way verification framework whose thresholds are frozen on calibration data, hash-pinned, and evaluated on test data under a logged access budget.
+\item A two-branch evidence design: direct similarity and similarity over SAM-synthesised faces at shared target ages, with per-branch linear learners, a fusion network, and quality/reliability guards.
+\item An evaluation protocol with person-disjoint splits, quarantined identities, ArcFace-mined and neutral hard impostor sets, and cluster-bootstrap confidence intervals.
+\item Results on MORPH and on FG-NET with frozen thresholds, against ArcFace, ablations, and Siamese CNN, ViT and vision-language baselines. 
+\end{itemize}
+
+\section{Related Work}
+\textbf{Age-invariant face recognition.} OE-CNN decomposes deep features into age- and identity-related components~\cite{wang2018oecnn}; MTLFace jointly learns identity and age features with an age synthesis task~\cite{huang2021mtlface}. Both are trained end to end and evaluated by identification or verification accuracy.
+
+\textbf{Face aging and synthesis.} SAM regresses a latent shift in a style-based generator conditioned on target age~\cite{alaluf2021sam}. \sys\ treats such a generator as evidence sources whose outputs are scored and weighted by a learned reliability, rather than trusted unconditionally.
+
+\textbf{Face embeddings and perceptual metrics.} ArcFace~\cite{deng2019arcface} is the standard embedding; VGG-Face~\cite{parkhi2015vgg}, EfficientNet features~\cite{tan2019efficientnet}, LPIPS~\cite{zhang2018lpips} and SSIM~\cite{wang2004ssim} supply complementary similarity cues. We use all five as inputs.
+
+\textbf{Learned comparison models.} Siamese networks~\cite{chopra2005siamese,koch2015siamese}, Vision Transformers~\cite{dosovitskiy2021vit} and instruction-tuned vision-language models adapted with LoRA~\cite{hu2022lora,wang2024qwen2vl} are natural alternatives to a hand-structured pipeline; we train each on the same pairs and evaluate it with the same decision rule.
+
+\textbf{Reject option and calibration.} Classification with a reject option~\cite{chow1970reject} and Platt scaling~\cite{platt1999} underpin the decision stage. The zero-failure confidence bound is the ``rule of three'' generalisation~\cite{hanley1983rule3}.
+
+\textbf{Datasets.} MORPH~\cite{ricanek2006morph} provides longitudinal photographs; FG-NET~\cite{lanitis2002fgnet} provides a small cross-age set used here as an external test.
+
+\section{Methodology}
+\begin{figure*}[t]
+\centering
+\framebox{\parbox{0.92\textwidth}{\centering\vspace{3cm}\textit{[Figure 2 Placeholder: AAFV-Net Architecture Diagram]}\vspace{3cm}}}
+\caption{\sys\ architecture. A photo pair is aligned and scored for quality. The direct branch compares the original pair. The aged branch uses SAM to age the younger photo forward to the older age and the older photo backward, plus up to seven shared target ages; the five scores are aggregated over targets. Each branch has a linear 5$\to$1 learner. A fusion MLP takes the branch values and context inputs, and Platt scaling gives a probability $P$. Guards and frozen thresholds yield one of three decisions.}
+\label{fig:arch}
+\end{figure*}
+
+\subsection{Problem and decision rule}
+Given photos $I_1,I_2$ with ages $a_1<a_2$ and gap $g=a_2-a_1$, \sys\ outputs a calibrated same-person probability $P$ and a decision in \{Accept, Review, Reject\}. Accept requires $P\ge T_{acc}$ and all guards; Reject requires $P\le T_{rej}(\beta)$; everything else goes to review.
+
+\subsection{Evidence and scores}
+Faces are aligned to 256$\times$256 with an FFHQ-style procedure and assigned a quality score $Q$. For each branch, a pair of images is scored with five measures: ArcFace cosine similarity, EfficientNet and VGG-Face feature similarity, LPIPS distance, and SSIM.
+
+\textbf{Direct branch.} Scores are computed on $(I_1,I_2)$.
+
+\textbf{Aged (SAM) branch.} SAM synthesises $I_1$ at age $a_2$ (forward), $I_2$ at age $a_1$ (backward), and both photos at up to $K\le7$ shared target ages on a 5-year grid. The five scores of every target comparison are aggregated into a single score vector, and a reliability score $R_{sam}$ summarises agreement among targets.
+
+\subsection{Learners and fusion}
+Each of the two branches has a linear learner $5\to1$ ($W_d$ for direct, $W_s$ for SAM). Their outputs and the context inputs ($g$, $Q$, an enhanced-pair flag, $R_{sam}$ and availability flags; unused slots are fixed at zero, giving an 11-dimensional input) feed an MLP $11\to32\to16\to1$ with ReLU and dropout 0.1. Five seeds are averaged and Platt scaling produces $P$. Training uses gap-balanced weighted binary cross-entropy, and the SAM branch is masked with probability 0.12 during training so the model remains usable when synthesis is unavailable.
+
+\subsection{Guards and frozen thresholds}
+Guards require $Q\ge Q_{min}$, direct-branch probability $P_d\ge\rho$, and, when the SAM branch is available, $R_{sam}\ge R_{min}$ and $P_s\ge\rho$. The accept threshold is $T_{acc}=\max$ of the probabilities of different-person calibration pairs that pass all guards, plus a margin; the frozen value is 0.9566 with $\rho=0.2$. $T_{rej}(\beta)$ is the $\beta$-quantile of same-person calibration probabilities, so $\beta$ is the target false-reject rate. Thresholds are written to a file whose SHA-256 is recorded (\texttt{4b7af977\ldots2cfe}); the test script verifies the hash and writes every access to a log, with a budget of two looks.
+
+\subsection{Evaluation protocol}
+Identities are split into disjoint train, calibration and test sets; 858 people (6.4\%) with duplicate or merged identities are quarantined. Impostor sets are: \emph{D\_random} (1{,}149 random different-person test pairs), \emph{D\_all\_random} (277{,}822), \emph{D\_hard} (hard negatives mined with ArcFace), and a \emph{neutral} set (top 1\% of random impostor pairs ranked by independent Siamese models, about 2{,}790 pairs), on which a baseline is never scored if it mined the set. Confidence intervals are 95\% cluster bootstrap over identities (500 resamples).
+
+\subsection{Baselines}
+\textbf{Siamese CNN and ViT} use a timm backbone with a head on $|e_a-e_b|$ and $e_a\odot e_b$, trained on the same pairs with early stopping. \textbf{VLM} is Qwen2-VL-2B-Instruct (4-bit, LoRA $r=16$, Unsloth) scored by $\mathrm{logit}(\text{Yes})-\mathrm{logit}(\text{No})$, trained on 8{,}000 pairs and evaluated on a 13{,}319-pair subset. All baselines are registered with the same decision rule.
+
+\section{Results}
+We report test results at $\beta=1\%$ unless stated. ``Accept'' is same-person auto-accept; ``D\_hard rej.'' is the share of ArcFace-mined hard impostors auto-rejected; ``Neutral rej.'' is the same for the neutral set. 95\% intervals are in parentheses.
+
+\subsection{MORPH test: main comparison}
+\begin{table}[h]
+\centering\small
+\caption{MORPH test, $\beta=1\%$. FA = false accepts / pairs.}
+\label{tab:main}
+\setlength{\tabcolsep}{2pt}\footnotesize
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Accept (\%) & D\_hard rej. & Neutral\\\midrule
+\sys & 70.1 (66.5--73.1) & 98.0 & 57.5\\
+\sys\ no shared & 83.9 (82.0--85.7) & 97.9 & 54.0\\
+ArcFace only & 89.4 (88.0--90.7) & 0 & 28.5\\
+ArcFace, no guard & 93.6 (92.4--94.9) & 0 & --\\
+Direct 5-score LR & 87.1 (85.4--88.7) & 0 & 22.4\\
+Direct-only MLP & 0 & 97.8 & 50.0\\
+Siamese CNN & 0.2 (0.1--0.3) & 9.9 & n/a\\
+Siamese ViT & 0 & 10.0 & n/a\\\bottomrule
+\end{tabular}
+\end{table}
+Table~\ref{tab:main} gives the main comparison. \sys\ has zero false accepts on D\_random (0/1{,}149) and D\_all\_random (0/277{,}822), and 5/35{,}735 on D\_hard. Among methods that auto-accept a substantial share of same-person pairs, \sys\ is the only one that also rejects nearly all hard impostors: ArcFace-only and the direct 5-score regression accept more same-person pairs but reject none of the hard impostors, and the direct-only MLP rejects them but accepts nothing. On the neutral set, which does not favour any model, \sys\ rejects 57.5\% against 28.5\% for ArcFace. The Siamese CNN and ViT are not scored on the neutral set because they mined it. The VLM, evaluated on its subset, auto-accepts 0\% and rejects 10.2\% of hard impostors. 
+
+\begin{figure}[h]
+\centering
+\framebox{\parbox{\columnwidth}{\centering\vspace{1.5cm}\textit{[Figure 3 Placeholder: MORPH \& FG-NET Accept vs Reject]}\vspace{1.5cm}}}
+\caption{(a) MORPH test: same-person accept versus hard-impostor rejection. (b) FG-NET adults with MORPH-frozen thresholds: accept rate by age-gap bin.}
+\label{fig:results}
+\end{figure}
+
+\subsection{Discriminative power of the baselines}
+\begin{table}[h]
+\centering\small
+\caption{Calibration D\_hard ranking quality of the learned baselines.}
+\label{tab:base}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Model & AUC & TPR@FPR$10^{-3}$\\\midrule
+Siamese CNN & 0.953 & 0.311\\
+Siamese ViT & 0.972 & 0.605\\
+VLM (subset) & 0.906 & 0.054\\\bottomrule
+\end{tabular}
+\end{table}
+The baselines rank pairs well (Table~\ref{tab:base}) but, under a rule that must keep false accepts at zero on calibration impostors, their accept thresholds fall above nearly all same-person scores. On the common calibration subset \sys\ auto-accepts 74.1\% with a balanced automation score of 0.52, against 0.24--0.27 for the baselines. 
+
+\begin{figure*}[t]
+\centering
+\framebox{\parbox{0.85\textwidth}{\centering\vspace{2cm}\textit{[Figure 4 Placeholder: Decision Outcomes Breakdown]}\vspace{2cm}}}
+\caption{Decision outcomes on the calibration split at a 1\% false-reject target, with zero false accepts for every method. Left: same-person pairs (auto-accept, review, false reject). Right: ArcFace-mined hard different-person pairs (false accept, review, auto-reject).}
+\label{fig:outcomes}
+\end{figure*}
+
+\subsection{Ablations}
+\begin{table}[h]
+\centering\small
+\caption{Calibration ablations on the common subset, $\beta=1\%$. Acc.: same-person accept (\%); Rej.: D\_hard rejected (\%); BA: balanced automation.}
+\label{tab:abl}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Variant & Acc. & Rej. & BA\\\midrule
+Full \sys & 74.1 & 98.2 & 0.516\\
+Drop EfficientNet & 81.3 & 97.6 & 0.514\\
+Drop VGG & 73.9 & 97.2 & 0.484\\
+Drop LPIPS & 62.9 & 97.5 & 0.479\\
+Drop SSIM & 72.8 & 97.4 & 0.496\\
+Drop ArcFace & 0.7 & 17.9 & 0.274\\
+ArcFace score only & 0 & 97.7 & 0.129\\
+No reliability input & 73.3 & 97.8 & 0.505\\
+No pair weights & 74.4 & 97.3 & 0.514\\
+No branch masking & 3.6 & 98.4 & 0.186\\
+No context inputs & 0 & 98.1 & 0.140\\
+Fwd.\ target only & 75.1 & 98.3 & 0.511\\
+No shared targets & 84.8 & 98.3 & 0.583\\
+Shared targets only & 0 & 98.1 & 0.108\\
+Direct-only MLP & 0 & 98.5 & 0.139\\
+SAM-only & 0 & 44.8 & 0.314\\
+Fusion LR (no MLP) & 64.7 & 0 & 0.602\\
+No guards (any variant) & 0 & 98.2 & 0.146\\
+ArcFace only & 87.2 & 0 & 0.670\\
+ArcFace, no guard & 91.6 & 0 & 0.692\\
+Direct 5-score LR & 84.3 & 0 & 0.702\\\bottomrule
+\end{tabular}
+\end{table}
+Table~\ref{tab:abl} shows that ArcFace is the necessary signal (dropping it collapses accept to 0.7\%), that LPIPS contributes most among the other four scores, and that branch masking and the context inputs are required for any auto-accept at all. Removing guards leaves rejection intact but pushes $T_{acc}$ above 1, so nothing is accepted. Removing the shared-target aggregation raises accept to 84.8\% with unchanged hard-impostor rejection on calibration; on the test split this variant gives 83.9\% accept and 54.0\% neutral rejection against 70.1\% and 57.5\% for the full model (Table~\ref{tab:main}).
+
+\begin{figure}[h]
+\centering
+\framebox{\parbox{\columnwidth}{\centering\vspace{1.5cm}\textit{[Figure 5 Placeholder: Ablations Bar Chart]}\vspace{1.5cm}}}
+\caption{Ablations on the calibration common subset (1\% false-reject target): same-person auto-accept and D\_hard auto-reject per variant.}
+\label{fig:abl}
+\end{figure}
+
+\subsection{Accept rate by age gap}
+\begin{table}[h]
+\centering\small
+\caption{MORPH test same-person accept (\%) by age-gap bin G1--G5 (G6 has too few pairs).}
+\label{tab:gap}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & G1 & G2 & G3 & G4 & G5\\\midrule
+\sys & 71.0 & 56.4 & 45.7 & 1.3 & 2.2\\
+ArcFace only & 90.5 & 80.1 & 69.0 & 2.7 & 2.2\\\bottomrule
+\end{tabular}
+\end{table}
+On MORPH the decline with age gap is shared by both methods (Table~\ref{tab:gap}).
+
+\subsection{External evaluation on FG-NET}
+\begin{table*}[t]
+\centering\small
+\caption{FG-NET with thresholds frozen on MORPH. Adults: both ages $\ge16$ (5{,}126 same-person pairs, 3{,}670 impostors). All ages: 25{,}797 pairs (20{,}000 impostors). Accept (\%) by gap bin $<$5, 5--10, 10--15, 15--20, 20--30, 30+ years.}
+\label{tab:fg}
+\setlength{\tabcolsep}{2pt}\small
+\begin{tabular}{@{}llcl@{}}
+\toprule
+Subset & Method & Accept (\%) & By gap bin\\\midrule
+\multirow{2}{*}{Adults} & \sys & 51.9 (44.5--58.4) & 71.6/59.6/49.0/\allowbreak38.2/28.5/10.3\\
+ & ArcFace & 40.4 (34.5--47.4) & 60.7/49.2/35.6/25.9/14.5/3.8\\\midrule
+\multirow{2}{*}{All ages} & \sys & 29.9 (26.7--33.3) & 59.1/28.9/14.8/\allowbreak11.7/9.4/2.8\\
+ & ArcFace & 21.3 (18.4--24.2) & 45.5/19.2/9.3/7.3/4.7/1.0\\\bottomrule
+\end{tabular}
+\end{table*}
+Table~\ref{tab:fg} shows that on FG-NET adults \sys\ auto-accepts more same-person pairs than ArcFace in every gap bin, with zero false accepts for both (0/3{,}670). Impostor rejection on adults is 55.0\% for \sys, 71.3\% for ArcFace and 35.0\% for the direct-only MLP. On all ages, \sys\ gives 4 false accepts in 20{,}000 impostors and ArcFace none; the four pairs involve children aged 0--4. Impostor rejection on all ages is 66.4\% for \sys, 64.4\% for ArcFace and 48.1\% for the direct-only MLP. The learned baselines accept $\approx$0\% of FG-NET same-person pairs.
+
+\section{Discussion}
+\textbf{Where \sys\ stands.} The main finding is the combination of properties in Table~\ref{tab:main}: a bounded zero-false-accept operating point on random impostors, near-complete rejection of ArcFace-mined hard impostors, and a substantial automated accept rate. No other method here has all three. Matchers that accept more (ArcFace, direct 5-score regression) do so by also accepting every hard impostor; matchers with comparable rejection (direct-only MLP, no-guard variants) accept no genuine pair at zero false accepts. The neutral hard set confirms that the rejection benefit is not an artefact of mining with ArcFace: \sys\ rejects roughly twice as many neutral hard impostors as ArcFace and 2.6 times as many as the direct 5-score regression.
+
+\textbf{Age-gap behaviour.} The aged branch adds most when the gap is large and the subjects are adults. On FG-NET adults, accept improves in all six gap bins, from 60.7\% to 71.6\% in the smallest and from 3.8\% to 10.3\% in the largest, with the relative gain growing with gap. A matched benefit does not appear on MORPH, where ArcFace-only accepts more in every bin (Table~\ref{tab:gap}) because it is not constrained to reject hard impostors; the comparison that isolates the contribution is the one that holds rejection fixed (Table~\ref{tab:abl}, Table~\ref{tab:main}).
+
+\textbf{Role of each component.} The full guard set, branch masking and the context inputs are each necessary for a usable accept threshold. The shared-target aggregation trades accept rate for neutral-set rejection: removing it raises accept to 83.9\% on test but lowers neutral rejection from 57.5\% to 54.0\%; we keep it in the full model because it was fixed before the test looks. The baselines are competitive rankers (Table~\ref{tab:base}) yet cannot operate at zero false accepts, which supports the claim that a calibrated, guarded decision stage matters as much as the scorer.
+
+\textbf{Auditability.} Thresholds are frozen and hash-pinned, and the test split was accessed twice, both logged. The bound of 0.32\% therefore accounts for both looks.
+
+\subsection{Limitations}
+(i) The false-accept bound covers random person-disjoint impostors; on ArcFace-mined hard impostors \sys\ has 5 false accepts in 35{,}735 pairs. (ii) On FG-NET all ages, \sys\ accepted four impostor pairs involving young children, where aging models are least reliable. (iii) The FG-NET adult cut was chosen after seeing the all-age results. (iv) On MORPH, \sys\ does not exceed ArcFace-only accept rate in any gap bin, and on adults FG-NET its impostor rejection (55.0\%) is below ArcFace's (71.3\%). (v) Auto-reject is effectively inactive on MORPH at $\beta=1\%$. (vi) The hard-impostor set is mined with ArcFace and is therefore biased against ArcFace. (vii) The test budget of two looks is exhausted, results are from a single training run.
+
+\section{Conclusion}
+\sys\ reframes age-gap face verification as a bounded three-way decision. With frozen, hash-pinned thresholds and a logged test budget, it achieves zero false accepts on random impostors (0.32\% bound), auto-accepts 70.1\% of same-person pairs on MORPH while rejecting 98.0\% of ArcFace-mined hard impostors, and generalises to FG-NET adults with a higher accept rate than ArcFace in every age-gap bin. Learned Siamese, ViT and VLM baselines do not reach a usable automated operating point under the same rule. 
+
+\begin{thebibliography}{99}\small
+\bibitem{wang2018oecnn} Y. Wang \emph{et al.}, ``Orthogonal deep features decomposition for age-invariant face recognition,'' in \emph{ECCV}, 2018.
+\bibitem{huang2021mtlface} Z. Huang \emph{et al.}, ``When age-invariant face recognition meets face age synthesis: A multi-task learning framework,'' in \emph{CVPR}, 2021.
+\bibitem{alaluf2021sam} Y. Alaluf, O. Patashnik, D. Cohen-Or, ``Only a matter of style: Age transformation using a style-based regression model,'' \emph{ACM TOG (SIGGRAPH)}, 2021.
+\bibitem{deng2019arcface} J. Deng, J. Guo, N. Xue, S. Zafeiriou, ``ArcFace: Additive angular margin loss for deep face recognition,'' in \emph{CVPR}, 2019.
+\bibitem{parkhi2015vgg} O. Parkhi, A. Vedaldi, A. Zisserman, ``Deep face recognition,'' in \emph{BMVC}, 2015.
+\bibitem{tan2019efficientnet} M. Tan, Q. Le, ``EfficientNet: Rethinking model scaling for convolutional neural networks,'' in \emph{ICML}, 2019.
+\bibitem{zhang2018lpips} R. Zhang \emph{et al.}, ``The unreasonable effectiveness of deep features as a perceptual metric,'' in \emph{CVPR}, 2018.
+\bibitem{wang2004ssim} Z. Wang \emph{et al.}, ``Image quality assessment: from error visibility to structural similarity,'' \emph{IEEE TIP}, 2004.
+\bibitem{chopra2005siamese} S. Chopra, R. Hadsell, Y. LeCun, ``Learning a similarity metric discriminatively, with application to face verification,'' in \emph{CVPR}, 2005.
+\bibitem{koch2015siamese} G. Koch, R. Zemel, R. Salakhutdinov, ``Siamese neural networks for one-shot image recognition,'' ICML Deep Learning Workshop, 2015.
+\bibitem{dosovitskiy2021vit} A. Dosovitskiy \emph{et al.}, ``An image is worth 16x16 words: Transformers for image recognition at scale,'' in \emph{ICLR}, 2021.
+\bibitem{hu2022lora} E. Hu \emph{et al.}, ``LoRA: Low-rank adaptation of large language models,'' in \emph{ICLR}, 2022.
+\bibitem{wang2024qwen2vl} P. Wang \emph{et al.}, ``Qwen2-VL: Enhancing vision-language model's perception of the world at any resolution,'' arXiv:2409.12191, 2024.
+\bibitem{chow1970reject} C. Chow, ``On optimum recognition error and reject tradeoff,'' \emph{IEEE Trans. Inf. Theory}, 1970.
+\bibitem{platt1999} J. Platt, ``Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods,'' in \emph{Advances in Large Margin Classifiers}, 1999.
+\bibitem{hanley1983rule3} J. Hanley, A. Lippman-Hand, ``If nothing goes wrong, is everything all right?'' \emph{JAMA}, 1983.
+\bibitem{ricanek2006morph} K. Ricanek, T. Tesafaye, ``MORPH: A longitudinal image database of normal adult age-progression,'' in \emph{FGR}, 2006.
+\bibitem{lanitis2002fgnet} A. Lanitis, C. Taylor, T. Cootes, ``Toward automatic simulation of aging effects on face images,'' \emph{IEEE TPAMI}, 2002.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,103 @@
+# =============================================================================
+# Code Directory (Core implementation maintained separately)
+# Upstream repository: https://github.com/anuragnayak01/AAFV_Net
+# =============================================================================
+Code/
+
+# =============================================================================
+# Heavy Binary, Checkpoint & Model Files
+# =============================================================================
+*.pkl
+*.pickle
+*.npz
+*.npy
+*.pt
+*.pth
+*.bin
+*.h5
+*.hdf5
+*.onnx
+*.weights
+*.ckpt
+*.safetensors
+
+# Large Data Archives & Dumps
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+*.csv.gz
+*.parquet
+*.feather
+
+# Large Reference Documents (>5MB)
+BASE_Paper.pdf
+
+# =============================================================================
+# Python & Virtual Environments
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# =============================================================================
+# LaTeX Auxiliary & Build Artifacts
+# (Preserves source .tex, .bib, .cls, .bst and final publication PDF main.pdf)
+# =============================================================================
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.log
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex
+*.synctex.gz
+*.toc
+*.vrb
+*.upa
+*.upb
+
+# =============================================================================
+# Operating System & Editor Artifacts
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
