@@ -5,6 +5,7 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{makecell}
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{cite}
@@ -153,8 +154,8 @@ We explicitly note that the mathematical validity of (\ref{eq:adjusted_bound}) r
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.92\textwidth]{figures/fig2_architecture.pdf}
-\caption{Comprehensive architecture of \sys. An input pair $(I_1, I_2)$ with gap $g = a_2 - a_1$ is aligned and evaluated for quality $Q$. The Direct Branch compares the original images across five similarity metrics, projected by linear learner $W_d$. The SAM Aging Branch synthesizes forward ($I_1 \to a_2$), backward ($I_2 \to a_1$), and $K \le 7$ shared target ages, aggregating similarity vectors and extracting reliability $R_{\text{sam}}$, projected by $W_s$ (with $12\%$ training mask). The 11-D fusion vector feeds an MLP with Platt scaling. The three-way decision is made via frozen thresholds $T_{\text{acc}}$ and $T_{\text{rej}}(\beta)$ conditioned on probability and quality guards.}
+\includegraphics[width=\textwidth]{figures/fig2_architecture.pdf}
+\caption{Modular architecture of \sys\ organized into five sequential processing stages. Stage 1 aligns photographs and extracts face quality $Q$. Stage 2 extracts five perceptual similarity scores across the direct pair and SAM-synthesized counterfactuals at forward, backward, and shared target ages ($K \leq 7$). Stage 3 projects branch scores via linear learners $W_d, W_s$ with training branch masking ($p=0.12$). Stage 4 constructs the 11-D fusion vector $\vect{z}$ with context bypass lanes for age gap $g$ and quality $Q$, followed by an ensembled MLP and Platt calibration. Stage 5 applies probability and quality guards with frozen thresholds $T_{\text{acc}}$ and $T_{\text{rej}}(\beta)$ to yield a three-way decision.}
 \label{fig:architecture}
 \end{figure*}
 
@@ -286,29 +287,31 @@ Because face pairs inherently share underlying subjects, naive standard errors u
 
 \begin{table*}[t]
 \centering
-\caption{Comprehensive performance comparison on the person-disjoint MORPH test partition at target false-reject rate $\beta = 1.0\%$. Numbers in parentheses represent 95\% identity-clustered bootstrap confidence intervals (500 iterations). FA denotes false accepts observed over evaluation pairs.}
+\caption{Comprehensive performance comparison on the person-disjoint MORPH test partition at target false-reject rate $\beta = 1.0\%$. Column headers explicitly state evaluation sample sizes ($N$), and cells display observed point estimates and false-accept counts without denominators. Full 95\% identity-clustered bootstrap confidence intervals are reported in Appendix Table~\ref{tab:supp_intervals}.}
 \label{tab:main_results}
-\small
+\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccc}
 \toprule
-\textbf{Method} & \textbf{Same-Person} & \textbf{Random FA} & \textbf{All-Random FA} & \textbf{$D_{\text{hard}}$ FA} & \textbf{$D_{\text{hard}}$ Auto-Rej.} & \textbf{Neutral Hard} \\
- & \textbf{Auto-Accept (\%)} & ($\mathcal{D}_{\text{random}}$) & ($\mathcal{D}_{\text{all\_random}}$) & ($\mathcal{D}_{\text{hard}}$) & \textbf{Rate (\%)} & \textbf{Auto-Rej. (\%)} \\
+\textbf{Method} & \makecell{\textbf{Same-Person}\\\textbf{Auto-Accept (\%)}\\\small ($N = 1{,}150$)} & \makecell{\textbf{Random FA}\\\textbf{$\mathcal{D}_{\text{random}}$}\\\small ($N = 1{,}149$)} & \makecell{\textbf{All-Random FA}\\\textbf{$\mathcal{D}_{\text{all\_random}}$}\\\small ($N = 277{,}822$)} & \makecell{\textbf{Hard FA}\\\textbf{$\mathcal{D}_{\text{hard}}$}\\\small ($N = 35{,}735$)} & \makecell{\textbf{Hard Auto-Reject}\\\textbf{(\%)}\\\small ($N = 35{,}735$)} & \makecell{\textbf{Neutral Auto-Reject}\\\textbf{(\%)}\\\small ($N = 2{,}790$)} \\
 \midrule
-\textbf{\sys\ (Full)} & \textbf{70.07} (66.49--73.08) & \textbf{0 / 1,149} & \textbf{0 / 277,822} & 5 / 35,735 & \textbf{98.04} (97.68--98.39) & \textbf{57.53} (55.34--59.73) \\
-\sys\ (No Shared Targets) & 83.91 (82.01--85.73) & 0 / 1,149 & 0 / 277,822 & 4 / 35,735 & 97.94 (97.58--98.29) & 54.01 (51.83--56.20) \\
-ArcFace Only & 89.44 (87.97--90.74) & 0 / 1,149 & 0 / 277,822 & 0 / 35,735 & 0.00 (0.00--0.00) & 28.53 (26.58--30.40) \\
-ArcFace (No Guards) & 93.62 (92.41--94.86) & 0 / 1,149 & 0 / 277,822 & 0 / 35,735 & 0.00 (0.00--0.00) & -- \\
-Direct 5-Score LR & 87.14 (85.42--88.70) & 0 / 1,149 & 0 / 277,822 & 0 / 35,735 & 0.00 (0.00--0.00) & 22.40 (20.57--24.34) \\
-Direct-Only MLP & 0.00 (0.00--0.00) & 0 / 1,149 & 0 / 277,822 & 0 / 35,735 & 97.80 (97.43--98.15) & 50.00 (47.81--52.19) \\
-Siamese CNN & 0.17 (0.09--0.26) & 0 / 1,149 & 0 / 277,822 & 0 / 35,735 & 9.94 (9.43--10.45) & n/a$^\dagger$ \\
-Siamese ViT & 0.00 (0.00--0.00) & 0 / 1,149 & 0 / 277,822 & 0 / 35,735 & 9.98 (9.47--10.50) & n/a$^\dagger$ \\
-VLM (Qwen2-VL-2B) & 0.00 (0.00--0.00) & 0 / 1,149 & 0 / 277,822 & 0 / 35,735 & 10.20 (9.68--10.72) & n/a$^\dagger$ \\
+\textbf{\sys\ (Full)} & \textbf{70.07} & \textbf{0} & \textbf{0} & 5 & \textbf{98.04} & \textbf{57.53} \\
+\sys\ (No Shared Targets) & 83.91 & 0 & 0 & 4 & 97.94 & 54.01 \\
+ArcFace Only & 89.44 & 0 & 0 & 0 & 0.00 & 28.53 \\
+ArcFace (No Guards) & 93.62 & 0 & 0 & 0 & 0.00 & -- \\
+Direct 5-Score LR & 87.14 & 0 & 0 & 0 & 0.00 & 22.40 \\
+Direct-Only MLP & 0.00 & 0 & 0 & 0 & 97.80 & 50.00 \\
+Siamese CNN & 0.17 & 0 & 0 & 0 & 9.94 & n/a$^\dagger$ \\
+Siamese ViT & 0.00 & 0 & 0 & 0 & 9.98 & n/a$^\dagger$ \\
+VLM (Qwen2-VL-2B) & 0.00 & 0 & 0 & 0 & 10.20 & n/a$^\dagger$ \\
 \bottomrule
 \multicolumn{7}{l}{$^\dagger$\footnotesize Siamese baselines and VLM are omitted from the Neutral Hard evaluation because they were used to mine the partition.}
-\end{tabular}
+\end{tabular}%
+}
 \end{table*}
 
-Table~\ref{tab:main_results} reports the primary experimental evaluation across all benchmarked methods at $\beta = 1.0\%$. The empirical results illustrate three foundational insights:
+Table~\ref{tab:main_results} reports the primary experimental evaluation across all benchmarked methods at $\beta = 1.0\%$. Point estimates are displayed in Table~\ref{tab:main_results}, with complete 95\% identity-clustered bootstrap confidence intervals detailed in Appendix Table~\ref{tab:supp_intervals}. The empirical results illustrate three foundational insights:
 \begin{enumerate}
     \item \textbf{Guaranteed Zero Random False Accepts:} \sys\ produced exactly zero false accepts across both $\mathcal{D}_{\text{random}}$ ($0/1{,}149$) and $\mathcal{D}_{\text{all\_random}}$ ($0/277{,}822$), confirming the validity of the analytical $0.320\%$ upper bound under two-look testing.
     \item \textbf{Resolution of the Hard-Impostor Paradox:} Standard ArcFace achieves a nominal accept rate of $89.44\%$ on same-person pairs, but suffers a complete failure on adversarial hard impostors, auto-rejecting exactly $0.00\%$ of $\mathcal{D}_{\text{hard}}$ (leaving 100\% in manual review). Conversely, \sys\ autonomously filters $98.04\%$ of ArcFace-mined hard impostors and $57.53\%$ of independent neutral hard impostors while preserving a $70.07\%$ same-person auto-accept rate.
@@ -423,7 +426,9 @@ To evaluate out-of-distribution transfer without fine-tuning, the MORPH-frozen m
 \centering
 \caption{External evaluation on FG-NET with thresholds frozen on MORPH. Results reported for Adult cohort ($a_1, a_2 \ge 16$) and All-Ages cohort across age-gap bins. Numbers in parentheses indicate 95\% identity-clustered bootstrap confidence intervals.}
 \label{tab:fgnet}
-\small
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{llcccccc}
 \toprule
 \textbf{Cohort} & \textbf{Method} & \textbf{Accept Rate (\%)} & \textbf{Random FA} & \textbf{Impostor Rej. (\%)} & \textbf{Gap $<5$y} & \textbf{Gap $5$--$15$y} & \textbf{Gap $>20$y} \\
@@ -435,7 +440,8 @@ To evaluate out-of-distribution transfer without fine-tuning, the MORPH-frozen m
  & ArcFace Only & 21.29 (18.40--24.22) & \textbf{0 / 20,000} & 64.40\% & 45.5\% & 14.3\% & 2.9\% \\
 \bottomrule
 \multicolumn{8}{l}{$^\ddagger$\footnotesize All 4 false accepts occurred on pediatric subjects aged $0$--$4$ years where generative StyleGAN models exhibit severe identity instability.}
-\end{tabular}
+\end{tabular}%
+}
 \end{table*}
 
 On FG-NET adults, \sys\ auto-accepts $51.92\%$ of same-person pairs compared with $40.38\%$ for ArcFace (a relative improvement of $+28.6\%$), with zero false accepts across $3{,}670$ impostor pairs. In the extreme gap bin ($>20$ years), \sys\ auto-accepts $19.4\%$ compared with $9.2\%$ for ArcFace, demonstrating that generative SAM evidence becomes increasingly decisive as physical aging progresses.
@@ -579,6 +585,35 @@ In accordance with IEEE reporting standards, we identify several operational lim
 \section{Conclusion}
 \label{sec:conclusion}
 We presented \sys, a biometric framework that reformulates cross-age face verification as a calibrated, three-way decision system with a measured, bounded false-accept rate. By fusing direct multi-metric facial features with generative SAM age progression under quality guards, \sys\ achieves zero false accepts on held-out random impostors, establishing a $0.320\%$ upper bound at 95\% confidence under a two-look access budget. On MORPH test data, it auto-accepts $70.07\%$ of same-person pairs while auto-rejecting $98.04\%$ of ArcFace-mined hard impostors and $57.53\%$ of neutral hard impostors. External evaluation on FG-NET adults demonstrates superior cross-age generalizability over ArcFace in every longitudinal bin. All source code, frozen models, and audit logs are released for open reproducibility.
+
+\appendices
+\section{Supplementary Statistical Confidence Intervals}
+\label{sec:appendix_intervals}
+
+Table~\ref{tab:supp_intervals} reports the complete set of 95\% identity-clustered bootstrap confidence intervals (500 resamples at the subject level) corresponding to the point estimates presented in Table~\ref{tab:main_results}. This supplementary documentation preserves complete statistical transparency across all models, metrics, and evaluation splits.
+
+\begin{table}[h]
+\centering
+\caption{Complete 95\% identity-clustered bootstrap confidence intervals for the MORPH test partition ($\beta = 1.0\%$, 500 resamples).}
+\label{tab:supp_intervals}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \makecell{\textbf{Same-Person Auto-Accept}\\\textbf{95\% CI (\%)}} & \makecell{\textbf{Hard Impostor Rejection}\\\textbf{95\% CI (\%)}} & \makecell{\textbf{Neutral Hard Rejection}\\\textbf{95\% CI (\%)}} \\
+\midrule
+\textbf{\sys\ (Full)} & [66.49, 73.08] & [97.68, 98.39] & [55.34, 59.73] \\
+\sys\ (No Shared Targets) & [82.01, 85.73] & [97.58, 98.29] & [51.83, 56.20] \\
+ArcFace Only & [87.97, 90.74] & [0.00, 0.00] & [26.58, 30.40] \\
+ArcFace (No Guards) & [92.41, 94.86] & [0.00, 0.00] & -- \\
+Direct 5-Score LR & [85.42, 88.70] & [0.00, 0.00] & [20.57, 24.34] \\
+Direct-Only MLP & [0.00, 0.00] & [97.43, 98.15] & [47.81, 52.19] \\
+Siamese CNN & [0.09, 0.26] & [9.43, 10.45] & n/a \\
+Siamese ViT & [0.00, 0.00] & [9.47, 10.50] & n/a \\
+VLM (Qwen2-VL-2B) & [0.00, 0.00] & [9.68, 10.72] & n/a \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
