@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\caption{External Zero-Retraining Generalization on FG-NET Using MORPH-Frozen Thresholds ($\beta=1.0\%$). Adults ($a_1,a_2 \ge 16$): 1,456 genuine / 3,670 impostor (5,126 total pairs; cut chosen post hoc). All Ages: 5,797 genuine / 20,000 impostor (25,797 total pairs). Genuine bin counts G1--G6 are (405, 356, 261, 170, 186, 78) for Adults and (1,654, 1,589, 1,081, 615, 572, 286) for All Ages (\texttt{extended\_calibration\_fg*.csv}). Intervals are 95\% subject-clustered bootstraps.}
+\label{tab:fgnet}
+\footnotesize
+\setlength{\tabcolsep}{3.8pt}
+\begin{tabular}{@{}llccccccccc@{}}
+\toprule
+\textbf{Cohort} & \textbf{Method} & \makecell{\textbf{Accept}\\\textbf{(\% [95\% CI])}} & \makecell{\textbf{Impostor}\\\textbf{FA}} & \makecell{\textbf{Imp.}\\\textbf{Rej. (\%)}} & \textbf{$<$5y} & \textbf{5--9y} & \textbf{10--14y} & \textbf{15--19y} & \textbf{20--29y} & \textbf{30+y} \\
+\midrule
+\multirow{2}{*}{\textbf{Adults ($a\ge 16$)}} & \textbf{\sys} & \textbf{51.92} [44.47, 58.41] & 0 / 3,670 & 55.04 & \textbf{71.60} & \textbf{59.55} & \textbf{49.04} & \textbf{38.24} & \textbf{28.49} & \textbf{10.26} \\
+ & ArcFace Only & 40.38 [34.53, 47.38] & 0 / 3,670 & \textbf{71.28} & 60.74 & 49.16 & 35.63 & 25.88 & 14.52 & 3.85 \\
+\midrule
+\multirow{2}{*}{\textbf{All Ages}} & \textbf{\sys} & 29.86 [26.69, 33.34] & 4 / 20,000$^\ddagger$ & \textbf{66.45} & 59.07 & 28.95 & 14.80 & 11.71 & 9.44 & 2.80 \\
+ & ArcFace Only & 21.29 [18.40, 24.22] & \textbf{0 / 20,000} & 64.42 & 45.53 & 19.19 & 9.34 & 7.32 & 4.72 & 1.05 \\
+\bottomrule
+\multicolumn{11}{@{}l@{}}{\footnotesize $^\ddagger$All four impostor false accepts occurred on young children aged 0--4 years, motivating restriction to adult subjects ($a \ge 16$).}
+\end{tabular}
+\end{table*}

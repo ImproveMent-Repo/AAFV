@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Sex-Disaggregated Verification Audit on Protected MORPH Test Split (Look 1 Log \texttt{test\_pair\_zones\_look1.csv}; Per-Pair Sex Metadata Was Not Saved in Look 2).}
+\label{tab:fairness}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Cohort} & \makecell{\textbf{Same Accept}\\\textbf{(\%)}} & \makecell{\textbf{Same Review}\\\textbf{(\%)}} & \makecell{\textbf{Random FA}\\\textbf{$\mathcal{D}_{\text{random}}$}} & \makecell{\textbf{Hard FA}\\\textbf{$\mathcal{D}_{\text{hard}}$}} \\
+\midrule
+Male ($N_{\text{same}}=20{,}774$) & 81.07 & 18.93 & 0 / 982 & 3 / 30,921 \\
+Female ($N_{\text{same}}=3{,}531$) & 71.93 & 28.07 & 0 / 167 & 0 / 4,814 \\
+\midrule
+Gap ($\Delta$ M$-$F / DI Ratio) & \multicolumn{2}{c}{9.14 pp (Ratio: 0.887)} & 0.00 pp & -- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

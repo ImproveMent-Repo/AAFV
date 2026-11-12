@@ -1,0 +1,39 @@
+\begin{table}[t]
+\centering
+\caption{Component and Guard Ablation Study on Calibration Common Subset ($\beta = 1.0\%$, $N_{\text{same}} = 1{,}500$, $N_{\text{hard}} = 1{,}500$; \texttt{decision\_table\_calibration.csv}).}
+\label{tab:ablations}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Ablation Variant} & \textbf{$T_{\text{acc}}$} & \textbf{Acc. (\%)} & \textbf{Rej. (\%)} & \textbf{Rand. Rej. (\%)} \\
+\midrule
+\textbf{Full \sys\ ($\rho=0.20$)} & 0.956 & 74.13 & \textbf{98.20} & 26.15 \\
+\midrule
+\textit{Metric Ablations:} & & & & \\
+Drop ArcFace & 0.994 & 0.73 & 17.87 & 52.99 \\
+ArcFace Score Only & 1.008 & 0.00 & 97.73 & 24.19 \\
+Drop LPIPS & 1.000 & 62.87 & 97.47 & 29.32 \\
+Drop SSIM & 0.989 & 72.80 & 97.40 & 23.68 \\
+Drop VGG-Face & 0.976 & 73.93 & 97.20 & 19.57 \\
+Drop EfficientNet & 0.978 & 81.27 & 97.60 & 20.85 \\
+\midrule
+\textit{Architecture \& Guard Ablations:} & & & & \\
+No Branch Masking ($p=0$)$^\ast$ & 0.593 & 3.60 & 98.40 & 30.94 \\
+No Context ($g,Q,R_{\text{sam}}$) & 1.042 & 0.00 & 98.07 & 24.70 \\
+No Reliability ($R_{\text{sam}}$) & 0.989 & 73.27 & 97.80 & 23.85 \\
+No Pair Weights & 0.985 & 74.40 & 97.33 & 24.62 \\
+Forward Target Only & 0.954 & 75.07 & 98.27 & 25.98 \\
+No Shared Targets & 0.997 & \textbf{84.80} & 98.27 & 29.23 \\
+Shared Targets Only & 1.024 & 0.00 & 98.13 & 19.06 \\
+Direct-Only MLP & 1.042 & 0.00 & 98.47 & 26.67 \\
+SAM-Only MLP & 1.001 & 0.00 & 44.80 & \textbf{60.77} \\
+Fusion LogReg (No MLP) & 0.869 & 64.67 & 0.00 & 57.86 \\
+No Probability Guards (All 3)$^\ddagger$ & 1.005 & 0.00 & 98.20 & 26.15 \\
+\bottomrule
+\multicolumn{5}{@{}l@{}}{\footnotesize $^\ast$Selected $\rho = 0.35$ in calibration grid; $^\ddagger$\texttt{guard\_none}, \texttt{guard\_quality\_only},}\\
+\multicolumn{5}{@{}l@{}}{\footnotesize and \texttt{guard\_quality\_reliability} produced identical rates.}
+\end{tabular}%
+}
+\end{table}

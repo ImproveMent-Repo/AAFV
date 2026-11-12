@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Exact Trainable Fusion Parameter Decomposition, Verified CPU Inference Overhead, and Pipeline Call Complexity (Excluding Unmeasured Upstream Backbone Wall-Clock Timings).}
+\label{tab:complexity}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Pipeline Stage / Component} & \textbf{Trainable Params} & \textbf{Per-Pair Execution Calls} \\
+\midrule
+Quality \& Landmark Alignment & 0 (analytical / pre-trained) & 2 image crops ($256\times 256$) \\
+Direct Similarity Extractors & 0 (frozen backbones) & 1 direct comparison ($\vect{s}_{\text{dir}}$) \\
+SAM Synthesis + Aging Metrics & 0 (frozen generators) & Up to $2 + 2K \le 16$ passes \\
+Linear Heads ($W_d, W_s, W_f$) & $3 \times 6 = 18$ (12 active Stage A) & 1 linear projection/pair \\
+Fusion MLP ($11\!\to\!32\!\to\!16\!\to\!1$) & $929$ (total \texttt{Fusion}: $947$) & $0.18\,\mu\text{s}$ (batched)$^\dagger$ / $77.2\,\mu\text{s}$ \\
+5-Seed Ensemble + Platt Scalers & $5\times 947 + 6 = 4{,}741$ & $< 0.4\,\text{ms}$ CPU unbatched \\
+\bottomrule
+\multicolumn{3}{@{}l@{}}{\footnotesize $^\dagger$Measured PyTorch CPU single-seed inference on AMD x86-64 (\texttt{batch=1024} amortized vs.\ single-pair).}
+\end{tabular}%
+}
+\end{table}

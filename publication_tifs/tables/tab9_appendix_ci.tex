@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Complete 95\% Subject-Clustered Bootstrap Confidence Intervals (500 Resamples) on MORPH \texttt{test} Split ($\beta = 1.0\%$, \texttt{extended\_test.csv}).}
+\label{tab:supp_intervals}
+\footnotesize
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Method} & \makecell{\textbf{Same Accept}\\\textbf{95\% CI (\%)}} & \makecell{\textbf{Hard Reject}\\\textbf{95\% CI (\%)}} & \makecell{\textbf{Neutral Reject}\\\textbf{95\% CI (\%)}} \\
+\midrule
+\textbf{\sys\ (Full)} & [66.52, 73.11] & [97.77, 98.31] & [55.34, 59.73] \\
+No Shared Targets & [82.03, 85.72] & [97.57, 98.12] & [51.77, 56.18] \\
+ArcFace Only (Guarded) & [88.03, 90.65] & [0.00, 0.00] & [26.58, 30.40] \\
+ArcFace (No Guards) & [92.41, 94.86] & [0.00, 0.00] & [26.61, 30.54] \\
+Direct 5-Score LogReg & [85.39, 88.65] & [0.00, 0.00] & [20.64, 24.21] \\
+Direct-Only MLP & [0.00, 0.00] & [97.46, 98.07] & [47.73, 52.20] \\
+Siamese CNN (ResNet-18) & [0.13, 0.30] & [9.37, 10.43] & n/a \\
+Siamese ViT (ViT-B/16) & [0.00, 0.00] & [9.43, 10.69] & n/a \\
+\bottomrule
+\end{tabular}
+\end{table}
+
