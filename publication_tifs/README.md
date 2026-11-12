@@ -23,7 +23,9 @@ Target Venue: **IEEE Transactions on Information Forensics and Security (TIFS)**
 ## Pre-Submission Author Action Items
 
 Before uploading to IEEE Author Portal / ScholarOne Manuscripts:
-1. Replace placeholder author metadata in `main.tex` lines 22–28 (`[Co-Author Names To Be Completed]`, `[Department, University/Institution Name, City, State/Postal Code, Country]`, `[0000-0000-0000-0000]` ORCIDs, and Funding statement in `\section*{Acknowledgments and Disclosures}`).
+1. Complete the remaining verified fields tracked in [SUBMISSION_AUTHOR_CHECKLIST.md](SUBMISSION_AUTHOR_CHECKLIST.md) and update `main.tex` lines 21–28 & `\section*{Acknowledgments and Disclosures}`:
+   - Confirm the provisional five-author order (**Anurag Nayak, Sujal Chondhekar, Sumit Kumar, Piyush Jain, Swati Hira**), corresponding author designation, and IEEE membership grades.
+   - Insert institutional email addresses, mandatory ORCID iDs for all five authors, confirmed CRediT author contribution roles, and grant/funding text (note: do not include student enrollment numbers in the IEEE journal byline).
 2. Confirm IEEE SPS **Unified EDICS** selection in portal (recommended: Biometrics / Face Recognition & Authentication).
 3. Note page budget: Initial TIFS regular submission limit is **13 pages** (references and appendices count; camera-ready fee-free limit is **10 pages**, excess pages 11–16 incur SPS overlength fees—check live 2026 schedule at portal).
 

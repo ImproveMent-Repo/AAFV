@@ -1,0 +1,31 @@
+\begin{table}[t]
+\centering
+\caption{Audit Reconciliation Between Test Look 1 and Test Look 2 on Protected MORPH \texttt{test} Split.}
+\label{tab:reconciliation}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Protocol Item / Metric} & \textbf{Look 1 (Initial)} & \textbf{Look 2 (Extended)} \\
+\midrule
+Evaluation Script & \texttt{p9\_test.py} & \texttt{p12\_extended.py} \\
+Logged UTC Timestamp & 2026-11-05 21:42:09 & 2026-11-07 19:45:00 \\
+Frozen Artifact & \texttt{thresholds.json} & \texttt{frozen.pkl} \\
+SHA-256 Prefix\ldots Suffix & \texttt{4b7af977\ldots 2cfe}$^\dagger$ & \texttt{a47c916b\ldots 35b9} \\
+Accept Threshold $T_{\text{acc}}$ & 0.956575 & 0.956438 \\
+Reject Threshold $T_{\text{rej}}$ & $-0.000385$ & 0.007541 \\
+Target False-Reject Budget $\beta$ & Uncalibrated & Calibrated ($1.0\%$) \\
+\midrule
+Same-Person Auto-Accept & 79.74\% (19,382/24,305) & 70.07\% (17,030/24,305) \\
+Same-Person Manual Review & 20.26\% (4,923/24,305) & 29.39\% (7,143/24,305) \\
+Same-Person Auto-Reject & 0.00\% (0/24,305) & 0.54\% (132/24,305) \\
+$\mathcal{D}_{\text{random}}$ False Accepts & 0 / 1,149 & 0 / 1,149 \\
+$\mathcal{D}_{\text{all\_random}}$ False Accepts & 0 / 277,822 & 0 / 277,822 \\
+$\mathcal{D}_{\text{hard}}$ False Accepts & 3 / 35,735 (0.008\%) & 5 / 35,735 (0.014\%) \\
+$\mathcal{D}_{\text{hard}}$ Auto-Reject & 0.00\% (0/35,735) & 98.04\% (35,034/35,735) \\
+\bottomrule
+\multicolumn{3}{@{}l@{}}{\footnotesize $^\dagger$LF-normalized digest logged by \texttt{test\_access.log} (\texttt{8c2fdd00\ldots e147} with CRLF).}
+\end{tabular}%
+}
+\end{table}

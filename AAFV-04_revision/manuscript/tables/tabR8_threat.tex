@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Threat Model and Evidential Status of Each Claim.}
+\label{tab:threat}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}p{0.34\columnwidth}p{0.24\columnwidth}p{0.42\columnwidth}@{}}
+\toprule
+\textbf{Adversary / condition} & \textbf{Status} & \textbf{Evidence} \\
+\midrule
+Zero-effort random impostor, same sex, adult, MORPH-like capture & In scope; certified & Prop.~\ref{prop:cert} (calibration) and 0/1,149 test audit \\
+Look-alike impostor mined by ArcFace & In scope; empirical only & $5/35{,}735$ FA; mining matches training negatives (Sec.~\ref{sec:hard}) \\
+Look-alike mined by other models & In scope; empirical only & Neutral set, 57.49\% auto-rejected, 0 FA \\
+Low-quality or degraded probe & Partly in scope & Quality guard exists; no degradation stress test \\
+Unconstrained capture (pose, scan, era) & Partly in scope & FG-NET adults only (82 persons) \\
+Children ($a<16$) & Out of scope & 4/20,000 FA on FG-NET, all involving ages 0--4 \\
+Morphing, digital manipulation, presentation attacks~\cite{scherhag2019morph,iso30107_3} & Out of scope & Not evaluated; requires separate PAD/MAD \\
+\bottomrule
+\end{tabular}}
+\end{table}

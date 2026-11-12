@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{Calibration Split Discrimination and Three-Way Decision Comparison ($\beta = 1.0\%$). Ranking metrics are computed on full calibration $\mathcal{D}_{\text{hard}}$ ($N=35{,}769$) except VLM ($N=1{,}500$). Decision rates come from the label-free calibration common subset ($N_{\text{same}}=1{,}500$, $N_{\text{random}}=1{,}170$, $N_{\text{hard}}=1{,}500$; \texttt{decision\_table\_calibration.csv}).}
+\label{tab:cal_subset}
+\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+\textbf{Architecture} & \makecell{\textbf{Cal. AUC}\\\textbf{($\mathcal{D}_{\text{hard}}$)}} & \makecell{\textbf{TPR @}\\\textbf{$\text{FPR}=10^{-3}$}} & \makecell{\textbf{Frozen}\\\textbf{$T_{\text{acc}}$}} & \makecell{\textbf{Same Accept}\\\textbf{(\%)}} & \makecell{\textbf{Random Rej.}\\\textbf{(\%)}} & \makecell{\textbf{Hard Rej.}\\\textbf{(\%)}} & \makecell{\textbf{Eval. Pool}\\\textbf{($N_{\text{hard}}$ AUC)}} \\
+\midrule
+\textbf{\sys\ (Full)} & \textbf{0.998} & \textbf{0.973} & 0.956 & 74.13 & 26.15 & \textbf{98.20} & Full Cal. (35,769) \\
+ArcFace Only (Guarded) & 0.980 & 0.969 & 0.850 & \textbf{87.20} & 47.95 & 0.00 & Full Cal. (35,769) \\
+Direct 5-Score LogReg & 0.981 & 0.971 & 0.913 & 84.27 & \textbf{57.26} & 0.00 & Full Cal. (35,769) \\
+Direct-Only MLP & 0.998 & 0.971 & 1.042 & 0.00 & 26.67 & 98.47 & Full Cal. (35,769) \\
+Siamese CNN (ResNet-18) & 0.953 & 0.311 & 0.982 & 0.27 & 49.74 & 10.87 & Full Cal. (35,769) \\
+Siamese ViT (ViT-B/16) & 0.972 & 0.605 & 1.001 & 0.00 & 51.97 & 12.20 & Full Cal. (35,769) \\
+VLM (Qwen2-VL-2B LoRA) & 0.906 & 0.054 & 0.998 & 0.00 & 47.01 & 10.20 & Common Subset (1,500) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+

@@ -1,0 +1,26 @@
+\begin{table}[t]
+\centering
+\caption{Complete Definition of the Fusion Input $\vect{z}\in\mathbb{R}^{11}$ (Index Order of \texttt{fusion.py}). Four Slots Are Constant in the Evaluated (Stage~A) System.}
+\label{tab:features}
+\footnotesize
+\setlength{\tabcolsep}{2.6pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}clllc@{}}
+\toprule
+\textbf{\#} & \textbf{Symbol} & \textbf{Definition} & \textbf{Range / missing value} & \textbf{Stage A} \\
+\midrule
+1 & $W_d$ & $\vect{w}_d^{\top}\vect{s}_{\text{dir}}+b_d$, direct-branch logit & $\mathbb{R}$; always available & active \\
+2 & $W_s$ & $\vect{w}_s^{\top}\vect{s}_{\text{sam}}+b_s$, SAM-branch logit & $\mathbb{R}$; $\vect{s}_{\text{sam}}{=}\vect{0}\Rightarrow W_s{=}b_s$ & active \\
+3 & $W_f$ & third linear head (diffusion branch) & input $\vect{0}\Rightarrow W_f{=}b_f$ & constant \\
+4 & $g$ & $\min(1,\Delta a/80)$ & $[0,1]$ & active \\
+5 & $Q$ & $\tfrac12\big(Q(I_1)+Q(I_2)\big)$, Eq.~(\ref{eq:quality}) & $[0,1]$ & active \\
+6 & $I_{\text{enh}}$ & image-enhancement flag & $0$ & constant \\
+7 & $R_{\text{sam}}$ & synthesis reliability, Eq.~(\ref{eq:rsam}) & $[0,1]$; $0$ if SAM unavailable & active \\
+8 & $R_{\text{diff}}$ & diffusion reliability & $0$ & constant \\
+9 & $I_{\text{sam}}$ & both endpoint syntheses available & $\{0,1\}$ & active \\
+10 & $I_{\text{diff}}$ & diffusion branch available & $0$ & constant \\
+11 & $I_{\text{multi}}$ & $\mathbb{I}(K_{\text{used}}\ge 1)$ & $\{0,1\}$ & active \\
+\bottomrule
+\multicolumn{5}{@{}p{1.05\columnwidth}@{}}{\footnotesize Constant slots contribute a fixed offset to the first hidden layer; removing them and folding $b_f$ into the first-layer bias yields an output-identical 7-input network. They are retained only because the frozen, hashed checkpoints have this input shape.}
+\end{tabular}}
+\end{table}

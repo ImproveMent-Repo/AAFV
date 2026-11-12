@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Protocol Chronology Reconstructed From Logged Artifacts. Events Without a Logged Timestamp Are Marked ``Not Logged''.}
+\label{tab:chronology}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}p{0.27\columnwidth}p{0.73\columnwidth}@{}}
+\toprule
+\textbf{Time (UTC)} & \textbf{Event and evidence} \\
+\midrule
+Not logged & Person-level split, 858-person quarantine, pair construction (\texttt{params.yaml}, seed 42); fusion training on \texttt{train\_fit}/\texttt{train\_val} (\texttt{p6\_train.py}). \\
+2026-11-05 21:41:35 & Look-1 artifacts frozen: \texttt{thresholds.json} (SHA-256 \texttt{4b7af977\ldots2cfe}) with $T_{\text{acc}}{=}0.956575$, $T_{\text{rej}}{=}{-}0.000385$, $\rho{=}0.20$. \\
+2026-11-05 21:42:09 & \textbf{Look~1} (\texttt{p9\_test.py}): main system only. \\
+Not logged & All 26 variants re-trained, including \texttt{full} (new checkpoint \texttt{a47c916b\ldots35b9}); reject rule changed to $T_{\text{rej}}(\beta)$ quantile; Siamese/VLM baselines trained; model-neutral hard sets defined. Hashes pinned in \texttt{ablation\_freeze.json} and asserted before Look~2. \\
+2026-11-07 19:45:00 & \textbf{Look~2} (\texttt{p12\_extended.py}): 8 variants $\times$ 3 values of $\beta$; bootstrap CIs. \\
+After Look~2 & FG-NET scoring with frozen thresholds (no test look); adult cut-off $a\ge16$ chosen after inspecting all-ages false accepts. \\
+\bottomrule
+\multicolumn{2}{@{}p{\columnwidth}@{}}{\footnotesize Whether Look-1 outcomes influenced the changes made before Look~2 cannot be established from the repository. Look~2 is therefore reported as a secondary, not a confirmatory, evaluation (Section~\ref{sec:chronology}).}
+\end{tabular}}
+\end{table}

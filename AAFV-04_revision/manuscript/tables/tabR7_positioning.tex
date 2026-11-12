@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{Component-Level Positioning. ``Adopted'' Components Are Used Unchanged; ``Modified'' Components Are Adapted; ``New'' Marks Elements We Could Not Find in the Cited Literature in This Combination. The Evidence Column States What Currently Supports Each Element.}
+\label{tab:positioning}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{3.1cm}p{4.0cm}p{1.3cm}p{8.4cm}@{}}
+\toprule
+\textbf{Component} & \textbf{Closest prior work} & \textbf{Status} & \textbf{Evidence in this paper and remaining gap} \\
+\midrule
+Identity / similarity extractors & ArcFace~\cite{deng2019arcface}, VGG-Face~\cite{parkhi2015vgg}, EfficientNet~\cite{tan2019efficientnet}, LPIPS~\cite{zhang2018lpips}, SSIM~\cite{wang2004ssim} & Adopted & Frozen, pre-trained. EfficientNet is redundant (dropping it raises calibration accept, Table~\ref{tab:ablations}). \\
+Age progression & SAM~\cite{alaluf2021sam}; joint synthesis--recognition in AIM~\cite{zhao2022aim} & Adopted & Frozen generator; identity preservation not independently measured (Section~\ref{sec:limitations}). \\
+Shared-target 5-year grid & Endpoint progression~\cite{zhao2022aim,huang2021pfagan} & New (design) & Reduces test accept $83.91\%\to70.07\%$; neutral hard rejection $53.98\%\to57.49\%$ with overlapping 95\% CIs. Benefit not established. \\
+Reliability score $R_{\text{sam}}$ and branch masking & Quality-dependent fusion with missing channels~\cite{poh2009quality} & Modified & Masking is necessary in this recipe (accept $3.60\%$ without it); removing $R_{\text{sam}}$ changes calibration accept by $<1$~pp. Missing-branch inference test not run. \\
+Fusion MLP + Platt & Score fusion~\cite{kittler1998combining,ross2003fusion,nandakumar2008lr}; Platt~\cite{platt1999} & Adopted & Platt is monotone, so decisions are invariant to it except through the branch floors $\rho$ (Section~\ref{sec:calib_role}). \\
+Accept rule: zero-FA order statistic with guards & Selective classification~\cite{geifman2017selective,elyaniv2010selective}; conformal risk control~\cite{vovk2005alrw,angelopoulos2024crc} & Modified & Guards are the mechanism that avoids $T_{\text{acc}}>1$ (all guard ablations give 0\% accept). The finite-sample certificate (Proposition~\ref{prop:cert}) follows from known order-statistic arguments. \\
+Reject rule $T_{\text{rej}}(\beta)$ & Chow~\cite{chow1970reject}; conformal quantiles~\cite{vovk2005alrw} & Adopted & Holds on MORPH test ($0.54\%\le1\%$) but fails under shift: $18.20\%$ false rejects on FG-NET adults. \\
+Audit protocol (quarantine, hashes, look budget) & ISO/IEC 19795-1~\cite{iso19795_1}; subset bootstrap~\cite{bolle2004subsets} & Modified & Logged; adaptivity between looks not excluded (Table~\ref{tab:chronology}). \\
+\bottomrule
+\end{tabular}
+\end{table*}

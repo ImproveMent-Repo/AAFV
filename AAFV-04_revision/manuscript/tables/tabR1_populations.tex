@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Consolidated Evaluation Populations. Every Rate Reported in This Paper Belongs to Exactly One Row. Genuine Outcomes Are Auto-Accept (A), Manual Review (R), and Auto-Reject (X, a False Reject). FA Denotes False Accepts. Look~1 and Look~2 Evaluate Different Checkpoints (Section~\ref{sec:chronology}). Calibration Rows Are Development Numbers on Data Used to Set the Thresholds.}
+\label{tab:populations}
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llccrcccl@{}}
+\toprule
+\textbf{Dataset / split} & \textbf{Checkpoint} & $T_{\text{acc}}$ / $T_{\text{rej}}$ & \textbf{Persons} & \textbf{Genuine $N$} & \textbf{A / R / X (\%)} & \textbf{Random-impostor FA} & \textbf{Hard FA} & \textbf{Source file} \\
+\midrule
+MORPH calibration (all) & Look-2 \texttt{frozen.pkl} & 0.9564 / 0.0075 & n/r & 23,838 & 73.26 / 25.74 / 1.00$^{a}$ & 0 / 1,170 & 0 / 35,769$^{a}$ & \texttt{extended\_calibration.csv} \\
+MORPH calibration subset & Look-2 \texttt{frozen.pkl} & 0.956 / 0.0062 & n/r & 1,500 & 74.13 / 24.87 / 1.00$^{a}$ & 0 / 1,170 & 0 / 1,500 & \texttt{decision\_table\_calibration.csv} \\
+MORPH test, Look~1 & \texttt{thresholds.json} & 0.9566 / $-$0.0004$^{b}$ & n/r & 24,305 & 79.74 / 20.26 / 0.00 & 0 / 1,149 & 3 / 35,735 & \texttt{test\_report\_look1.json} \\
+MORPH test, Look~2 & Look-2 \texttt{frozen.pkl} & 0.9564 / 0.0075 & n/r & 24,305 & 70.07 / 29.39 / 0.54 & 0 / 1,149 & 5 / 35,735 & \texttt{extended\_test.csv} \\
+FG-NET, adults ($a_1,a_2\ge 16$)$^{c}$ & Look-2 \texttt{frozen.pkl} & 0.9564 / 0.0075 & $\le$82 & 1,456 & 51.92 / 29.88 / 18.20 & 0 / 3,670$^{d}$ & -- & \texttt{extended\_calibration\_fg16.csv} \\
+FG-NET, all ages & Look-2 \texttt{frozen.pkl} & 0.9564 / 0.0075 & 82 & 5,797 & 29.86 / 23.44 / 46.70 & 4 / 20,000$^{d}$ & -- & \texttt{extended\_calibration\_fg.csv} \\
+\bottomrule
+\multicolumn{9}{@{}l@{}}{\footnotesize $^{a}$Zero calibration FA and $1.00\%$ calibration false reject hold by construction of $T_{\text{acc}}$ and $T_{\text{rej}}(\beta{=}0.01)$. $^{b}$Look~1 used the original rule $T_{\text{rej}}=\min P_{\text{same}}-\text{margin}$, i.e., no reject zone.}\\
+\multicolumn{9}{@{}l@{}}{\footnotesize $^{c}$Adult cut-off chosen after observing the all-ages false accepts. $^{d}$FG-NET impostor pairs reuse images of at most 82 persons and are not independent trials. n/r: number of persons not recorded in the logged artifacts.}
+\end{tabular}}
+\end{table*}

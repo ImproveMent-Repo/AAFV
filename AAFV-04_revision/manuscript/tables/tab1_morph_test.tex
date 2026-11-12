@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\caption{Primary Evaluation on Person-Disjoint MORPH Test Split at $\beta = 1.0\%$ ($N_{\text{same}} = 24{,}305$, $N_{\text{random}} = 1{,}149$, $N_{\text{all\_random}} = 277{,}822$, $N_{\text{hard}} = 35{,}735$, $N_{\text{neutral}} = 2{,}790$). Source: \texttt{extended\_test.csv} (Look 2).}
+\label{tab:main_results}
+\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Method} & \makecell{\textbf{Same Accept}\\\textbf{(\%)}} & \makecell{\textbf{Random FA}\\\textbf{$\mathcal{D}_{\text{random}}$}} & \makecell{\textbf{All-Random FA}\\\textbf{$\mathcal{D}_{\text{all\_random}}$}} & \makecell{\textbf{Hard FA}\\\textbf{$\mathcal{D}_{\text{hard}}$}} & \makecell{\textbf{Hard Reject}\\\textbf{$\mathcal{D}_{\text{hard}}$ (\%)}} & \makecell{\textbf{Neutral Reject}\\\textbf{$\mathcal{D}_{\text{neutral}}$ (\%)}} \\
+\midrule
+\textbf{\sys\ (Full)} & 70.07 & 0 & 0 & 5 & \textbf{98.04} & \textbf{57.49} \\
+\sys\ (No Shared Targets) & 83.91 & 0 & 0 & 0 & 97.85 & 53.98 \\
+ArcFace Only (Guarded) & 89.45 & 0 & 0 & 0 & 0.00 & 28.46 \\
+ArcFace (No Guards) & \textbf{93.58} & 0 & 0 & 0 & 0.00 & 28.46 \\
+Direct 5-Score LogReg & 87.10 & 0 & 0 & 0 & 0.00 & 22.40 \\
+Direct-Only MLP & 0.00 & 0 & 0 & 0 & 97.77 & 49.96 \\
+Siamese CNN (ResNet-18) & 0.21 & 0 & 0 & 0 & 9.86 & n/a$^\dagger$ \\
+Siamese ViT (ViT-B/16) & 0.00 & 0 & 0 & 0 & 10.04 & n/a$^\dagger$ \\
+\bottomrule
+\multicolumn{7}{@{}l@{}}{\footnotesize $^\dagger$Omitted from $\mathcal{D}_{\text{neutral}}$ ($D_{\text{by\_both}}$) test evaluation because Siamese CNN and ViT scores were used to mine the neutral hard-impostor set.}\\
+\multicolumn{7}{@{}l@{}}{\footnotesize Note: LoRA-adapted VLM (Qwen2-VL-2B) was not evaluated on MORPH \texttt{test}; see Table~\ref{tab:cal_subset} for calibration common-subset evaluation.}
+\end{tabular}
+\end{table*}
+

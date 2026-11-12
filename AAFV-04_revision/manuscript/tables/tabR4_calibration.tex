@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Post Hoc Calibration Diagnostics of the Look-1 Fused Probability $P$ on MORPH Test Pairs (15 Equal-Width Bins). Absolute Calibration Depends on the Genuine Prevalence of Each Pool, So Pools Are Reported Separately. Ideal Intercept/Slope: 0/1.}
+\label{tab:calibration}
+\footnotesize
+\setlength{\tabcolsep}{2.4pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrcccccc@{}}
+\toprule
+\textbf{Pool} & \textbf{$N$} & \textbf{Prev.} & \textbf{ECE} & \textbf{MCE} & \textbf{Brier} & \textbf{NLL} & \textbf{Int. / Slope} \\
+\midrule
+Genuine + $\mathcal{D}_{\text{random}}$ & 25,454 & 0.955 & 0.0180 & 0.902 & 0.0168 & 0.0786 & 2.67 / 0.79 \\
+Genuine + $\mathcal{D}_{\text{all\_random}}$ & 302,127 & 0.080 & 0.0081 & 0.833 & 0.0015 & 0.0158 & 1.06 / 1.66 \\
+Genuine + $\mathcal{D}_{\text{hard}}$ & 60,040 & 0.405 & 0.0060 & 0.231 & 0.0078 & 0.0365 & 1.09 / 0.92 \\
+\quad Male, genuine + $\mathcal{D}_{\text{all\_random}}$ & 261,095 & 0.080 & 0.0081 & 0.883 & 0.0016 & 0.0161 & 0.41 / 1.51 \\
+\quad Female, genuine + $\mathcal{D}_{\text{all\_random}}$ & 41,032 & 0.086 & 0.0078 & 0.825 & 0.0014 & 0.0136 & 5.02 / 2.59 \\
+\bottomrule
+\multicolumn{8}{@{}p{1.08\columnwidth}@{}}{\footnotesize Computed by \texttt{a1\_look1\_posthoc.py} from \texttt{test\_pair\_zones\_look1.csv}; no parameter was changed. Pair-level metrics; person clustering is not available in this log. Equivalent per-pair outputs were not saved for Look~2 or FG-NET, so cross-dataset calibration remains unmeasured.}
+\end{tabular}}
+\end{table}

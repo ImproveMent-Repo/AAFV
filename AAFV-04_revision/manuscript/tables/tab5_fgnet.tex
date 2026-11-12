@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{External Evaluation on FG-NET With MORPH-Frozen Checkpoint and Thresholds ($\beta=0.01$, No Re-Tuning). Genuine Outcomes Are Auto-Accept / Review / Auto-Reject (False Reject). Adults: $a_1,a_2\ge16$ (Cut-Off Chosen Post Hoc), 1,456 Genuine and 3,670 Impostor Pairs; All Ages: 5,797 Genuine and 20,000 Impostor Pairs. Genuine Bin Counts G1--G6: Adults (405, 356, 261, 170, 186, 78); All Ages (1,654, 1,589, 1,081, 615, 572, 286). Intervals: 95\% Person-Clustered Bootstrap.}
+\label{tab:fgnet}
+\footnotesize
+\setlength{\tabcolsep}{3.0pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llcccccccccc@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Genuine}} & \multicolumn{2}{c}{\textbf{Impostor}} & \multicolumn{6}{c}{\textbf{Genuine auto-accept by age gap (\%)}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(l){7-12}
+\textbf{Cohort} & \textbf{Method} & \textbf{Accept (\% [95\% CI])} & \textbf{Review / False rej. (\%)} & \textbf{FA} & \textbf{Auto-rej. (\%)} & $<$5y & 5--9y & 10--14y & 15--19y & 20--29y & 30+y \\
+\midrule
+\multirow{2}{*}{Adults} & \sys & 51.92 [44.47, 58.41] & 29.88 / \textbf{18.20} & 0 / 3,670 & 55.04 & 71.60 & 59.55 & 49.04 & 38.24 & 28.49 & 10.26 \\
+ & ArcFace Only & 40.38 [34.53, 47.38] & 59.34 / 0.27 & 0 / 3,670 & 71.28 & 60.74 & 49.16 & 35.63 & 25.88 & 14.52 & 3.85 \\
+\midrule
+\multirow{2}{*}{All ages} & \sys & 29.86 [26.69, 33.34] & 23.44 / \textbf{46.70} & 4 / 20,000$^{\ddagger}$ & 66.44 & 59.07 & 28.95 & 14.80 & 11.71 & 9.44 & 2.80 \\
+ & ArcFace Only & 21.29 [18.40, 24.22] & 76.16 / 2.55 & 0 / 20,000 & 64.42 & 45.53 & 19.19 & 9.34 & 7.32 & 4.72 & 1.05 \\
+\bottomrule
+\multicolumn{12}{@{}l@{}}{\footnotesize $^{\ddagger}$All four false accepts involve children aged 0--4. Bold: the MORPH-calibrated false-reject budget ($\beta=1\%$) does not transfer to FG-NET for \sys. FG-NET impostor pairs reuse images of $\le 82$ persons.}
+\end{tabular}}
+\end{table*}

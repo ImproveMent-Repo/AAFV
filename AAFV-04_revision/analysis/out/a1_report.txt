@@ -1,0 +1,141 @@
+== 0. Look-1 reproduction (must equal test_report_look1.json)
+zone          accept  review
+set                         
+D_all_random       0  277822
+D_hard             3   35732
+D_random           0    1149
+same           19382    4923
+genuine pairs by gap bin: {'G1': 23631, 'G2': 266, 'G3': 184, 'G4': 75, 'G5': 137, 'G6': 12}
+
+== 1. Calibration of Look-1 posterior P on MORPH test (post hoc). P is a Platt posterior fitted on train_val;
+   its absolute calibration depends on the class prior of each evaluation pool, so pools are reported separately.
+                      pool      n    prev   ECE15   MCE15   Brier     NLL  cal_intercept  cal_slope
+          all_logged_pairs 339011 0.07169 0.00728 0.23081 0.00148 0.01469       -0.65950    1.27752
+          genuine+D_random  25454 0.95486 0.01802 0.90219 0.01676 0.07858        2.66853    0.79271
+      genuine+D_all_random 302127 0.08045 0.00808 0.83270 0.00153 0.01578        1.05925    1.66050
+            genuine+D_hard  60040 0.40481 0.00597 0.23081 0.00780 0.03645        1.08638    0.92206
+genuine+D_all_random|sex=M 261095 0.07956 0.00813 0.88276 0.00155 0.01612        0.40794    1.51066
+genuine+D_all_random|sex=F  41032 0.08605 0.00775 0.82494 0.00138 0.01359        5.01976    2.58745
+Class-conditional view (prior-free): mean P on genuine and on each impostor pool
+                 count     mean      std      min       1%       5%      50%      95%      99%      max
+set                                                                                                    
+D_all_random  277822.0  0.00994  0.00514  0.00016  0.00148  0.00278  0.00948  0.01877  0.02191  0.83095
+D_hard         35735.0  0.00400  0.03396  0.00011  0.00036  0.00053  0.00128  0.00370  0.03381  0.98910
+D_random        1149.0  0.01013  0.00489  0.00106  0.00157  0.00310  0.00963  0.01901  0.02181  0.02523
+same           24305.0  0.98065  0.13105  0.00057  0.01088  0.99783  1.00000  1.00000  1.00000  1.00000
+
+== 2. Share of each pool with Look-1 P below T values (descriptive; T_rej(0.01)=0.007541 is the Look-2 calibration threshold)
+  P < 0.004094: {'D_all_random': 0.117, 'D_hard': 0.9584, 'D_random': 0.107, 'same': 0.0014}
+  P < 0.007541: {'D_all_random': 0.3567, 'D_hard': 0.9772, 'D_random': 0.3342, 'same': 0.0053}
+  P < 0.016816: {'D_all_random': 0.8997, 'D_hard': 0.9852, 'D_random': 0.893, 'same': 0.014}
+
+== 3. Accept-side risk-coverage (Look-1 P only; guards are NOT re-applied because guard inputs were not logged per pair)
+    thr  genuine_cov  FA_hard  FA_random  FA_all_random
+0.00057      1.00000    33328       1149         277721
+0.99970      0.90500        0          0              0
+0.99996      0.80506        0          0              0
+0.99999      0.70566        0          0              0
+1.00000      0.60687        0          0              0
+1.00000      0.49549        0          0              0
+    thr  genuine_cov  FA_hard  FA_random  FA_all_random
+0.95657      0.97375        5          0              0
+Note: at T=0.95657 without guards, genuine coverage = 0.9738 vs logged guarded accept 0.7974 -> guards account for the difference.
+
+== 4. Look-1 hard-impostor false accepts (only metadata logged per pair: gap bin, sex, P)
+    pair_id    set  label gap_bin gender        P   zone
+test:326152 D_hard      0      G1      M 0.979502 accept
+test:339226 D_hard      0      G2      M 0.977194 accept
+test:341826 D_hard      0      G1      M 0.974629 accept
+
+== 5. Genuine auto-accept by sex x gap bin (Look 1). Wilson CIs are pair-level and UNDERSTATE uncertainty (pairs share people).
+sex gap_bin     n  accept     lo     hi
+  F      G1  3471  0.7205 0.7054 0.7352
+  F      G2    39  0.8462 0.7027 0.9275
+  F      G3    20  0.3000 0.1455 0.5190
+  F      G4     1  0.0000 0.0000 0.7935
+  M      G1 20160  0.8234 0.8181 0.8286
+  M      G2   227  0.6388 0.5744 0.6985
+  M      G3   164  0.5305 0.4543 0.6053
+  M      G4    74  0.0135 0.0024 0.0727
+  M      G5   137  0.0219 0.0075 0.0624
+  M      G6    12  0.5000 0.2538 0.7462
+
+== 6a. FAR upper bounds for the observed D_random result (0/1149)
+  alpha=0.05: CP upper = 0.002604  (closed form 1-a^(1/N) = 0.002604)
+  alpha=0.025: CP upper = 0.003205  (closed form 1-a^(1/N) = 0.003205)
+== 6b. Independent impostor comparisons needed to certify FAR <= target with k observed false accepts (one-sided, exact CP)
+ target_FAR  alpha  k  N_required  persons_if_disjoint
+    0.00100  0.050  0        2995                 5990
+    0.00100  0.050  1        4742                 9484
+    0.00100  0.050  2        6294                12588
+    0.00100  0.025  0        3688                 7376
+    0.00100  0.025  1        5570                11140
+    0.00100  0.025  2        7223                14446
+    0.00010  0.050  0       29956                59912
+    0.00010  0.050  1       47437                94874
+    0.00010  0.050  2       62956               125912
+    0.00010  0.025  0       36887                73774
+    0.00010  0.025  1       55715               111430
+    0.00010  0.025  2       72245               144490
+    0.00001  0.050  0      299572               599144
+    0.00001  0.050  1      474385               948770
+    0.00001  0.050  2      629578              1259156
+    0.00001  0.025  0      368887               737774
+    0.00001  0.025  1      557163              1114326
+    0.00001  0.025  2      722467              1444934
+== 6c. Dependence sensitivity: bound if the 1,149 pairs carry only N/DEFF effective independent trials (alpha=0.025)
+ design_effect  N_eff  FAR_upper
+          1.00 1149.0   0.003205
+          1.25  919.2   0.004005
+          1.50  766.0   0.004804
+          2.00  574.5   0.006400
+          3.00  383.0   0.009585
+          5.00  229.8   0.015924
+
+== 7. Expected outcome shares per 10,000 transactions (Look-2 aggregate rates, beta=0.01).
+              variant  impostor_share  lookalike_share  review_per_10k  genuine_auto_accept_per_10k  genuine_false_reject_per_10k
+                 full           0.001              0.0          2942.4                       6999.8                          54.3
+                 full           0.001              0.1          2941.8                       6999.8                          54.3
+                 full           0.001              1.0          2936.2                       6999.8                          54.3
+                 full           0.010              0.0          2973.6                       6936.7                          53.8
+                 full           0.010              0.1          2967.4                       6936.7                          53.8
+                 full           0.010              1.0          2911.5                       6936.7                          53.8
+                 full           0.050              0.0          3112.5                       6656.4                          51.6
+                 full           0.050              0.1          3081.4                       6656.4                          51.6
+                 full           0.050              1.0          2801.8                       6656.4                          51.6
+         arcface_only           0.001              0.0           942.2                       8935.7                         115.9
+         arcface_only           0.001              0.1           942.8                       8935.7                         115.9
+         arcface_only           0.001              1.0           948.4                       8935.7                         115.9
+         arcface_only           0.010              0.0           967.9                       8855.2                         114.9
+         arcface_only           0.010              0.1           974.1                       8855.2                         114.9
+         arcface_only           0.010              1.0          1029.9                       8855.2                         114.9
+         arcface_only           0.050              0.0          1082.2                       8497.4                         110.2
+         arcface_only           0.050              0.1          1113.2                       8497.4                         110.2
+         arcface_only           0.050              1.0          1392.3                       8497.4                         110.2
+agg_no_shared_targets           0.001              0.0          1569.4                       8382.9                          44.4
+agg_no_shared_targets           0.001              0.1          1568.7                       8382.9                          44.4
+agg_no_shared_targets           0.001              1.0          1562.9                       8382.9                          44.4
+agg_no_shared_targets           0.010              0.0          1615.2                       8307.4                          44.0
+agg_no_shared_targets           0.010              0.1          1608.7                       8307.4                          44.0
+agg_no_shared_targets           0.010              1.0          1550.8                       8307.4                          44.0
+agg_no_shared_targets           0.050              0.0          1818.6                       7971.7                          42.2
+agg_no_shared_targets           0.050              0.1          1786.5                       7971.7                          42.2
+agg_no_shared_targets           0.050              1.0          1496.8                       7971.7                          42.2
+
+== 8. Does the beta false-reject budget transfer? Genuine auto-reject (false-reject) rate, beta=0.01 set on MORPH calibration
+FG-NET adults
+             variant  same_acc  same_rev  same_rej  FG_random_FA  FG_random_rej  FG_random_rev
+                full    0.5192    0.2988    0.1820           0.0         0.5504         0.4496
+        arcface_only    0.4038    0.5934    0.0027           0.0         0.7128         0.2872
+     direct_only_mlp    0.0000    0.8221    0.1779           0.0         0.3499         0.6501
+baseline_siamese_cnn    0.0007    0.9979    0.0014           0.0         0.0063         0.9937
+baseline_siamese_vit    0.0000    0.9945    0.0055           0.0         0.0357         0.9643
+        baseline_vlm    0.0000    0.9279    0.0721           0.0         0.4019         0.5981
+FG-NET all ages
+             variant  same_acc  same_rev  same_rej  FG_random_FA  FG_random_rej  FG_random_rev
+                full    0.2986    0.2344    0.4670           4.0         0.6644         0.3354
+        arcface_only    0.2129    0.7616    0.0255           0.0         0.6442         0.3558
+     direct_only_mlp    0.0000    0.5470    0.4530           0.0         0.4806         0.5194
+baseline_siamese_cnn    0.0002    0.9971    0.0028           0.0         0.0111         0.9890
+baseline_siamese_vit    0.0000    0.9788    0.0212           0.0         0.0842         0.9158
+        baseline_vlm    0.0000    0.9467    0.0533           0.0         0.2254         0.7746

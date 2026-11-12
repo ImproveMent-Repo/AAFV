@@ -46,7 +46,8 @@ tex = r"""\documentclass[journal]{IEEEtran}
 \usepackage[hidelinks]{hyperref}
 \begin{document}
 \title{Supplementary Material for ``AAFV-Net: Guarded Three-Way Age-Aware Face Verification With Empirically Bounded Random False-Accept Risk''}
-\author{Anurag~Nayak,~\IEEEmembership{Graduate Student Member,~IEEE,} and [Co-Authors]}
+\author{Anurag~Nayak, Sujal~Chondhekar, Sumit~Kumar, Piyush~Jain, and~Swati~Hira%
+\thanks{All authors are with the Department of Computer Science and Engineering, Indian Institute of Information Technology Nagpur, Nagpur, Maharashtra, India.}}
 \maketitle
 
 \section*{S-I. Complete 26-Variant Calibration Ablation Audit}
