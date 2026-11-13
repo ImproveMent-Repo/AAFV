@@ -410,3 +410,13 @@ Full write-up: `log_analyses/LOG_FINDINGS.md`; script `log_analyses/run_log_anal
 5. **The calibration top-impostor sheet** (`q/audit/audit_different_top50.jpg`) contains several pairs that look like the same person, including the top pair (P = 0.980 > T_acc). That suggests residual duplicate identities. It also confirms that the label-correction path (B.3-2) was a live issue. Whether it was used is still unknown.
 
 **Effect on the direction.** Nothing in the logged artifacts supports the generated-evidence branch. Experiment 0 on AgeDB/FG-NET is the only remaining test of D.1/D.2. A separate, image-only (no GPU) check of a random sample of MORPH long-gap genuine pairs against the MORPH index would confirm or refute Finding 3.
+
+---
+
+## N. Phase 4: architecture reconsidered (2026-11-13)
+
+Full audit: `architecture_review/ARCHITECTURE_REVIEW.md`; frozen-model probe: `architecture_review/probe_fusion.py`.
+- Of 15 components, 6 are removed (four of the five similarity measures, test-time SAM, the shared-target grid, branch masking, the 11-input MLP, the guards), 6 are redesigned, and 3 are kept.
+- The direct branch learned to use ArcFace alone, and the fused logit is dominated by it (swing 25.1 vs 4.1 for the SAM branch). The SAM and R_sam effects are no larger than those of untrained controls.
+- The Look-2 checkpoint is a 3-seed ensemble, not 5. ArcFace inputs were misaligned (FFHQ crop resized).
+- Proposed: a gap-aware selective verifier on a frozen recognizer as the baseline of record (Section 3.1). The reliability-weighted age-transport model (3.2, direction D.1) is built only if Experiment 0 returns GO.
