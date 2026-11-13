@@ -1,0 +1,74 @@
+group,item,stated,recomputed,tolerance,result,source
+hash,frozen.pkl full,a47c916bc819379f9fa5a35b29fdc5ecf3a09f092fbe1cb2c4fbf3347f0035b9,a47c916bc819379f9fa5a35b29fdc5ecf3a09f092fbe1cb2c4fbf3347f0035b9,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl arcface_only,370384172d70bad5d4f5026688adae161ce257a3da4d84b6d896bbb3d5b78842,370384172d70bad5d4f5026688adae161ce257a3da4d84b6d896bbb3d5b78842,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl arcface_only_noguard,19d1a0c97cdd76b19fd0c29511043706d9df5322fda27017f2be797cbb697ba3,19d1a0c97cdd76b19fd0c29511043706d9df5322fda27017f2be797cbb697ba3,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl direct5_logreg,4e618075eab4cdfa858af30d9b1d6bd8b3052ff97e4f94ad2bee6ee00b164209,4e618075eab4cdfa858af30d9b1d6bd8b3052ff97e4f94ad2bee6ee00b164209,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl direct_only_mlp,16d106588f0b03297ef86f1ba6148c8a712e20dee3aef30d6ea3ebbf53cb8aa9,16d106588f0b03297ef86f1ba6148c8a712e20dee3aef30d6ea3ebbf53cb8aa9,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl sam_only_mlp,b8b25629fdd2bcf2e46747a08f796dba12787127cbc343bf5871b2b323837a4f,b8b25629fdd2bcf2e46747a08f796dba12787127cbc343bf5871b2b323837a4f,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl drop_arc,59ee04c15f125cf965d65d44efc0af275c29ce807a829590e30e8716c80e904f,59ee04c15f125cf965d65d44efc0af275c29ce807a829590e30e8716c80e904f,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl drop_eff,4a7516c6c1bca5be863a07a43ea38327cc90ec9bcaf675ca9461d09ef8c8482c,4a7516c6c1bca5be863a07a43ea38327cc90ec9bcaf675ca9461d09ef8c8482c,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl drop_vgg,b3df11c168956b33daf4bf31ae3ec5ffca843f25313e92308875543eb3862085,b3df11c168956b33daf4bf31ae3ec5ffca843f25313e92308875543eb3862085,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl drop_lpips,e51bff47b520ff8d55d3effdbbd56049ded5e6dd3ce3d4f14394c29cd9059135,e51bff47b520ff8d55d3effdbbd56049ded5e6dd3ce3d4f14394c29cd9059135,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl drop_ssim,1e094ec753511a2242c115eb543cf6f223eaddc912c7db32dd04bb9dc12ba54e,1e094ec753511a2242c115eb543cf6f223eaddc912c7db32dd04bb9dc12ba54e,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl arc_only_scores,5bc051064ff23a9db644d16995c32d89adf1bd691460d8b298aff6e92a54c096,5bc051064ff23a9db644d16995c32d89adf1bd691460d8b298aff6e92a54c096,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl fusion_logreg_no_mlp,39b94ac907d1ce5db04e01805f9f008989e463096b512bc17aa14a0e3fe7d1f5,39b94ac907d1ce5db04e01805f9f008989e463096b512bc17aa14a0e3fe7d1f5,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl no_context,701115e6e2f7539dfe438f6398520cbd98df1e736332920e7a922b5550fa96fb,701115e6e2f7539dfe438f6398520cbd98df1e736332920e7a922b5550fa96fb,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl no_reliability,8f1430c28b532c384f7c991a812b9ee2403542f246cecb56805b1957d6684a9a,8f1430c28b532c384f7c991a812b9ee2403542f246cecb56805b1957d6684a9a,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl no_branch_masking,1b39fdafd97a02442ac8e86cfc44d913855d7353a4e257a5ceb078b6a612fcfc,1b39fdafd97a02442ac8e86cfc44d913855d7353a4e257a5ceb078b6a612fcfc,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl no_pair_weights,ea3ea004d166c842ea487618f405bcb0a8c4e8dc01299a5335eff4cbec88374d,ea3ea004d166c842ea487618f405bcb0a8c4e8dc01299a5335eff4cbec88374d,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl agg_fwd_only,48d92494e6493d328cec53ad05d5fdab054b79461d61c223828cf785b34c7a55,48d92494e6493d328cec53ad05d5fdab054b79461d61c223828cf785b34c7a55,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl agg_no_shared_targets,af9ff3b59cd46f1740d4a9512364e441891c1874c0afe5d0cfa91b55b94eea40,af9ff3b59cd46f1740d4a9512364e441891c1874c0afe5d0cfa91b55b94eea40,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl agg_shared_only,9c477c0681db8675e6c12a167fea9ff7552ff7c1067d2adcefe5b191732b10b3,9c477c0681db8675e6c12a167fea9ff7552ff7c1067d2adcefe5b191732b10b3,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl guard_none,c8cdada871543d402030594f664dd11f0cc27d248c9aec3ba96759ded4490987,c8cdada871543d402030594f664dd11f0cc27d248c9aec3ba96759ded4490987,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl guard_quality_only,7d5c66172007ac21ee86211776365820813e0419edb3ef4676327f142de66180,7d5c66172007ac21ee86211776365820813e0419edb3ef4676327f142de66180,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl guard_quality_reliability,8c6207646782efe407e61555a7716269d8570143bab94f2c1403d6c138f691d0,8c6207646782efe407e61555a7716269d8570143bab94f2c1403d6c138f691d0,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl baseline_siamese_cnn,5f1410f769b8f7b05065ec6d2433238b22305a840b872b381eb7af5839bd2a12,5f1410f769b8f7b05065ec6d2433238b22305a840b872b381eb7af5839bd2a12,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl baseline_siamese_vit,d406a5163510e008a62efc230da5da05d071789a37db0b18728628fdff2a6e26,d406a5163510e008a62efc230da5da05d071789a37db0b18728628fdff2a6e26,0.0,PASS,ablations/ablation_freeze.json
+hash,frozen.pkl baseline_vlm,5e82f494c7875bd0856f58edd591bbf2964282e9391f0097d0f201a38a707390,5e82f494c7875bd0856f58edd591bbf2964282e9391f0097d0f201a38a707390,0.0,PASS,ablations/ablation_freeze.json
+hash,thresholds.json (LF-normalised) vs thresholds.sha256,4b7af9772d209ce6315d36f36df6b191728c830159f04355e7a2238fd9732cfe,4b7af9772d209ce6315d36f36df6b191728c830159f04355e7a2238fd9732cfe,0.0,PASS,q/thresholds/thresholds.sha256
+hash,Look-1 thresholds hash recorded in test_access.log,True,True,0.0,PASS,q/logs/test_access.log
+hash,number of logged test looks,2,2,0.0,PASS,q/logs/test_access.log
+Look 1 test,genuine test pairs,24305,24305,0.0,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,genuine auto-accept %,79.74,79.74,0.005,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,D_random n/FA,1149/0,1149/0,0.0,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,D_hard FA,3,3,0.0,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,male genuine accept %,81.07,81.07,0.005,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,female genuine accept %,71.93,71.93,0.005,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,male/female genuine n,20774/3531,20774/3531,0.0,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,share of genuine in G1 %,97.2,97.2,0.05,PASS,q/report/test_pair_zones_look1.csv
+Look 1 test,genuine n in G2..G6,"266,184,75,137,12","266,184,75,137,12",0.0,PASS,q/report/test_pair_zones_look1.csv
+Look 2 test,full: genuine auto-accept %,70.07,70.07,0.005,PASS,ablations/extended_test.csv
+Look 2 test,full: accept 95% CI,"[66.52, 73.11]","[66.52, 73.11]",0.0,PASS,ablations/extended_test.csv
+Look 2 test,full: genuine false reject %,0.54,0.54,0.005,PASS,ablations/extended_test.csv
+Look 2 test,full: D_hard FA/n,5/35735,5/35735,0.0,PASS,ablations/extended_test.csv
+Look 2 test,full: D_hard auto-reject %,98.04,98.04,0.005,PASS,ablations/extended_test.csv
+Look 2 test,full: neutral auto-reject %,57.49,57.49,0.005,PASS,ablations/extended_test.csv
+Look 2 test,full: neutral n,2790,2790,0.0,PASS,ablations/extended_test.csv
+Look 2 test,full: D_random auto-reject %,34.03,34.03,0.005,PASS,ablations/extended_test.csv
+Look 2 test,arcface_only: genuine auto-accept %,89.45,89.45,0.005,PASS,ablations/extended_test.csv
+Look 2 test,arcface_only_noguard: genuine auto-accept %,93.58,93.58,0.005,PASS,ablations/extended_test.csv
+Look 2 test,direct5_logreg: genuine auto-accept %,87.1,87.1,0.005,PASS,ablations/extended_test.csv
+Look 2 test,agg_no_shared_targets: genuine auto-accept %,83.91,83.91,0.005,PASS,ablations/extended_test.csv
+Look 2 test,direct_only_mlp: genuine auto-accept %,0.0,0.0,0.005,PASS,ablations/extended_test.csv
+Look 2 test,arcface_only: D_random auto-reject %,63.53,63.53,0.005,PASS,ablations/extended_test.csv
+Look 2 test,full: D_hard reject at beta 0.005/0.02,96.33/98.75,96.33/98.75,0.0,PASS,ablations/extended_test.csv
+calibration,full: genuine auto-accept % (full split),73.26,73.26,0.005,PASS,ablations/extended_calibration.csv
+calibration,D_random n,1170,1170,0.0,PASS,ablations/extended_calibration.csv
+calibration,genuine pairs (full split),23838,23838,0.0,PASS,ablations/extended_calibration.csv
+calibration subset,full: accept %,74.13,74.13,0.005,PASS,ablations/decision_table_calibration.csv
+calibration subset,drop_eff: accept %,81.27,81.27,0.005,PASS,ablations/decision_table_calibration.csv
+calibration subset,no_branch_masking: accept %,3.6,3.6,0.005,PASS,ablations/decision_table_calibration.csv
+calibration subset,agg_no_shared_targets: accept %,84.8,84.8,0.005,PASS,ablations/decision_table_calibration.csv
+calibration subset,drop_arc: accept %,0.73,0.73,0.005,PASS,ablations/decision_table_calibration.csv
+FG-NET adults,full: accept %,51.92,51.92,0.005,PASS,ablations/extended_calibration_fg16.csv
+FG-NET adults,full: accept 95% CI,"[44.47, 58.41]","[44.47, 58.41]",0.0,PASS,ablations/extended_calibration_fg16.csv
+FG-NET adults,full: false reject %,18.2,18.2,0.005,PASS,ablations/extended_calibration_fg16.csv
+FG-NET adults,full: impostor FA/n,0/3670,0/3670,0.0,PASS,ablations/extended_calibration_fg16.csv
+FG-NET adults,arcface_only: accept %,40.38,40.38,0.005,PASS,ablations/extended_calibration_fg16.csv
+statistics,"1 - delta^(1/n) %, n=1170, delta=0.0500",0.256,0.256,0.0006,PASS,arithmetic
+statistics,"1 - delta^(1/n) %, n=1170, delta=0.0167",0.349,0.349,0.0006,PASS,arithmetic
+statistics,"1 - delta^(1/n) %, n=1149, delta=0.0500",0.26,0.26,0.0006,PASS,arithmetic
+statistics,"1 - delta^(1/n) %, n=1149, delta=0.0250",0.32,0.321,0.0006,FAIL,arithmetic
+statistics,"1/(n+1) %, n=1170",0.085,0.085,0.0006,PASS,arithmetic
+model,seeds in Look-2 'full' ensemble (AAFV-04 says 5),5,3,0.0,FAIL,ablations/variants/full/frozen.pkl
+model,fusion models listed for Look 1,5,5,0.0,PASS,q/thresholds/thresholds.json

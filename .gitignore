@@ -6,6 +6,12 @@ Code/
 /Figures/
 
 # =============================================================================
+# AAFV-06 (Hidden for current release)
+# =============================================================================
+publication_AAFV-06/
+*AAFV-06*
+
+# =============================================================================
 # Prompt Files
 # =============================================================================
 *[Pp]rompt*.md
@@ -115,3 +121,8 @@ Thumbs.db
 CVPR_redesign/exp0/runs/
 # Image-audit outputs (faces from a licensed dataset)
 CVPR_redesign/image_audit/out/*.png
+# Files downloaded from the shared Drive backup (derived data from licensed datasets)
+CVPR_redesign/drive_data/
+
+# Face images from licensed datasets: kept local, never pushed (public repo)
+Result_Images/

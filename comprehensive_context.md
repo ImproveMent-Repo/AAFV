@@ -190,7 +190,7 @@ flowchart TD
   3. *Unsubstantiated Risk Guarantees:* Claimed Neyman-Pearson theoretical risk control ($\text{FAR} \le 1\%, \text{FRR} \le 5\%$) based solely on training set tuning, with zero held-out statistical bounds `[VERIFIED]`.
 
 #### Stage 1: `AAFV-01` (First Rigorous System Architecture)
-- **Output Artifacts:** `Initial_Paper-AAFV_Net.pdf` (7 pages), `Paper-01.tex`, `AAFV-01.pdf` (10 pages), `Report/AAFV-01_Report.pdf` (Turnitin plagiarism report, $55\%$ similarity index) `[VERIFIED]`.
+- **Output Artifacts:** `Initial_Paper-AAFV_Net.pdf` (7 pages), `Paper-01.tex`, `AAFV-01.pdf` (10 pages), `Report/AAFV-01_Report.pdf` (Turnitin **AI-writing** report: $55\%$ "detected as AI"; it is *not* a similarity/plagiarism report. Corrected 2026-11-13; see `CVPR_redesign/phase7_originality/ORIGINALITY_REVIEW.md`) `[VERIFIED]`.
 - **Key Breakthroughs Introduced:**
   1. *Identity Quarantine:* Implemented automated string-suffix and centroid-similarity auditing (`src/aafv/dupids.py`), identifying and quarantining 858 contaminated subjects ($6.4\%$ of MORPH) `[VERIFIED]`.
   2. *Unified Continuous Fusion:* Replaced piecewise logistic models with an 11-dimensional continuous MLP ($11 \to 32 \to 16 \to 1$) conditioning on normalized gap $g \in [0, 1]$, quality $Q$, and synthesis reliability $R_{\text{sam}}$ `[VERIFIED]`.

@@ -1,6 +1,6 @@
 # Cross-Age Face Verification Research & Publication Package
 
-This repository contains the publication manuscripts, revision packages, supplementary materials, reproducibility analysis pipelines, expert reviews, and comprehensive research audit documentation for the **AAFV-Net** (Age-Aware Face Verification Network) project.
+This repository contains the publication manuscripts, revision packages, empirical analysis pipelines, expert reviews, and comprehensive research audit documentation for the **AAFV-Net** (Age-Aware Face Verification Network) project.
 
 ---
 
@@ -8,7 +8,31 @@ This repository contains the publication manuscripts, revision packages, supplem
 
 ```text
 Project/
-├── AAFV-04_revision/                  # Latest AAFV-04 revision package (addressing expert review)
+├── publication_AAFV-05/               # Latest AAFV-05 manuscript & re-analysis package
+│   ├── main.tex / main.pdf            # 7-page IEEEtran manuscript & compiled PDF
+│   ├── references.bib                 # Audited & verified bibliography (48 entries)
+│   ├── tables/                        # Automated LaTeX tables generated from analysis CSVs
+│   ├── figures/                       # Vector & aggregate plots (no raw face images)
+│   ├── scripts/                       # Asset builder, bib generator & claim checker (33/33 verified)
+│   ├── build.sh                       # One-command reproducible build script
+│   ├── CLAIMS_LEDGER.md               # Empirical claims-to-data mapping ledger
+│   ├── CHANGES_FROM_AAFV-04.md        # Evolution & claim reconciliation log
+│   ├── SUBMISSION_CHECKLIST.md        # Pre-submission author action checklist
+│   ├── supplementary/                 # Pre-registration protocol & analysis script index
+│   └── README.md                      # Detailed guide to AAFV-05 package
+├── CVPR_redesign/                     # Architectural review & Stage-1 assessment suite
+│   ├── STAGE1_ASSESSMENT.md           # Stage-1 empirical assessment & findings
+│   ├── FINAL_REPORT.md                # Comprehensive final report on AAFV-Net
+│   ├── DRIVE_FINDINGS.md              # Audit of calibration & backup artifacts
+│   ├── drive_analyses/                # Threshold counterfactuals & matched-FMR scripts
+│   ├── log_analyses/                  # Log-only matched-FPR and label-noise scripts
+│   ├── architecture_review/           # Fusion network probing & ablation scripts
+│   ├── phase5_literature/             # Literature review & prior-art positioning
+│   ├── phase6_experiments/            # Pre-registered experimental protocols
+│   ├── phase7_originality/            # Manuscript text originality review & flagged lines
+│   ├── phase8_manuscript/             # Target manuscript blueprint & framing
+│   └── phase9_reproducibility/        # Checksum manifest & artifact verification
+├── AAFV-04_revision/                  # AAFV-04 revision package (addressing expert review)
 │   ├── manuscript/                    # Revised 12-page manuscript (main.tex, main.pdf, tables, figures)
 │   ├── analysis/                      # Post-hoc calibration & diagnostic scripts (a1, a2, a3)
 │   │   └── out/                       # Audited diagnostic CSVs, reports, and sample-size tables
@@ -54,7 +78,7 @@ Project/
 ## Research Continuity & Master Reference
 
 The authoritative reference for this project is:
-- **[`comprehensive_context.md`](comprehensive_context.md)**: Master knowledge base covering scientific motivation, mathematical formulations, empirical results, expert critique, historical progression (AAFV-01 through AAFV-04), and research roadmap.
+- **[`comprehensive_context.md`](comprehensive_context.md)**: Master knowledge base covering scientific motivation, mathematical formulations, empirical results, expert critique, historical progression (AAFV-01 through AAFV-05), and research roadmap.
 
 ---
 
@@ -72,22 +96,26 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Running AAFV-04 Post-Hoc Analysis
+### 2. Building AAFV-05 Package & Manuscript
 
-To run the post-hoc diagnostic and figure reproduction scripts for the AAFV-04 revision:
+To verify claims, build assets, and compile the AAFV-05 manuscript:
 
 ```bash
-# Post-hoc calibration & workload analysis:
-python AAFV-04_revision/analysis/a1_look1_posthoc.py
+cd publication_AAFV-05
 
-# Diagnostic figure generation:
-python AAFV-04_revision/analysis/a2_figures.py
+# Run the complete automated pipeline:
+python scripts/build_assets.py
+python scripts/build_bib.py
+python scripts/check_claims.py
 
-# Number verification:
-python AAFV-04_revision/analysis/a3_verify_numbers.py
+# Compile manuscript:
+pdflatex -interaction=nonstopmode main.tex
+bibtex main
+pdflatex -interaction=nonstopmode main.tex
+pdflatex -interaction=nonstopmode main.tex
 ```
 
-### 3. Compiling Manuscripts
+### 3. Compiling Earlier Versions
 
 #### AAFV-04 Revised Manuscript:
 ```bash
@@ -109,9 +137,9 @@ pdflatex -interaction=nonstopmode main.tex
 
 ---
 
-## Core Implementation Note
+## Core Implementation & Data Governance
 
-The underlying model training/inference pipeline (`Code/`), raw biometric datasets, and heavy binary checkpoints (`*.pkl`, `*.npz`) are maintained separately and excluded via `.gitignore`. See [`publication_tifs/README.md`](publication_tifs/README.md) and [`AAFV-04_revision/README.md`](AAFV-04_revision/README.md) for audited SHA-256 artifact digests.
+The underlying model training pipeline (`Code/`), raw biometric datasets (MORPH, FG-NET), derived face crops, and heavy binary checkpoints (`*.pkl`, `*.npz`) are maintained separately and excluded via `.gitignore` to comply with dataset licensing and GitHub storage policies. In-progress iterations (`publication_AAFV-06/`) remain excluded from release pushes until finalized.
 
 ---
 

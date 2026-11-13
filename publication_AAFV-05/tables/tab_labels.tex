@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Integrity of MORPH ``same-person'' pairs as processed by the pipeline. Sex mismatch: the sex letters encoded in the two file names differ. Impostor-like: the pair scores below the 99th percentile of random impostors in the same gap bin. Calibration columns use the direct ArcFace score; test columns are a post-hoc reading of logged outputs of the fused system (Look~1) and of an independently trained Siamese ViT.}
+\label{tab:labels}
+\footnotesize
+\fittab{\begin{tabular}{@{}lccccccc@{}}
+\toprule
+ & \multicolumn{5}{c}{Calibration split} & \multicolumn{2}{c}{Test split (post hoc)} \\
+\cmidrule(lr){2-6}\cmidrule(l){7-8}
+Gap (y) & $n$ & Sex mismatch (\%) & File ids differ (\%) & Impostor-like (\%) & Impostor-like: ids differ / same (\%) & $n$ & Impostor-like: fused / ViT (\%) \\
+\midrule
+0--4 & 22,914 & 0.0 & 27.5 & 0.2 & 0.8 / 0.0 & 23631 & 0.4 / 4.3 \\
+5--9 & 594 & 1.9 & 49.7 & 31.5 & 58.3 / 5.0 & 266 & 13.9 / 20.3 \\
+10--14 & 174 & 2.9 & 36.8 & 34.5 & 79.7 / 8.2 & 184 & 23.9 / 23.9 \\
+15--19 & 44 & 20.5 & 79.5 & 97.7 & 97.1 / 100.0 & 75 & 97.3 / 97.3 \\
+20--29 & 77 & 18.2 & 77.9 & 90.9 & 96.7 / 70.6 & 137 & 94.9 / 97.8 \\
+30+ & 35 & 28.6 & 65.7 & 85.7 & 91.3 / 75.0 & 12 & 0.0 / 0.0 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

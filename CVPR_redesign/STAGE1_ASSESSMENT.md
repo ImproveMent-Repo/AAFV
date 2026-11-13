@@ -429,3 +429,33 @@ Full audit: `image_audit/IMAGE_AUDIT.md`. Two images were supplied, and no face 
 - **SAM-age outputs (2 people × 3 target ages).** The edits concentrate on the eyes (iris colour and shape) and brows. A distinctive joined eyebrow is thinned and split in the younger outputs. Backgrounds and clothing are regenerated, and fine synthetic texture is added to blurry sources. This is consistent with Finding 2 (no measurable SAM value) and gives the qualitative figure W2 asks for.
 - **FG-NET false accepts.** Different children, three of four under 1 year, all short-gap and poorly captured, with fused P of 0.966–1.000. Guarded ArcFace accepted none of the same 20,000 impostor pairs. The logs cannot attribute the cause.
 - **No change to the direction decision.** The quantitative identity-preservation test is still Experiment 0.
+
+---
+
+## P. Phases 5 and 6 (2026-11-13; not committed)
+
+- **Phase 5, literature:** `phase5_literature/RELATED_WORK.md`.
+  - Contains a verified related-work map, the open gaps, a must/should baseline list, about 30 essential references, and bibliography entries to drop.
+  - Positioning risk: no age-invariant or cross-age recognition paper was found at CVPR 2024/2025 or ICCV 2023. Frame the work as learning from unreliable generative supervision on a frozen foundation model.
+- **Phase 6, experiments:** `phase6_experiments/EXPERIMENT_PLAN.md`.
+  - 15 experiment cards (E0–E14) grouped by resource class, the ablation ladder for the main method, two decision gates, and a 15-week timeline.
+  - The cheapest high-value next step is E1, the MORPH identity audit. It needs images and two annotators, no GPU.
+
+## Q. Phases 7 and 8 (2026-11-13; not committed)
+
+- **Phase 7, originality:** `phase7_originality/ORIGINALITY_REVIEW.md`, plus `extract_flagged.py`, `flagged_passages.md` and `flagged_lines.csv`.
+  - Both Turnitin files are AI-writing reports (AAFV-01: 55%; AAFV-04: 31%). **No similarity check has ever been run**, and `comprehensive_context.md` has been corrected accordingly.
+  - The flags concentrate on framing and interpretive prose.
+  - Eight attribution and accuracy items listed (A1–A8). AAFV-04's descriptions of AIM and OrdCon were checked against the PDFs and are correct.
+- **Phase 8, manuscript:** `phase8_manuscript/MANUSCRIPT_BLUEPRINT.md`.
+  - The official CVPR 2027 rules: 8 pages including figures; a mandatory LLM Usage Statement; IRB and consent statements; withdrawn datasets (MS-Celeb-1M) must be avoided or justified, so prefer AdaFace trained on WebFace; a Findings track exists.
+  - Paper A (method) is planned section by section, with an equation list, tables, figures and a page budget. Paper B is the fallback. No results are included; every number is a slot tied to a Phase 6 experiment.
+
+## R. Phases 9 and 10 (2026-11-13; not committed)
+
+- **Phase 9, reproducibility:** `phase9_reproducibility/REPRODUCIBILITY_AUDIT.md` and `verify_artifacts.py`.
+  - 71 of 73 checks pass: all 26 frozen-model hashes; the ledger and threshold hashes; 42 of 43 AAFV-04 numbers re-derived from logs.
+  - The two failures are the 3-vs-5 seed count and the 0.320% vs 0.321% rounding.
+  - The AAFV unit tests (17/17) and Experiment 0 tests (8/8) pass, and the new analyses re-run byte-identically.
+  - Main gap: `Code/` is git-ignored in this repository.
+- **Phase 10, final report:** `FINAL_REPORT.md` consolidates deliverables A–H and supersedes this file where they differ.

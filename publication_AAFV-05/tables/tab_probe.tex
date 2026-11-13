@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\caption{What the frozen fusion network uses. Top: weights of the two linear branch heads on the five z-scored similarities (mean of 3 seeds). Bottom: change of the fused logit when one input moves across a plausible range (branch logits: bias $\pm 3\|w\|$; gap 5$\to$25 y; quality 0.3$\to$0.9; $R_\mathrm{sam}$ 0.2$\to$0.9). Untrained controls are variants trained with that input held constant, whose response is arbitrary.}
+\label{tab:probe}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fittab{\begin{tabular}{@{}lccccc@{}}
+\toprule
+Head & ArcFace & EfficientNet & VGG-Face & LPIPS & SSIM \\
+\midrule
+Original pair & -0.255 & +0.005 & -0.011 & +0.016 & -0.010 \\
+Generated pairs & -0.101 & +0.149 & -0.057 & -0.004 & +0.023 \\
+\bottomrule
+\end{tabular}}
+
+\vspace{4pt}
+\fittab{\begin{tabular}{@{}lcc@{}}
+\toprule
+Input & Swing (full model) & Untrained control \\
+\midrule
+Original-pair branch logit & 25.1 & -- \\
+Generated-pair branch logit & 4.1 & 4.4 (direct-only) \\
+Synthesis reliability $R_\mathrm{sam}$ & 0.40 & 0.51 (no context) \\
+Age gap & 0.90 & 0.23 (no context) \\
+Image quality & 0.87 & 0.26 (no context) \\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -1,0 +1,70 @@
+# Lines highlighted in the Turnitin AI-writing report
+
+Flagged words (approx.): 907 of 4006 (23%) of full-width body-prose lines; Turnitin reports 31% of its qualifying text. 66 passages.
+
+- (report p.3) MORPH data, the certificate bounds random-impostor FAR at 0.349% (95% confidence), and a held-out audit finds 0 false
+- (report p.3) mixed. A guarded ArcFace baseline accepts 89.45% of genuine pairs with one third of AAFV-Net’s manual reviews, and 97.2% of MORPH genuine pairs span less than five years. On FG- NET adults, AAFV-Net accepts more genuine pairs than ArcFace
+- (report p.3) Index Terms
+- (report p.3) false-accept rate, reject option, selective classification, conformal
+- (report p.3) ACE verification across long time spans is required when a traveller is compared with an older passport photograph,
+- (report p.3) when a national credential is renewed, or when a forensic examiner compares a probe with archived images [1], [2]. Ageing changes facial texture, soft tissue, and, in children,
+- (report p.4) We do not claim a new face representation, superiority over ArcFace on MORPH genuine acceptance, robustness to morphing or presentation attacks, or validity for children. The paper is organized as follows. Section II reviews related work and positions each component. Section III defines the problem and threat model. Section IV derives the risk statements. Section V specifies AAFV-Net. Section VI describes data, splits, and the protocol chronology. Section VII reports results, and Sections VIII–X discuss limitations and conclude.
+- (report p.4) Conditional generators progressed from CAAE [30] and IPCGANs [31] to PFA-GAN [32] and SAM [33], which regresses StyleGAN2 [34] latent codes towards a target age.
+- (report p.4) young children [4]. AIM measures this with a user study [9]. We
+- (report p.4) have not yet measured identity preservation with a recognizer outside the pipeline (Section IX).
+- (report p.4) Classical fusion combines matcher scores by fixed rules,
+- (report p.4) et al.
+- (report p.4) Platt scaling [37], isotonic regression [38], and temperature scaling [39] map scores to probabilities; ECE [40], Brier score [41], and negative log-likelihood measure the result. Xu et al. [42] calibrate face and kinship verification scores. All
+- (report p.4) E. Reject Option, Selective Classification, and Risk Control Chow derived the optimal error–reject trade-off for known posteriors [11]; later work studies learning with rejection [12] and selective deep classifiers with risk–coverage guaran- tees [13], [14]. Split-conformal methods and their risk-control extensions provide finite-sample guarantees under exchange- ability [15]–[17], with weighted variants for covariate shift [43]. Our accept rule is a special case of this machinery (a maximum order statistic), and our reject rule is a conformal-style quantile; we use these results rather than claim them.
+- (report p.4) Zero-failure bounds follow from the binomial model [44], [45]; comparisons that share subjects require subset or cluster resampling [18], [19]. Look-alikes and twins raise false-match rates substantially [46]. Accuracy varies with sex, age, and race [1], [47], [48]. Morphing and presentation attacks [49], [50] require dedicated detectors and are outside our threat model. Table I summarizes, component by component, what AAFV-Net adopts, modifies, or adds.
+- (report p.4) A comparison is a pair of aligned face images ( I , I ) with 1 2 ages
+- (report p.4) a , age gap ∆ a = a a , and label y = 1 for the 1 ≤ 2 2 − 1 same person and y = 0
+- (report p.5) Adopted Frozen generator; identity preservation not independently measured recognition in AIM [9]
+- (report p.5) Reliability score R Quality-dependent fusion with miss- Modified Masking is necessary in this recipe (accept
+- (report p.5) and
+- (report p.5) Accept rule: zero-FA order Selective classification [13], [14]; Modified Guards are the mechanism that avoids
+- (report p.5) Audit protocol (quarantine, ISO/IEC 19795-1 [20]; subset boot- Modified Logged; adaptivity between looks not excluded (Table V).
+- (report p.5) Guards can only move a candidate accept to review; they never cause acceptance or rejection.
+- (report p.5) objective is max C s.t. FAR ≤
+- (report p.5) where ε must be certified with confidence 1 − δ and β is a target. The review rate is the price paid for both constraints,
+- (report p.5) accept, Table XII). (Section IX).
+- (report p.5) 3 . 60% without it); removing R < 1 pp. Missing-branch inference test
+- (report p.5) changes calibration accept by
+- (report p.5) floors
+- (report p.5) (Section V-E). T 1 (all guard ablations give acc > 0% accept). The finite-sample certificate (Proposition 1) follows from
+- (report p.5) 0 . 54% ≤ 1% ) but fails under shift: 18 . 20% false rejects on FG-NET adults.
+- (report p.6) model, trials share no subject. Residual dependence can remain through shared acquisition conditions in MORPH (one booking environment). If such dependence reduces the effective number of trials by a design effect D , the α = 0 . 025 audit bound D/ 1149 becomes 1 − 0 . 025 : 0 . 48% for D = 1 . 5 and
+- (report p.6) . 64% for D = 2 . D all (pairs drawn with replacement, repeated persons), D , the neutral set, and FG-NET (at most 82 hard persons) are reported as empirical counts with person-clustered bootstrap intervals, never as binomial bounds. Table III gives
+- (report p.6) − 4 with zero errors requires about 30,000 targets: certifying
+- (report p.6) independent pairs (about 60,000 persons in our design), roughly
+- (report p.7) interpreting the hard-impostor results (Section VII-E).
+- (report p.7) p mask = 0 . 12 , the SAM inputs ( s , R , I , I ) of a pair are
+- (report p.7) sam multi zeroed, so that the network sees the same input pattern as a
+- (report p.7) pair whose synthesis failed.
+- (report p.7) . Calibration affects decisions
+- (report p.7) only through the branch floors ( P , P ρ ). The guarantees of d s ≥ Section IV rest on order statistics and do not require P to be calibrated. The value of P as a posterior is prior-dependent: it reflects the genuine-to-impostor ratio of train_val , not of a deployment stream. We therefore report calibration diagnostics (Section VII-F) as descriptive properties, not as a basis for the
+- (report p.8) not a confirmatory, evaluation (Section VI-D). calibration subset and FG-NET. AdaFace, MagFace, AIFR models, and generic selective classifiers have not been evaluated (Section IX).
+- (report p.8) The test split was opened twice under a logged budget of two looks. Table V reconstructs the sequence from logged artifacts.
+- (report p.8) over the two looks (Bonferroni) controls multiplicity, but it does
+- (report p.9) changes only T
+- (report p.9) rej from β = 0 . 005 to 0 . 02 , AAFV-Net’s hard-impostor rejection rises from 96.33% to 98.75% and its genuine false rejects from 0.15% to 1.35%, while guarded ArcFace rejects 71.94% of D β = 0 . 02 and none at β ≤ 0 . 01 . A single operating hard at point therefore understates ArcFace’s attainable hard-impostor
+- (report p.9) Because genuine transactions dominate real streams, the review rate is driven mainly by genuine pairs. Table VIII converts the Look-2 rates into outcomes per 10,000 transactions. With 1% impostors, AAFV-Net sends about 2,970 transactions to review against about 970 for guarded ArcFace, roughly three times the human workload. This holds whether impostors are random or all ArcFace-mined. AAFV-Net produces fewer genuine false rejects (54 versus 115). Its hard-impostor advan- tage converts look-alikes from review into automatic rejection, which matters only where look-alike attempts are frequent. Removing the shared-target comparisons (No Shared Targets) halves the review load (1,615) while keeping zero random and zero hard false accepts at test. On MORPH, therefore, the full
+- (report p.9) variants. We keep it as the primary system only because it was designated in advance.
+- (report p.9) Table IX shows that ArcFace accepts more genuine pairs than AAFV-Net in G1–G3 (by 19.5–23.7 percentage points) and that both collapse in G4–G5. Most of the deficit arises
+- (report p.10) Table XII (calibration subset, development data) shows four A 0.00 | R 45.0 | X 55.04
+- (report p.11) Fig. 3. Post hoc diagnostics of the Look-1 checkpoint on MORPH test (logged outputs; no parameter changed). (a) Class-conditional distributions of P dashed: Look-2 T (0 . 01) ; dotted: T . ArcFace-mined impostors receive lower P acc rej D ; intermediate scores are strongly under-confident. (c) Genuine coverage versus false accepts when thresholding P all guarded coverage 79.74%. These curves are descriptive and were not used to set any threshold.
+- (report p.11) Genuine + D all
+- (report p.11) from test_pair_zones_look1.csv ; no parameter was changed. Pair-level
+- (report p.11) were not saved for Look 2 or FG-NET, so cross-dataset calibration remains
+- (report p.11) Removing the probability floors gives T acc = 1 . 005 and 0% acceptance in all three guard ablations.
+- (report p.11) Masking and context. Without SAM masking, acceptance falls to 3.60%; without g , Q , and R sam it is 0%.
+- (report p.11) without it), LPIPS contributes 11.3 pp, and dropping EfficientNet raises acceptance to 81.27%. EfficientNet is therefore redundant; it is retained only because the
+- (report p.11) ; than random impostors. (b) Reliability diagram for genuine pairs plus without guards; dotted line:
+- (report p.11) What the evidence supports. For MORPH-like adult random impostors, the accept rule carries a finite-sample certificate obtained from calibration data alone, and a held-out audit agrees. Branch-probability guards are what make a zero- false-accept threshold usable for a fused score whose impostor tail otherwise reaches 1. A reliability-gated synthetic branch
+- (report p.11) provided it is masked during training. What it does not support. The current evidence does
+- (report p.12) are a confirmatory external evaluation, shift-aware threshold
+- (report p.12) and matched-FAR comparisons with modern and age-invariant recognizers.
+- (report p.13) C ALIBRATION S PLIT D ISCRIMINATION AND T HREE -W AY D ECISION C
+- (report p.13) [Funding statement and CRediT roles to be confirmed by the authors.] The authors declare no conflicts of interest. Experiments use existing academic datasets (MORPH Album 2 and FG-NET) under their licence terms; no new data were collected. InsightFace , SAM, and the age estimator carry non-commercial licences.
+- (report p.13) Table XVI gives the 95% person-clustered bootstrap intervals (500 resamples) for the methods of Table VII.
+- (report p.13) OMPARISON ( β = 1 . 0%

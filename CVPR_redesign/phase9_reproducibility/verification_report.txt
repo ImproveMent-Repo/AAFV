@@ -1,0 +1,17 @@
+result              FAIL  PASS
+group                         
+FG-NET adults          0     5
+Look 1 test            0     9
+Look 2 test            0    15
+calibration            0     3
+calibration subset     0     5
+hash                   0    29
+model                  1     1
+statistics             1     4
+
+TOTAL: 71 PASS, 2 FAIL
+
+FAILURES:
+     group                                             item stated recomputed                             source
+statistics          1 - delta^(1/n) %, n=1149, delta=0.0250   0.32      0.321                         arithmetic
+     model seeds in Look-2 'full' ensemble (AAFV-04 says 5)      5          3 ablations/variants/full/frozen.pkl

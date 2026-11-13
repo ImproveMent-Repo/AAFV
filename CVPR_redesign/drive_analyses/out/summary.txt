@@ -1,0 +1,101 @@
+
+[DA1] Reconstruction of the frozen Look-2 'full' decision layer on the official calibration set (858 persons removed)
+  n pairs 338,871 | T_acc 0.956438 (published 0.956438) | T_rej(0.01) 0.007541 (published 0.007541) | genuine accept 73.26% (published 73.26%)
+
+[DA2] Counterfactual: official set + the 4 persons quarantined by hand after the draft calibration
+  rho 0.20 | official               | T_acc 0.9564 | genuine accept  73.26%
+  rho 0.20 | official + 4 persons   | T_acc 1.0291 | genuine accept   0.00%
+  rho 0.35 | official               | T_acc 1.0107 | genuine accept   0.00%
+  rho 0.35 | official + 4 persons   | T_acc 1.0107 | genuine accept   0.00%
+  rho 0.50 | official               | T_acc 2.0000 | genuine accept   0.00%
+  rho 0.50 | official + 4 persons   | T_acc 2.0000 | genuine accept   0.00%
+
+[DA2] Highest-scoring impostor pairs involving the 4 persons (Look-2 model)
+           pair_id set_name person_id_1 person_id_2         img_id_1         img_id_2  gap  d_arc      P  guard_ok
+calibration:352990   D_hard      314177      321217 314177_02M17.JPG 321217_01M17.JPG    0 0.7994 0.9952      True
+calibration:354806   D_hard      321217      314177 321217_01M17.JPG 314177_02M17.JPG    0 0.7994 0.9952      True
+calibration:354805   D_hard      321217      314177 321217_01M17.JPG 314177_01M17.JPG    0 0.7821 0.9941     False
+calibration:352978   D_hard      314177      321217 314177_01M17.JPG 321217_01M17.JPG    0 0.7821 0.9941     False
+calibration:362711   D_hard      290132      303269  90132_01M22.JPG 303269_01M22.JPG    0 0.6346 0.9592     False
+calibration:351128   D_hard      303269      290132 303269_01M22.JPG  90132_01M22.JPG    0 0.6346 0.9592     False
+calibration:340032   D_hard      321217      319950  21217_02M17.JPG 319950_02M19.JPG    2 0.5985 0.9423      True
+calibration:352966   D_hard      314177      321217 314177_00M16.JPG 321217_01M17.JPG    1 0.6459 0.9030     False
+calibration:352989   D_hard      314177      321217 314177_02M17.JPG 321217_00M17.JPG    0 0.5675 0.8544      True
+calibration:354798   D_hard      321217      314177 321217_00M17.JPG 314177_02M17.JPG    0 0.5675 0.8544      True
+calibration:340031   D_hard      321217      314177  21217_02M17.JPG 314177_02M17.JPG    0 0.5964 0.8350     False
+calibration:352979   D_hard      314177      321217 314177_02M17.JPG  21217_02M17.JPG    0 0.5964 0.8350     False
+  their 16 genuine pairs: median d_arc z 1.62 (all genuine: 1.46)
+  their D_random pairs: 4; max P 0.0161; guard-passing: 0
+
+[DA3] Calibration split, matched FMR per gap bin (1e-3 if >=3000 impostors else 1e-2); paired person-cluster bootstrap (300); deltas vs ArcFace direct
+
+  vs D_all_random
+  G1 (0-4 y, n=22914, FMR 0.001): ArcFace direct TAR 0.996 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.920 (d -0.076 [-0.112,-0.051]) | AAFV-Net fused TAR 0.994 (d -0.002 [-0.004,-0.001]) | LogReg [d_arc, s_arc] TAR 0.996 (d -0.000 [-0.000,+0.000])
+  G2 (5-9 y, n=594, FMR 0.001): ArcFace direct TAR 0.682 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.609 (d -0.072 [-0.111,-0.032]) | AAFV-Net fused TAR 0.668 (d -0.013 [-0.024,+0.000]) | LogReg [d_arc, s_arc] TAR 0.682 (d +0.000 [+0.000,+0.000])
+  G3 (10-14 y, n=174, FMR 0.001): ArcFace direct TAR 0.655 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.644 (d -0.011 [-0.045,+0.000]) | AAFV-Net fused TAR 0.649 (d -0.006 [-0.024,+0.000]) | LogReg [d_arc, s_arc] TAR 0.655 (d +0.000 [+0.000,+0.000])
+  G4 (15-19 y, n=44, FMR 0.001): ArcFace direct TAR 0.023 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.023 (d +0.000 [+0.000,+0.000]) | AAFV-Net fused TAR 0.023 (d +0.000 [+0.000,+0.000]) | LogReg [d_arc, s_arc] TAR 0.023 (d +0.000 [+0.000,+0.000])
+  G5 (20-29 y, n=77, FMR 0.001): ArcFace direct TAR 0.091 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.091 (d +0.000 [+0.000,+0.000]) | AAFV-Net fused TAR 0.091 (d +0.000 [+0.000,+0.000]) | LogReg [d_arc, s_arc] TAR 0.091 (d +0.000 [+0.000,+0.000])
+  G6 (30+ y, n=35, FMR 0.001): ArcFace direct TAR 0.143 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.143 (d +0.000 [+0.000,+0.000]) | AAFV-Net fused TAR 0.143 (d +0.000 [+0.000,+0.000]) | LogReg [d_arc, s_arc] TAR 0.143 (d +0.000 [+0.000,+0.000])
+
+  vs D_hard
+  G1 (0-4 y, n=22914, FMR 0.001): ArcFace direct TAR 0.985 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.391 (d -0.594 [-0.689,-0.513]) | AAFV-Net fused TAR 0.988 (d +0.003 [+0.001,+0.006]) | LogReg [d_arc, s_arc] TAR 0.981 (d -0.004 [-0.006,-0.001])
+  G2 (5-9 y, n=594, FMR 0.001): ArcFace direct TAR 0.653 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.293 (d -0.360 [-0.559,-0.117]) | AAFV-Net fused TAR 0.653 (d +0.000 [-0.012,+0.014]) | LogReg [d_arc, s_arc] TAR 0.653 (d +0.000 [-0.012,+0.013])
+  G3 (10-14 y, n=174, FMR 0.001): ArcFace direct TAR 0.649 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.397 (d -0.253 [-0.479,-0.059]) | AAFV-Net fused TAR 0.649 (d +0.000 [+0.000,+0.355]) | LogReg [d_arc, s_arc] TAR 0.649 (d +0.000 [+0.000,+0.000])
+  G4 (15-19 y, n=44, FMR 0.01): ArcFace direct TAR 0.023 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.023 (d +0.000 [+0.000,+0.000]) | AAFV-Net fused TAR 0.932 (d +0.909 [+0.800,+1.000]) | LogReg [d_arc, s_arc] TAR 0.023 (d +0.000 [+0.000,+0.000])
+  G5 (20-29 y, n=77, FMR 0.01): ArcFace direct TAR 0.091 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.091 (d +0.000 [+0.000,+0.000]) | AAFV-Net fused TAR 0.974 (d +0.883 [+0.364,+1.000]) | LogReg [d_arc, s_arc] TAR 0.091 (d +0.000 [+0.000,+0.000])
+  G6 (30+ y, n=35, FMR 0.01): ArcFace direct TAR 0.143 (d +0.000 [+0.000,+0.000]) | SAM-branch ArcFace TAR 0.143 (d +0.000 [+0.000,+0.000]) | AAFV-Net fused TAR 1.000 (d +0.857 [+0.000,+1.000]) | LogReg [d_arc, s_arc] TAR 0.143 (d +0.000 [+0.000,+0.000])
+
+[DA4] Genuine calibration pairs: do the two image files carry different MORPH ids? ('impostor-like' = ArcFace below the 99th pct of same-bin random impostors)
+bin years  n_genuine  file_ids_differ  file_id_not_person  arcface_impostor_like  impostor_like_if_ids_differ  impostor_like_if_ids_same
+ G1   0-4      22914            0.275               0.327                  0.002                        0.008                      0.000
+ G2   5-9        594            0.497               0.571                  0.315                        0.583                      0.050
+ G3 10-14        174            0.368               0.431                  0.345                        0.797                      0.082
+ G4 15-19         44            0.795               1.000                  0.977                        0.971                      1.000
+ G5 20-29         77            0.779               0.935                  0.909                        0.967                      0.706
+ G6   30+         35            0.657               0.914                  0.857                        0.913                      0.750
+  examples:
+gap_bin person_id_1        img_id_1         img_id_2  d_arc
+     G1      100222  00222_0F38.JPG  100222_2F39.JPG   1.49
+     G1      100222  00222_1F39.JPG  100222_2F39.JPG   1.38
+     G2      102531 102531_1F32.JPG   02531_8F39.JPG   0.83
+     G2      102531  02531_0F33.JPG 102531_13F39.JPG  -0.11
+     G5      110515  0515_01M17.JPG  110515_1M38.JPG  -1.23
+     G5      110515  0515_02M18.JPG  110515_1M38.JPG  -1.06
+     G6      110771  0771_00F16.JPG 110771_08M48.JPG  -0.99
+     G6      110771  0771_03F17.JPG 110771_08M48.JPG  -0.69
+     G3      117757 117757_6M39.JPG   7757_14M49.JPG   1.29
+     G3      117757 117757_6M39.JPG   7757_10M49.JPG   1.32
+     G4      124395 24395_00M17.JPG  124395_0M32.JPG  -1.07
+     G4      124395 24395_00M17.JPG  124395_2M33.JPG  -1.30
+
+[DA5] SAM faces: 379,930 generated, 51,003 originals. Identity = ArcFace cosine to the source image (in-pipeline recognizer: circular, and fed misaligned crops)
+                             n  id_cos_median  id_cos_p10  share_below_0p3  age_err_median
+direction abs_shift_bin                                                                   
+older     0-4            46930          0.508       0.413            0.003           2.236
+          5-14           80657          0.485       0.387            0.008           2.886
+          15-29          64935          0.426       0.324            0.057           3.825
+          30+            12613          0.352       0.261            0.231           4.777
+younger   0-4            47789          0.513       0.417            0.003           2.364
+          5-14           77512          0.500       0.402            0.006           3.205
+          15-29          41444          0.460       0.359            0.023           3.753
+          30+             8050          0.395       0.292            0.119           3.956
+                n  id_cos_median  share_below_0p3  age_err_median
+target_bin                                                       
+[0, 20)     29323          0.469            0.026           3.327
+[20, 30)    89746          0.494            0.014           2.361
+[30, 40)    96531          0.497            0.007           2.929
+[40, 50)    88362          0.477            0.014           2.692
+[50, 60)    59332          0.438            0.055           4.611
+[60, 70)    15408          0.391            0.149           1.899
+[70, 101)    1228          0.342            0.284          10.166
+
+[DA4b] Sex letters in MORPH file names disagree within 'same-person' calibration pairs
+             n  parsed  sex_mismatch  sex_mismatch_if_ids_differ  sex_mismatch_if_ids_same
+gap_bin                                                                                   
+G1       22914     1.0         0.000                       0.000                     0.000
+G2         594     1.0         0.019                       0.024                     0.013
+G3         174     1.0         0.029                       0.047                     0.018
+G4          44     1.0         0.205                       0.143                     0.444
+G5          77     1.0         0.182                       0.133                     0.353
+G6          35     1.0         0.286                       0.087                     0.667
+total: 49 of 23838
