@@ -1,0 +1,697 @@
+===== BASE_Paper.pdf: about 44 numbered references =====
+References
+
+ [1] Deng, J., Guo, J., Xue, N., Zafeiriou, S.: ArcFace: Additive angular margin loss for
+      deep face recognition. In: Proceedings of the IEEE/CVF Conference on Computer
+      Vision and Pattern Recognition (CVPR), pp. 4690­4699 (2019)
+
+ [2] Wang, H., Wang, Y., Zhou, Z., et al.: CosFace: Large margin cosine loss for deep
+      face recognition. In: Proceedings of the IEEE Conference on Computer Vision
+      and Pattern Recognition (CVPR) (2018)
+
+                                                      33
+ [3] Meng, Q., Zhao, S., Huang, Z., Zhou, F.: MagFace: A universal representation
+      for face recognition and quality assessment. In: Proceedings of the IEEE/CVF
+      Conference on Computer Vision and Pattern Recognition (CVPR) (2021)
+
+ [4] Alaluf, Y., Patashnik, O., Cohen-Or, D.: Only a matter of style: Age transforma-
+      tion using a style-based regression model. ACM Transactions on Graphics (TOG)
+      40(4), 1­12 (2021)
+
+ [5] Or-El, R., Shu, S., Richardson, E., Nitzan, Y., Cohen-Or, D.: Lifespan age trans-
+      formation synthesis. In: European Conference on Computer Vision (ECCV), pp.
+      739­755 (2020)
+
+ [6] Zhang, Z., Song, Y., Qi, H.: Age progression/regression by conditional adversarial
+      autoencoder. In: Proceedings of the IEEE Conference on Computer Vision and
+      Pattern Recognition (CVPR) (2017)
+
+ [7] Antipov, G., Baccouche, M., Dugelay, J.-L.: Face aging with conditional genera-
+      tive adversarial networks. In: IEEE International Conference on Image Processing
+      (ICIP), pp. 2089­2093 (2017)
+
+ [8] Zhao, J., Cheng, Y., Xu, Y., Xiong, L., Li, J., Zhao, F., Jayashree, K., Pranatha,
+      S., Feng, J., Luu, K.: Towards pose invariant face recognition in the wild. In: Pro-
+      ceedings of the IEEE Conference on Computer Vision and Pattern Recognition
+      (CVPR), pp. 2207­2216 (2018)
+
+ [9] Elkan, C.: The foundations of cost-sensitive learning. In: International Joint
+      Conference on Artificial Intelligence (IJCAI), pp. 973­978 (2001)
+
+[10] Richardson, E., Alaluf, Y., Patashnik, O., Nitzan, Y., Cohen-Or, D., Fried,
+      O.: Encoding in style: a StyleGAN encoder for image-to-image translation. In:
+      IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),
+      pp. 2287­2296 (2021)
+
+[11] Karras, T., Laine, S., Aittala, M., Hellsten, J., Lehtinen, J., Aila, T.: Analyzing
+      and improving the image quality of StyleGAN. In: Proceedings of the IEEE/CVF
+      Conference on Computer Vision and Pattern Recognition (CVPR), pp. 8110­8119
+      (2020)
+
+[12] Tan, M., Le, Q.V.: EfficientNet: Rethinking model scaling for convolutional neural
+      networks. In: International Conference on Machine Learning (ICML) (2019)
+
+[13] Parkhi, O.M., Vedaldi, A., Zisserman, A.: Deep face recognition. In: British
+      Machine Vision Conference (BMVC) (2015)
+
+[14] Zhang, R., Isola, P., Efros, A.A., Shechtman, E., Wang, O.: The unreasonable
+      effectiveness of deep features as a perceptual metric. In: Proceedings of the IEEE
+      Conference on Computer Vision and Pattern Recognition (CVPR) (2018)
+
+                                                      34
+[15] Wang, Z., Bovik, A.C., Sheikh, H.R., Simoncelli, E.P.: Image quality assess-
+      ment: From error visibility to structural similarity. IEEE Transactions on Image
+      Processing (TIP) 13(4), 600­612 (2004)
+
+[16] Taigman, Y., Yang, M., Ranzato, M., Wolf, L.: DeepFace: Closing the gap to
+      human-level performance in face verification. In: Proceedings of the IEEE Con-
+      ference on Computer Vision and Pattern Recognition (CVPR), pp. 1701­1708
+      (2014)
+
+[17] Huang, G.B., Ramesh, M., Berg, T., Learned-Miller, E.: Labeled faces in the
+      wild: A database for studying face recognition in unconstrained environments.
+      Technical Report 07-49, University of Massachusetts, Amherst (2007)
+
+[18] Sun, Y., Wang, X., Tang, X.: Deep learning face representation from predicting
+      10,000 classes. In: Proceedings of the IEEE Conference on Computer Vision and
+      Pattern Recognition (CVPR), pp. 1891­1898 (2014)
+
+[19] Schroff, F., Kalenichenko, D., Philbin, J.: FaceNet: A unified embedding for face
+      recognition and clustering. In: Proceedings of the IEEE Conference on Computer
+      Vision and Pattern Recognition (CVPR) (2015)
+
+[20] He, K., Zhang, X., Ren, S., Sun, J.: Deep residual learning for image recogni-
+      tion. In: Proceedings of the IEEE Conference on Computer Vision and Pattern
+      Recognition (CVPR), pp. 770­778 (2016)
+
+[21] Kim, M., Jain, A.K.: Adaface: Quality adaptive margin for face recognition.
+      In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+      Recognition (CVPR) (2022)
+
+[22] Kim, M., Jain, A.K., Liu, X.: Adaface: Quality adaptive margin for face recog-
+      nition. IEEE Transactions on Pattern Analysis and Machine Intelligence 46(1),
+      1­14 (2024). Extended journal version
+
+[23] Huang, Y., al.: Curricularface: Adaptive curriculum learning loss for deep face
+      recognition and its extensions. International Journal of Computer Vision 131(4),
+      943­960 (2023)
+
+[24] Huang, Y., Wang, Y., Tai, Y., Liu, X., Shen, P., Li, S.: Curricularface: Adap-
+      tive curriculum learning loss for deep face recognition. In: Proceedings of the
+      IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+      (2020)
+
+[25] Caron, M., Touvron, H., Misra, I., J´egou, H., Mairal, J., Bojanowski, P., Joulin,
+      A.: Emerging properties in self-supervised vision transformers. In: Proceedings of
+      the IEEE/CVF International Conference on Computer Vision (ICCV) (2021)
+
+[26] Chen, J., Li, W., Zhang, Y., Wang, H.: Fading: Facial aging and identity
+
+                                                      35
+      preservation for age-invariant face recognition. IEEE Transactions on Biometrics,
+      Behavior, and Identity Science (2023)
+
+[27] Chen, Z., al.: Diffage: Lifespan age transformation via diffusion models with iden-
+      tity preservation. In: Proceedings of the IEEE/CVF Conference on Computer
+      Vision and Pattern Recognition (CVPR), pp. 1­10 (2024)
+
+[28] Papantoniou, F.P., Lattas, A., Moschoglou, S., Deng, J., Kainz, B., Zafeiriou, S.:
+      Arc2face: A foundation model of human faces. arXiv preprint arXiv:2405.11279
+      (2024)
+
+[29] Shi, T., Shen, Y., Shan, S., Chen, X.: Topofr: A closer look at topology align-
+      ment on face recognition. In: Advances in Neural Information Processing Systems
+      (NeurIPS) (2023)
+
+[30] Zi, J., al.: Transface: Calibrating transformer training for face recognition from
+      a data-centric perspective. In: Proceedings of the IEEE/CVF International
+      Conference on Computer Vision (ICCV) (2023)
+
+[31] Narayan, A., al.: Facexformer: A unified transformer for facial analysis. arXiv
+      preprint arXiv:2403.09680 (2024)
+
+[32] Lanitis, A., Taylor, C.J., Cootes, T.F.: Toward automatic simulation of aging
+      effects on face images. IEEE Transactions on Pattern Analysis and Machine
+      Intelligence (TPAMI) 24(4), 442­455 (2002)
+
+[33] Wang, H., Gong, D., Li, Z., Liu, W.: Decorrelated adversarial learning for age-
+      invariant face recognition. In: Proceedings of the IEEE/CVF Conference on
+      Computer Vision and Pattern Recognition (CVPR), pp. 3527­3536 (2019)
+
+[34] Deb, D., Li, J., Jain, A.K.: ChildFace: Recognizing children's faces. In: IEEE
+      International Conference on Biometrics Theory, Applications and Systems
+      (BTAS), pp. 1­8 (2019)
+
+[35] Huang, H., He, R., Sun, Z., Tan, T.: AIM: Appearing for identity manipulation
+      in face ageing via conditional generative adversarial networks. In: Proceedings
+      of the IEEE/CVF International Conference on Computer Vision (ICCV), pp.
+      9563­9572 (2019)
+
+[36] Karras, T., Laine, S., Aila, T.: A style-based generator architecture for generative
+      adversarial networks. In: Proceedings of the IEEE/CVF Conference on Computer
+      Vision and Pattern Recognition (CVPR), pp. 4401­4410 (2019)
+
+[37] King, D.E.: Dlib-ml: A machine learning toolkit. Journal of Machine Learning
+      Research 10, 1755­1758 (2009)
+
+                                                      36
+[38] Neyman, J., Pearson, E.S.: On the problem of the most efficient tests of statisti-
+      cal hypotheses. Philosophical Transactions of the Royal Society A 231, 289­337
+      (1933)
+
+[39] Green, D.M., Swets, J.A.: Signal Detection Theory and Psychophysics. Wiley,
+      New York (1966)
+
+[40] Ricanek, K., Tesafaye, T.: MORPH: A longitudinal image database of normal
+      adult age-progression. In: 7th International Conference on Automatic Face and
+      Gesture Recognition (FGR), pp. 341­345 (2006)
+
+[41] Lanitis, A., Taylor, C.J., Cootes, T.F.: Toward automatic simulation of aging
+      effects on face images. IEEE Trans. Pattern Anal. Mach. Intell. 24(4), 442­455
+      (2002)
+
+[42] Moschoglou, S., Papaioannou, A., Sagonas, C., Deng, J., Kotsia, I., Zafeiriou, S.:
+      AgeDB: The first manually collected, in-the-wild age database. In: Proceedings of
+      the IEEE Conference on Computer Vision and Pattern Recognition Workshops
+      (CVPRW), pp. 1997­2005 (2017)
+
+[43] Zhang, K., Zhang, Z., Li, Z., Qiao, Y.: Joint face detection and alignment
+      using multi-task cascaded convolutional networks. IEEE Signal Processing Letters
+      23(10), 1499­1503 (2016)
+
+[44] Li, W., al.: Aging-diffusion: Controllable face aging via diffusion models with
+      identity-consistency loss. In: European Conference on Computer Vision (ECCV)
+      (2024)
+
+                                                      37
+
+
+===== AAFV-01.pdf: about 18 numbered references =====
+REFERENCES
+StyleGAN-based SAM synthesis (58.2 ms on GPU, 2.14 s
+on CPU). In high-throughput industrial deployments, AAFV-                       [1] P. Grother, M. Ngan, and K. Hanaoka, "Ongoing face recognition
+Net supports an asynchronous cascaded mode: the Direct                                vendor test (FRVT) part 2: Identification," National Institute of
+Branch executes instantaneously (4.2 ms GPU), accepting                                Standards and Technology (NIST), Tech. Rep. NISTIR 8271, 2019.
+clear genuine pairs immediately; only ambiguous pairs
+falling in the initial review margin trigger the generative                     [2] A. Lanitis, C. J. Taylor, and T. F. Cootes, "Toward automatic
+SAM synthesis pipeline.                                                                simulation of aging effects on face images," IEEE Transactions on
+                                                                                      Pattern Analysis and Machine Intelligence, vol. 24, no. 4, pp. 442­455,
+10 DISCUSSION AND LIMITATIONS                                                          2002.
+
+10.1 Operational Significance                                                   [3] J. Deng, J. Guo, N. Xue, and S. Zafeiriou, "ArcFace: Additive
+                                                                                       angular margin loss for deep face recognition," in Proceedings of
+AAFV-Net demonstrates that high automated throughput                                   the IEEE/CVF Conference on Computer Vision and Pattern Recognition
+(70.07%) and near-complete hard-impostor filtering (98.04%)                           (CVPR), 2019, pp. 4690­4699.
+are mutually achievable in longitudinal face verification by
+introducing a reject option with frozen, guarded decision                       [4] C. K. Chow, "On optimum recognition error and reject tradeoff,"
+boundaries. Conventional binary matchers cannot operate at                             IEEE Transactions on Information Theory, vol. 16, no. 1, pp. 41­46,
+zero false accepts without rejecting all genuine pairs. By                            1970.
+contrast, AAFV-Net concentrates operational uncertainty
+into a bounded review channel, transforming biometric                           [5] Y. Alaluf, O. Patashnik, and D. Cohen-Or, "Only a matter of style:
+authentication from an unpredictable statistical classifier into                      Age transformation using a style-based regression model," ACM
+an auditable security pipeline.                                                       Transactions on Graphics (TOG), vol. 40, no. 4, pp. 1­12, 2021.
+
+10.2 Limitations                                                                [6] Y. Wang, D. Gong, Z. Li, and W. Liu, "Orthogonal deep features
+                                                                                       decomposition for age-invariant face recognition," in Proceedings
+In accordance with IEEE reporting standards, we identify                               of the European Conference on Computer Vision (ECCV), 2018, pp.
+several operational limitations:                                                       738­753.
+
+    1) Scope of Analytical Bound: The zero-failure bound                        [7] J. Liu, Y. Tu, and S. Yan, "DAL: Dual-attention-guided latent identity
+          (FAR  0.320%) applies strictly to person-disjoint                            representation for cross-age face recognition," in Proceedings of the
+          random impostors under independent Bernoulli                                27th ACM International Conference on Multimedia (MM), 2019, pp.
+          trials. It does not bound adversarially mined look-                         1928­1936.
+          alike impostors (Dhard), where 5/35,735 false accepts
+          were empirically observed.                                            [8] Z. Huang, J. Zhang, and H. Shan, "When age-invariant face recog-
+                                                                                       nition meets face age synthesis: A multi-task learning framework,"
+                                                                                       in Proceedings of the IEEE/CVF Conference on Computer Vision and
+                                                                                      Pattern Recognition (CVPR), 2021, pp. 7282­7291.
+
+                                                                                [9] T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen, and T. Aila,
+                                                                                      "Analyzing and improving the image quality of StyleGAN," in
+                                                                                      Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+                                                                                      Recognition (CVPR), 2020, pp. 8110­8119.
+IEEE TRANSACTIONS ON INFORMATION FORENSICS AND SECURITY, VOL. XX, NO. XX, 2026  10
+
+[10] Y. He, X. Wu, Z. Sun, and T. Tan, "Deep cross-age face verification
+      with residual age progression," in Proceedings of the IEEE Interna-
+      tional Conference on Acoustics, Speech and Signal Processing (ICASSP),
+      2019, pp. 2432­2436.
+
+[11] O. M. Parkhi, A. Vedaldi, and A. Zisserman, "Deep face recogni-
+      tion," in Proceedings of the British Machine Vision Conference (BMVC),
+      2015, pp. 41.1­41.12.
+
+[12] M. Tan and Q. V. Le, "EfficientNet: Rethinking model scaling
+      for convolutional neural networks," in Proceedings of the 36th
+      International Conference on Machine Learning (ICML), 2019, pp. 6105­
+      6114.
+
+[13] R. Zhang, P. Isola, A. A. Efros, E. Shechtman, and O. Wang, "The
+      unreasonable effectiveness of deep features as a perceptual metric,"
+      in Proceedings of the IEEE Conference on Computer Vision and Pattern
+      Recognition (CVPR), 2018, pp. 586­595.
+
+[14] Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli, "Image
+      quality assessment: From error visibility to structural similarity,"
+      IEEE Transactions on Image Processing, vol. 13, no. 4, pp. 600­612,
+      2004.
+
+[15] S. Chopra, R. Hadsell, and Y. LeCun, "Learning a similarity
+      metric discriminatively, with application to face verification," in
+      Proceedings of the IEEE Computer Society Conference on Computer
+      Vision and Pattern Recognition (CVPR), vol. 1, 2005, pp. 539­546.
+
+[16] G. Koch, R. Zemel, and R. Salakhutdinov, "Siamese neural networks
+      for one-shot image recognition," in ICML Deep Learning Workshop,
+      2015.
+
+[17] A. Dosovitskiy, L. Beyer, A. Kolesnikov, D. Weissenborn, X. Zhai,
+      T. Unterthiner, M. Dehghani, M. Minderer, G. Heigold, S. Gelly,
+      J. Uszkoreit, and N. Houlsby, "An image is worth 16x16 words:
+      Transformers for image recognition at scale," in Proceedings of the
+      International Conference on Learning Representations (ICLR), 2021.
+
+[18] E. J. Hu, Y. Shen, P. Wallis, Z. Allen-Zhu, Y. Li, S. Wang, L. Wang,
+      and W. Chen, "LoRA: Low-rank adaptation of large language
+      models," in Proceedings of the International Conference on Learning
+      Representations (ICLR), 2022.
+
+[19] P. Wang, S. Bai, S. Tan, S. Wang, Z. Fan, J. Bai, K. Chen, X. Liu,
+      J. Wang, W. Ge, Y. Yang, Z. Zeng, X. Wang, J. Zhang, K. Zhu,
+      L. Yuan, C. Zhou, and J. Zhou, "Qwen2-VL: Enhancing vision-
+      language model's perception of the world at any resolution," arXiv
+      preprint arXiv:2409.12191, 2024.
+
+[20] J. C. Platt, "Probabilistic outputs for support vector machines and
+      comparisons to regularized likelihood methods," in Advances in
+      Large Margin Classifiers, A. J. Smola, P. Bartlett, B. Scho¨ lkopf, and
+      D. Schuurmans, Eds. MIT Press, 1999, pp. 61­74.
+
+[21] J. A. Hanley and A. Lippman-Hand, "If nothing goes wrong, is
+      everything all right? interpreting zero numerators," JAMA, vol. 249,
+      no. 13, pp. 1743­1745, 1983.
+
+[22] C. J. Clopper and E. S. Pearson, "The use of confidence or fiducial
+      limits illustrated in the case of the binomial," Biometrika, vol. 26,
+      no. 4, pp. 404­413, 1934.
+
+[23] M. E. Schuckers, "Uncertainty and confidence intervals for biomet-
+      ric error rates," in Proceedings of the Biometric Consortium Conference,
+      2001.
+
+[24] K. Ricanek and T. Tesafaye, "MORPH: A longitudinal image
+      database of normal adult age-progression," in Proceedings of the 7th
+      International Conference on Automatic Face and Gesture Recognition
+      (FGR), 2006, pp. 341­345.
+
+[25] B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap.
+      Chapman & Hall/CRC, 1994.
+
+[26] J. Buolamwini and T. Gebru, "Gender shades: Intersectional accu-
+      racy disparities in commercial gender classification," in Proceedings
+      of the Conference on Fairness, Accountability, and Transparency (FAT*),
+      2018, pp. 77­91.
+
+
+===== AAFV-02.pdf: about 23 numbered references =====
+REFERENCES
+several operational limitations:
+                                                                                [1] P. Grother, M. Ngan, and K. Hanaoka, "Ongoing face recognition
+    1) Scope of Analytical Bound: The zero-failure bound                              vendor test (FRVT) part 2: Identification," National Institute of
+          (FAR  0.320%) applies strictly to person-disjoint                           Standards and Technology (NIST), Tech. Rep. NISTIR 8271, 2019.
+          random impostors under independent Bernoulli
+          trials. It does not bound adversarially mined look-                   [2] A. Lanitis, C. J. Taylor, and T. F. Cootes, "Toward automatic
+          alike impostors (Dhard), where 5/35,735 false accepts                       simulation of aging effects on face images," IEEE Transactions on
+          were empirically observed.                                                  Pattern Analysis and Machine Intelligence, vol. 24, no. 4, pp. 442­455,
+                                                                                      2002.
+IEEE TRANSACTIONS ON INFORMATION FORENSICS AND SECURITY, VOL. XX, NO. XX, 2026  10
+
+[3] J. Deng, J. Guo, N. Xue, and S. Zafeiriou, "ArcFace: Additive              [23] M. E. Schuckers, "Uncertainty and confidence intervals for biomet-
+      angular margin loss for deep face recognition," in Proceedings of              ric error rates," in Proceedings of the Biometric Consortium Conference,
+      the IEEE/CVF Conference on Computer Vision and Pattern Recognition             2001.
+      (CVPR), 2019, pp. 4690­4699.
+                                                                               [24] K. Ricanek and T. Tesafaye, "MORPH: A longitudinal image
+[4] C. K. Chow, "On optimum recognition error and reject tradeoff,"                  database of normal adult age-progression," in Proceedings of the 7th
+      IEEE Transactions on Information Theory, vol. 16, no. 1, pp. 41­46,            International Conference on Automatic Face and Gesture Recognition
+      1970.                                                                          (FGR), 2006, pp. 341­345.
+
+[5] Y. Alaluf, O. Patashnik, and D. Cohen-Or, "Only a matter of style:         [25] B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap.
+      Age transformation using a style-based regression model," ACM                  Chapman & Hall/CRC, 1994.
+      Transactions on Graphics (TOG), vol. 40, no. 4, pp. 1­12, 2021.
+                                                                               [26] J. Buolamwini and T. Gebru, "Gender shades: Intersectional accu-
+[6] Y. Wang, D. Gong, Z. Li, and W. Liu, "Orthogonal deep features                   racy disparities in commercial gender classification," in Proceedings
+      decomposition for age-invariant face recognition," in Proceedings              of the Conference on Fairness, Accountability, and Transparency (FAT*),
+      of the European Conference on Computer Vision (ECCV), 2018, pp.                2018, pp. 77­91.
+      738­753.
+
+[7] J. Liu, Y. Tu, and S. Yan, "DAL: Dual-attention-guided latent identity
+      representation for cross-age face recognition," in Proceedings of the
+      27th ACM International Conference on Multimedia (MM), 2019, pp.
+      1928­1936.
+
+[8] Z. Huang, J. Zhang, and H. Shan, "When age-invariant face recog-
+      nition meets face age synthesis: A multi-task learning framework,"
+      in Proceedings of the IEEE/CVF Conference on Computer Vision and
+      Pattern Recognition (CVPR), 2021, pp. 7282­7291.
+
+[9] T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen, and T. Aila,
+      "Analyzing and improving the image quality of StyleGAN," in
+      Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+      Recognition (CVPR), 2020, pp. 8110­8119.
+
+[10] Y. He, X. Wu, Z. Sun, and T. Tan, "Deep cross-age face verification
+      with residual age progression," in Proceedings of the IEEE Interna-
+      tional Conference on Acoustics, Speech and Signal Processing (ICASSP),
+      2019, pp. 2432­2436.
+
+[11] O. M. Parkhi, A. Vedaldi, and A. Zisserman, "Deep face recogni-
+      tion," in Proceedings of the British Machine Vision Conference (BMVC),
+      2015, pp. 41.1­41.12.
+
+[12] M. Tan and Q. V. Le, "EfficientNet: Rethinking model scaling
+      for convolutional neural networks," in Proceedings of the 36th
+      International Conference on Machine Learning (ICML), 2019, pp. 6105­
+      6114.
+
+[13] R. Zhang, P. Isola, A. A. Efros, E. Shechtman, and O. Wang, "The
+      unreasonable effectiveness of deep features as a perceptual metric,"
+      in Proceedings of the IEEE Conference on Computer Vision and Pattern
+      Recognition (CVPR), 2018, pp. 586­595.
+
+[14] Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli, "Image
+      quality assessment: From error visibility to structural similarity,"
+      IEEE Transactions on Image Processing, vol. 13, no. 4, pp. 600­612,
+      2004.
+
+[15] S. Chopra, R. Hadsell, and Y. LeCun, "Learning a similarity
+      metric discriminatively, with application to face verification," in
+      Proceedings of the IEEE Computer Society Conference on Computer
+      Vision and Pattern Recognition (CVPR), vol. 1, 2005, pp. 539­546.
+
+[16] G. Koch, R. Zemel, and R. Salakhutdinov, "Siamese neural networks
+      for one-shot image recognition," in ICML Deep Learning Workshop,
+      2015.
+
+[17] A. Dosovitskiy, L. Beyer, A. Kolesnikov, D. Weissenborn, X. Zhai,
+      T. Unterthiner, M. Dehghani, M. Minderer, G. Heigold, S. Gelly,
+      J. Uszkoreit, and N. Houlsby, "An image is worth 16x16 words:
+      Transformers for image recognition at scale," in Proceedings of the
+      International Conference on Learning Representations (ICLR), 2021.
+
+[18] E. J. Hu, Y. Shen, P. Wallis, Z. Allen-Zhu, Y. Li, S. Wang, L. Wang,
+      and W. Chen, "LoRA: Low-rank adaptation of large language
+      models," in Proceedings of the International Conference on Learning
+      Representations (ICLR), 2022.
+
+[19] P. Wang, S. Bai, S. Tan, S. Wang, Z. Fan, J. Bai, K. Chen, X. Liu,
+      J. Wang, W. Ge, Y. Yang, Z. Zeng, X. Wang, J. Zhang, K. Zhu,
+      L. Yuan, C. Zhou, and J. Zhou, "Qwen2-VL: Enhancing vision-
+      language model's perception of the world at any resolution," arXiv
+      preprint arXiv:2409.12191, 2024.
+
+[20] J. C. Platt, "Probabilistic outputs for support vector machines and
+      comparisons to regularized likelihood methods," in Advances in
+      Large Margin Classifiers, A. J. Smola, P. Bartlett, B. Scho¨ lkopf, and
+      D. Schuurmans, Eds. MIT Press, 1999, pp. 61­74.
+
+[21] J. A. Hanley and A. Lippman-Hand, "If nothing goes wrong, is
+      everything all right? interpreting zero numerators," JAMA, vol. 249,
+      no. 13, pp. 1743­1745, 1983.
+
+[22] C. J. Clopper and E. S. Pearson, "The use of confidence or fiducial
+      limits illustrated in the case of the binomial," Biometrika, vol. 26,
+      no. 4, pp. 404­413, 1934.
+
+
+===== AAFV-03.pdf: about 26 numbered references =====
+REFERENCES
+(a  16, threshold chosen post hoc on FG-NET); (3) Look 1
+exhibited a 9.14 pp female genuine-accept deficit, while Look 2                                    [1] P. Grother, M. Ngan, and K. Hanaoka, "Face recognition vendor test
+lacked per-pair sex/race tags; (4) Siamese ViT trained only 3                                           (FRVT) part 3: Demographic effects," National Institute of Standards
+epochs without full convergence and VLM evaluated only on                                                and Technology (NIST), Tech. Rep. NISTIR 8280, 2019.
+calibration subsets; (5) MORPH test access budget (M = 2) is
+exhausted and training reflects a single 5-seed ensemble run;                                      [2] L. Best-Rowden and A. K. Jain, "Longitudinal study of automatic face
+and (6) the five Look 2 Dhard FAs were not visually audited.                                             recognition," IEEE Trans. Pattern Anal. Mach. Intell., vol. 40, no. 1, pp.
+                                                                                                        148­162, Jan. 2018.
+B. Conclusion
+                                                                                                   [3] A. Lanitis, C. J. Taylor, and T. F. Cootes, "Toward automatic simulation
+   We presented AAFV-Net, an auditable adult cross-age                                                   of aging effects on face images," IEEE Trans. Pattern Anal. Mach. Intell.,
+face verification architecture integrating direct multi-metric                                           vol. 24, no. 4, pp. 442­455, Apr. 2002.
+facial cues with guarded SAM age counterfactuals under
+three-way thresholding and SHA-256 sealing. Verified against                                       [4] J. Deng, J. Guo, N. Xue, and S. Zafeiriou, "ArcFace: Additive angular
+frozen disk artifacts across MORPH and FG-NET, AAFV-                                                     margin loss for deep face recognition," in Proc. IEEE/CVF Conf. Comput.
+Net demonstrates how quality, synthesis reliability, and branch                                         Vis. Pattern Recognit. (CVPR), 2019, pp. 4690­4699.
+probability guards overcome calibration threshold collapse,
+achieving a 95% two-look Bonferroni random-FAR upper                                               [5] J. R. Paone, P. J. Flynn, P. J. Phillips, K. W. Bowyer, R. W.
+bound of 0.320% alongside 70.07% same-person acceptance,                                                Vorder Bruegge, P. J. Grother, G. W. Quinn, M. T. Pruitt, and J. M. Grant,
+98.04% hard-impostor rejection, and consistent cross-age gains                                          "Double trouble: Differentiating identical twins by face recognition," IEEE
+on external adult portraits.                                                                            Trans. Inf. Forensics Security, vol. 9, no. 2, pp. 285­295, Feb. 2014.
+
+           ACKNOWLEDGMENTS AND DISCLOSURES                                                         [6] H. Otroshi Shahreza, V. Krivokuc´a Hahn, and S. Marcel, "Vulnerability
+                                                                                                         of state-of-the-art face recognition models to template inversion attack,"
+   Funding and Conflict of Interest: [Specify verified funding                                           IEEE Trans. Inf. Forensics Security, vol. 19, pp. 4585­4600, 2024.
+sources or state that no external funding was received.] The
+authors declare no conflicts of interest. Provisional Author                                       [7] M. Xu, X. Zhang, and X. Zhou, "Confidence-calibrated face and kinship
+Contributions (CRediT): The five co-authors (Anurag Nayak,                                               verification," IEEE Trans. Inf. Forensics Security, vol. 19, pp. 372­384,
+Sujal Chondhekar, Sumit Kumar, Piyush Jain, and Swati                                                    2024.
+Hira, in provisional order subject to confirmation by all
+authors) jointly contributed to the study; specific CRediT                                         [8] C. K. Chow, "On optimum recognition error and reject tradeoff," IEEE
+role assignments (Conceptualization, Methodology, Software,                                             Trans. Inf. Theory, vol. 16, no. 1, pp. 41­46, Jan. 1970.
+Validation, Investigation, Writing, Supervision) are pending
+                                                                                                   [9] Y. Hu, J. Chen, and Q. Zhu, "Game-theoretic Neyman-Pearson detection
+                                                                                                         to combat strategic evasion," IEEE Trans. Inf. Forensics Security, vol. 20,
+                                                                                                         pp. 516­530, 2025.
+
+                                                                                                  [10] Y. Alaluf, O. Patashnik, and D. Cohen-Or, "Only a matter of style:
+                                                                                                        Age transformation using a style-based regression model," ACM Trans.
+                                                                                                        Graph., vol. 40, no. 4, pp. 1­12, 2021.
+
+                                                                                                  [11] X. Zhou, H. Han, S. Shan, and X. Chen, "Fine-grained open-set deepfake
+                                                                                                         detection via unsupervised domain adaptation," IEEE Trans. Inf. Forensics
+                                                                                                         Security, vol. 19, pp. 7536­7547, 2024.
+SUBMITTED TO IEEE TRANSACTIONS ON INFORMATION FORENSICS AND SECURITY                    11
+
+[12] N. Poh, T. Bourlai, J. Kittler, L. Allano, F. Alonso-Fernandez, O. Am-             [34] M. E. Schuckers, Computational Methods in Biometric Authentication:
+      bekar, J. P. Baker, B. Dorizzi, O. Fatukasi, J. Fie´rrez, H. Ganster, J. Ortega-        Statistical Methods for Performance Evaluation. Springer, 2010.
+      Garcia, D. E. Maurer, A. A. Salah, T. Scheidat, and C. Vielhauer, "Bench-
+      marking quality-dependent and cost-sensitive score-level multimodal               [35] B. F. Klare, M. J. Burge, J. C. Klontz, R. W. Vorder Bruegge, and A. K.
+      biometric fusion algorithms," IEEE Trans. Inf. Forensics Security, vol. 4,              Jain, "Face recognition performance: Role of demographic information,"
+      no. 4, pp. 849­866, Dec. 2009.                                                          IEEE Trans. Inf. Forensics Security, vol. 7, no. 6, pp. 1789­1801, Dec.
+                                                                                              2012.
+[13] Z. Li, U. Park, and A. K. Jain, "A discriminative model for age invariant
+      face recognition," IEEE Trans. Inf. Forensics Security, vol. 6, no. 3, pp.        [36] J. Buolamwini and T. Gebru, "Gender shades: Intersectional accuracy
+      1028­1037, Sep. 2011.                                                                   disparities in commercial gender classification," in Proc. Conf. Fairness,
+                                                                                              Accountability, Transparency (FAT*), 2018, pp. 77­91.
+[14] Y. Wang, D. Gong, Z. Zhou, X. Ji, H. Wang, Z. Li, W. Liu, and
+      T. Zhang, "Orthogonal deep features decomposition for age-invariant               [37] K. Ricanek and T. Tesafaye, "MORPH: A longitudinal image database
+      face recognition," in Proc. Eur. Conf. Comput. Vis. (ECCV), 2018, pp.                   of normal adult age-progression," in Proc. 7th Int. Conf. Autom. Face
+      764­779.                                                                                Gesture Recognit. (FGR), 2006, pp. 341­345.
+
+[15] H. Wang, D. Gong, Z. Li, and W. Liu, "Decorrelated adversarial learning            [38] S. Chopra, R. Hadsell, and Y. LeCun, "Learning a similarity metric
+      for age-invariant face recognition," in Proc. IEEE/CVF Conf. Comput.                    discriminatively, with application to face verification," in Proc. IEEE
+      Vis. Pattern Recognit. (CVPR), 2019, pp. 3527­3536.                                     Conf. Comput. Vis. Pattern Recognit. (CVPR), vol. 1, 2005, pp. 539­546.
+
+[16] Z. Huang, J. Zhang, and H. Shan, "When age-invariant face recognition              [39] A. Dosovitskiy, L. Beyer, A. Kolesnikov, D. Weissenborn, X. Zhai,
+      meets face age synthesis: A multi-task learning framework," in Proc.                    T. Unterthiner, M. Dehghani, M. Minderer, G. Heigold, S. Gelly,
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2021, pp.                         J. Uszkoreit, and N. Houlsby, "An image is worth 16x16 words:
+      7282­7291.                                                                              Transformers for image recognition at scale," in Proc. Int. Conf. Learn.
+                                                                                              Represent. (ICLR), 2021.
+[17] H. Wang, V. Sanchez, C.-T. Li, and N. Clarke, "From age estimation to
+      age-invariant face recognition: Generalized age feature extraction using          [40] P. Wang, S. Bai, S. Tan, S. Wang, Z. Fan, J. Bai, K. Chen, X. Liu, J. Wang,
+      order-enhanced contrastive learning," IEEE Trans. Inf. Forensics Security,              W. Ge, Y. Yang, Z. Zeng, X. Wang, J. Zhang, K. Zhu, L. Yuan, C. Zhou,
+      vol. 20, pp. 8525­8540, 2025.                                                           and J. Zhou, "Qwen2-VL: Enhancing vision-language model's perception
+                                                                                              of the world at any resolution," arXiv preprint arXiv:2409.12191, 2024.
+[18] H. Wang, Y. Wang, Z. Zhou, X. Ji, D. Gong, J. Zhou, Z. Li, and W. Liu,
+      "CosFace: Large margin cosine loss for deep face recognition," in Proc.           [41] E. J. Hu, Y. Shen, P. Wallis, Z. Allen-Zhu, Y. Li, S. Wang, L. Wang,
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2018, pp.                         and W. Chen, "LoRA: Low-rank adaptation of large language models,"
+      5265­5274.                                                                              in Proc. Int. Conf. Learn. Represent. (ICLR), 2022.
+
+[19] B. Razeghi, P. Rahimi, and S. Marcel, "Deep privacy funnel model: From
+      a discriminative to a generative approach with an application to face
+      recognition," IEEE Trans. Inf. Forensics Security, vol. 21, pp. 5181­5192,
+      2026.
+
+[20] Z. Zhang, Y. Song, and H. Qi, "Age progression/regression by conditional
+      adversarial autoencoder," in Proc. IEEE Conf. Comput. Vis. Pattern
+      Recognit. (CVPR), 2017, pp. 4352­4360.
+
+[21] X. Tang, Z. Wang, W.-X. Luo, and S. Gao, "Face aging with
+      identity-preserved conditional generative adversarial networks," in Proc.
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2018, pp.
+      7939­7947.
+
+[22] Z. Huang, S. Chen, J. Zhang, and H. Shan, "PFA-GAN: Progressive face
+      aging with generative adversarial network," IEEE Trans. Inf. Forensics
+      Security, vol. 16, pp. 2031­2045, 2021.
+
+[23] T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen, and T. Aila,
+      "Analyzing and improving the image quality of StyleGAN," in Proc.
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2020, pp.
+      8110­8119.
+
+[24] K. Ahn, S. Lee, S. Han, C.-Y. Low, and M. Cha, "Uncertainty-aware
+      face embedding with contrastive learning for open-set evaluation," IEEE
+      Trans. Inf. Forensics Security, vol. 19, pp. 7176­7186, 2024.
+
+[25] M. Tan and Q. V. Le, "EfficientNet: Rethinking model scaling for
+      convolutional neural networks," in Proc. Int. Conf. Mach. Learn. (ICML),
+      2019, pp. 6105­6114.
+
+[26] O. M. Parkhi, A. Vedaldi, and A. Zisserman, "Deep face recognition,"
+      in Proc. Brit. Mach. Vis. Conf. (BMVC), 2015, pp. 41.1­41.12.
+
+[27] R. Zhang, P. Isola, A. A. Efros, E. Shechtman, and O. Wang, "The
+      unreasonable effectiveness of deep features as a perceptual metric," in
+      Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2018,
+      pp. 586­595.
+
+[28] Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli, "Image
+      quality assessment: From error visibility to structural similarity," IEEE
+      Trans. Image Process., vol. 13, no. 4, pp. 600­612, Apr. 2004.
+
+[29] J. C. Platt, "Probabilistic outputs for support vector machines and com-
+      parisons to regularized likelihood methods," in Advances in Large Margin
+      Classifiers, A. J. Smola, P. Bartlett, B. Scho¨lkopf, and D. Schuurmans,
+      Eds. MIT Press, 1999, pp. 61­74.
+
+[30] D. Osorio-Roig, L. J. Gonza´lez-Soler, C. Rathgeb, and C. Busch, "Privacy-
+      preserving multi-biometric indexing based on frequent binary patterns,"
+      IEEE Trans. Inf. Forensics Security, vol. 19, pp. 4835­4850, 2024.
+
+[31] C. J. Clopper and E. S. Pearson, "The use of confidence or fiducial limits
+      illustrated in the case of the binomial," Biometrika, vol. 26, no. 4, pp.
+      404­413, 1934.
+
+[32] J. A. Hanley and A. Lippman-Hand, "If nothing goes wrong, is everything
+      all right? interpreting zero numerators," JAMA, vol. 249, no. 13, pp. 1743­
+      1745, 1983.
+
+[33] R. M. Bolle, N. K. Ratha, and S. Pankanti, "Error analysis of pattern
+      recognition systems: The subsets bootstrap," Comput. Vis. Image Underst.,
+      vol. 93, no. 1, pp. 1­33, Jan. 2004.
+
+
+===== AAFV-04.pdf: about 35 numbered references =====
+REFERENCES
+                                                                                               [11] C. K. Chow, "On optimum recognition error and reject tradeoff," IEEE
+ [1] P. Grother, M. Ngan, and K. Hanaoka, "Face recognition vendor test                              Trans. Inf. Theory, vol. 16, no. 1, pp. 41­46, Jan. 1970.
+      (FRVT) part 3: Demographic effects," National Institute of Standards
+       and Technology (NIST), Tech. Rep. NISTIR 8280, 2019.                                    [12] R. Herbei and M. H. Wegkamp, "Classification with reject option,"
+                                                                                                     Canadian J. Statist., vol. 34, no. 4, pp. 709­721, 2006.
+ [2] L. Best-Rowden and A. K. Jain, "Longitudinal study of automatic face
+       recognition," IEEE Trans. Pattern Anal. Mach. Intell., vol. 40, no. 1, pp.              [13] R. El-Yaniv and Y. Wiener, "On the foundations of noise-free selective
+      148­162, Jan. 2018.                                                                            classification," J. Mach. Learn. Res., vol. 11, pp. 1605­1641, 2010.
+
+ [3] A. Lanitis, C. J. Taylor, and T. F. Cootes, "Toward automatic simulation                  [14] Y. Geifman and R. El-Yaniv, "Selective classification for deep neural
+       of aging effects on face images," IEEE Trans. Pattern Anal. Mach. Intell.,                    networks," in Proc. Adv. Neural Inf. Process. Syst. (NeurIPS), 2017.
+      vol. 24, no. 4, pp. 442­455, Apr. 2002.
+                                                                                               [15] V. Vovk, A. Gammerman, and G. Shafer, Algorithmic Learning in a
+ [4] D. Deb, N. Nain, and A. K. Jain, "Longitudinal study of child face                              Random World. New York, NY, USA: Springer, 2005.
+       recognition," in Proc. Int. Conf. Biometrics (ICB), 2018.
+                                                                                               [16] A. N. Angelopoulos, S. Bates, A. Fisch, L. Lei, and T. Schuster,
+                                                                                                     "Conformal risk control," in Proc. Int. Conf. Learn. Represent. (ICLR),
+                                                                                                     2024.
+
+                                                                                               [17] A. N. Angelopoulos, S. Bates, E. J. Cande`s, M. I. Jordan, and L. Lei,
+                                                                                                     "Learn then test: Calibrating predictive algorithms to achieve risk control,"
+                                                                                                     arXiv:2110.01052, 2021.
+
+                                                                                               [18] R. M. Bolle, N. K. Ratha, and S. Pankanti, "Error analysis of pattern
+SUBMITTED TO IEEE TRANSACTIONS ON INFORMATION FORENSICS AND SECURITY                    12
+
+      recognition systems: The subsets bootstrap," Comput. Vis. Image Underst.,         [43] R. J. Tibshirani, R. F. Barber, E. J. Cande`s, and A. Ramdas, "Conformal
+      vol. 93, no. 1, pp. 1­33, Jan. 2004.                                                    prediction under covariate shift," in Proc. Adv. Neural Inf. Process. Syst.
+[19] M. E. Schuckers, Computational Methods in Biometric Authentication:                      (NeurIPS), 2019.
+      Statistical Methods for Performance Evaluation. Springer, 2010.
+[20] ISO/IEC, "ISO/IEC 19795-1: Information technology--biometric per-                  [44] C. J. Clopper and E. S. Pearson, "The use of confidence or fiducial limits
+      formance testing and reporting--part 1: Principles and framework,"                      illustrated in the case of the binomial," Biometrika, vol. 26, no. 4, pp.
+      International Organization for Standardization, 2021.                                   404­413, 1934.
+[21] J. Kittler, M. Hatef, R. P. W. Duin, and J. Matas, "On combining
+      classifiers," IEEE Trans. Pattern Anal. Mach. Intell., vol. 20, no. 3, pp.        [45] J. A. Hanley and A. Lippman-Hand, "If nothing goes wrong, is everything
+      226­239, 1998.                                                                          all right? interpreting zero numerators," JAMA, vol. 249, no. 13, pp. 1743­
+[22] A. Ross and A. Jain, "Information fusion in biometrics," Pattern Recognit.               1745, 1983.
+      Lett., vol. 24, no. 13, pp. 2115­2125, 2003.
+[23] K. Nandakumar, Y. Chen, S. C. Dass, and A. K. Jain, "Likelihood ratio-             [46] J. R. Paone, P. J. Flynn, P. J. Phillips, K. W. Bowyer, R. W.
+      based biometric score fusion," IEEE Trans. Pattern Anal. Mach. Intell.,                 Vorder Bruegge, P. J. Grother, G. W. Quinn, M. T. Pruitt, and J. M. Grant,
+      vol. 30, no. 2, pp. 342­347, 2008.                                                      "Double trouble: Differentiating identical twins by face recognition," IEEE
+[24] N. Poh, T. Bourlai, J. Kittler, L. Allano, F. Alonso-Fernandez, O. Am-                   Trans. Inf. Forensics Security, vol. 9, no. 2, pp. 285­295, Feb. 2014.
+      bekar, J. P. Baker, B. Dorizzi, O. Fatukasi, J. Fie´rrez, H. Ganster, J. Ortega-
+      Garcia, D. E. Maurer, A. A. Salah, T. Scheidat, and C. Vielhauer, "Bench-         [47] B. F. Klare, M. J. Burge, J. C. Klontz, R. W. Vorder Bruegge, and A. K.
+      marking quality-dependent and cost-sensitive score-level multimodal                     Jain, "Face recognition performance: Role of demographic information,"
+      biometric fusion algorithms," IEEE Trans. Inf. Forensics Security, vol. 4,              IEEE Trans. Inf. Forensics Security, vol. 7, no. 6, pp. 1789­1801, Dec.
+      no. 4, pp. 849­866, Dec. 2009.                                                          2012.
+[25] Z. Li, U. Park, and A. K. Jain, "A discriminative model for age invariant
+      face recognition," IEEE Trans. Inf. Forensics Security, vol. 6, no. 3, pp.        [48] K. S. Krishnapriya, V. Albiero, K. Vangara, M. C. King, and K. W.
+      1028­1037, Sep. 2011.                                                                   Bowyer, "Issues related to face recognition accuracy varying based on
+[26] H. Wang, Y. Wang, Z. Zhou, X. Ji, D. Gong, J. Zhou, Z. Li, and W. Liu,                   race and skin tone," IEEE Trans. Technol. Soc., vol. 1, no. 1, pp. 8­20,
+      "CosFace: Large margin cosine loss for deep face recognition," in Proc.                 2020.
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2018, pp.
+      5265­5274.                                                                        [49] U. Scherhag, C. Rathgeb, J. Merkle, R. Breithaupt, and C. Busch, "Face
+[27] J. Deng, J. Guo, N. Xue, and S. Zafeiriou, "ArcFace: Additive angular                    recognition systems under morphing attacks: A survey," IEEE Access,
+      margin loss for deep face recognition," in Proc. IEEE/CVF Conf. Comput.                 vol. 7, pp. 23 012­23 026, 2019.
+      Vis. Pattern Recognit. (CVPR), 2019, pp. 4690­4699.
+[28] Q. Meng, S. Zhao, Z. Huang, and F. Zhou, "MagFace: A universal                     [50] ISO/IEC, "ISO/IEC 30107-3: Information technology--biometric pre-
+      representation for face recognition and quality assessment," in Proc.                   sentation attack detection--part 3: Testing and reporting," International
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2021.                             Organization for Standardization, 2017.
+[29] M. Kim, A. K. Jain, and X. Liu, "AdaFace: Quality adaptive margin
+      for face recognition," in Proc. IEEE/CVF Conf. Comput. Vis. Pattern               [51] O. M. Parkhi, A. Vedaldi, and A. Zisserman, "Deep face recognition,"
+      Recognit. (CVPR), 2022.                                                                 in Proc. Brit. Mach. Vis. Conf. (BMVC), 2015, pp. 41.1­41.12.
+[30] Z. Zhang, Y. Song, and H. Qi, "Age progression/regression by conditional
+      adversarial autoencoder," in Proc. IEEE Conf. Comput. Vis. Pattern                [52] M. Tan and Q. V. Le, "EfficientNet: Rethinking model scaling for
+      Recognit. (CVPR), 2017, pp. 4352­4360.                                                  convolutional neural networks," in Proc. Int. Conf. Mach. Learn. (ICML),
+[31] X. Tang, Z. Wang, W.-X. Luo, and S. Gao, "Face aging with                                2019, pp. 6105­6114.
+      identity-preserved conditional generative adversarial networks," in Proc.
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2018, pp.                   [53] R. Zhang, P. Isola, A. A. Efros, E. Shechtman, and O. Wang, "The
+      7939­7947.                                                                              unreasonable effectiveness of deep features as a perceptual metric," in
+[32] Z. Huang, S. Chen, J. Zhang, and H. Shan, "PFA-GAN: Progressive face                     Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2018,
+      aging with generative adversarial network," IEEE Trans. Inf. Forensics                  pp. 586­595.
+      Security, vol. 16, pp. 2031­2045, 2021.
+[33] Y. Alaluf, O. Patashnik, and D. Cohen-Or, "Only a matter of style:                 [54] Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli, "Image
+      Age transformation using a style-based regression model," ACM Trans.                    quality assessment: From error visibility to structural similarity," IEEE
+      Graph., vol. 40, no. 4, pp. 1­12, 2021.                                                 Trans. Image Process., vol. 13, no. 4, pp. 600­612, Apr. 2004.
+[34] T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen, and T. Aila,
+      "Analyzing and improving the image quality of StyleGAN," in Proc.                 [55] K. Ricanek and T. Tesafaye, "MORPH: A longitudinal image database
+      IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2020, pp.                         of normal adult age-progression," in Proc. 7th Int. Conf. Autom. Face
+      8110­8119.                                                                              Gesture Recognit. (FGR), 2006, pp. 341­345.
+[35] Y. Shi and A. K. Jain, "Probabilistic face embeddings," in Proc.
+      IEEE/CVF Int. Conf. Comput. Vis. (ICCV), 2019.                                    [56] S. Chopra, R. Hadsell, and Y. LeCun, "Learning a similarity metric
+[36] K. Ahn, S. Lee, S. Han, C.-Y. Low, and M. Cha, "Uncertainty-aware                        discriminatively, with application to face verification," in Proc. IEEE
+      face embedding with contrastive learning for open-set evaluation," IEEE                 Conf. Comput. Vis. Pattern Recognit. (CVPR), vol. 1, 2005, pp. 539­546.
+      Trans. Inf. Forensics Security, vol. 19, pp. 7176­7186, 2024.
+[37] J. C. Platt, "Probabilistic outputs for support vector machines and com-           [57] A. Dosovitskiy, L. Beyer, A. Kolesnikov, D. Weissenborn, X. Zhai,
+      parisons to regularized likelihood methods," in Advances in Large Margin                T. Unterthiner, M. Dehghani, M. Minderer, G. Heigold, S. Gelly,
+      Classifiers, A. J. Smola, P. Bartlett, B. Scho¨lkopf, and D. Schuurmans,                J. Uszkoreit, and N. Houlsby, "An image is worth 16x16 words:
+      Eds. MIT Press, 1999, pp. 61­74.                                                        Transformers for image recognition at scale," in Proc. Int. Conf. Learn.
+[38] B. Zadrozny and C. Elkan, "Transforming classifier scores into accurate                  Represent. (ICLR), 2021.
+      multiclass probability estimates," in Proc. ACM SIGKDD Int. Conf.
+      Knowl. Discov. Data Min., 2002.                                                   [58] P. Wang, S. Bai, S. Tan, S. Wang, Z. Fan, J. Bai, K. Chen, X. Liu, J. Wang,
+[39] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, "On calibration of                      W. Ge, Y. Yang, Z. Zeng, X. Wang, J. Zhang, K. Zhu, L. Yuan, C. Zhou,
+      modern neural networks," in Proc. Int. Conf. Mach. Learn. (ICML), 2017.                 and J. Zhou, "Qwen2-VL: Enhancing vision-language model's perception
+[40] M. P. Naeini, G. F. Cooper, and M. Hauskrecht, "Obtaining well calibrated                of the world at any resolution," arXiv preprint arXiv:2409.12191, 2024.
+      probabilities using Bayesian binning," in Proc. AAAI Conf. Artif. Intell.,
+      2015.                                                                             [59] E. J. Hu, Y. Shen, P. Wallis, Z. Allen-Zhu, Y. Li, S. Wang, L. Wang,
+[41] G. W. Brier, "Verification of forecasts expressed in terms of probability,"              and W. Chen, "LoRA: Low-rank adaptation of large language models,"
+      Monthly Weather Rev., vol. 78, no. 1, pp. 1­3, 1950.                                    in Proc. Int. Conf. Learn. Represent. (ICLR), 2022.
+[42] M. Xu, X. Zhang, and X. Zhou, "Confidence-calibrated face and kinship
+      verification," IEEE Trans. Inf. Forensics Security, vol. 19, pp. 372­384,         [60] S. Moschoglou, A. Papaioannou, C. Sagonas, J. Deng, I. Kotsia, and
+      2024.                                                                                   S. Zafeiriou, "AgeDB: The first manually collected, in-the-wild age
+                                                                                              database," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. Workshops
+                                                                                              (CVPRW), 2017.
+
+                                                                                        [61] B.-C. Chen, C.-S. Chen, and W. H. Hsu, "Cross-age reference coding for
+                                                                                              age-invariant face recognition and retrieval," in Proc. Eur. Conf. Comput.
+                                                                                              Vis. (ECCV), 2014.
+
+                                                                                        [62] T. Zheng, W. Deng, and J. Hu, "Cross-age LFW: A database for
+                                                                                              studying cross-age face recognition in unconstrained environments,"
+                                                                                              arXiv:1708.08197, 2017.
+
+
+===== publication_tifs/references.bib: 41 entries =====
+li2011aifr, wang2018oecnn, wang2019dal, huang2021mtlface, wang2025ordcon, bestrowden2018longitudinal, zhang2017caae, tang2018ipcgan, huang2021pfagan, alaluf2021sam, karras2020stylegan2, zhou2024openset, wang2018cosface, deng2019arcface, parkhi2015vgg, tan2019efficientnet, zhang2018lpips, wang2004ssim, poh2009quality, xu2024asc, ahn2024ucface, osorioroig2024indexing, otroshi2024inversion, razeghi2026privacy, chopra2005siamese, dosovitskiy2021vit, hu2022lora, wang2024qwen2vl, chow1970reject, hu2025neyman, platt1999, hanley1983rule3, clopper1934, bolle2004subsets, schuckers2010book, ricanek2006morph, lanitis2002fgnet, paone2014twins, klare2012demographics, grother2019frvt_part3, buolamwini2018gendershades
+
+===== AAFV-04_revision/manuscript/references.bib: 69 entries =====
+li2011aifr, wang2018oecnn, wang2019dal, huang2021mtlface, wang2025ordcon, bestrowden2018longitudinal, zhang2017caae, tang2018ipcgan, huang2021pfagan, alaluf2021sam, karras2020stylegan2, zhou2024openset, wang2018cosface, deng2019arcface, parkhi2015vgg, tan2019efficientnet, zhang2018lpips, wang2004ssim, poh2009quality, xu2024asc, ahn2024ucface, osorioroig2024indexing, otroshi2024inversion, razeghi2026privacy, chopra2005siamese, dosovitskiy2021vit, hu2022lora, wang2024qwen2vl, chow1970reject, hu2025neyman, platt1999, hanley1983rule3, clopper1934, bolle2004subsets, schuckers2010book, ricanek2006morph, lanitis2002fgnet, paone2014twins, klare2012demographics, grother2019frvt_part3, buolamwini2018gendershades, zhao2022aim, geifman2017selective, elyaniv2010selective, herbei2006reject, vovk2005alrw, angelopoulos2024crc, angelopoulos2021ltt, tibshirani2019covshift, guo2017calibration, naeini2015ece, brier1950, zadrozny2002isotonic, kim2022adaface, meng2021magface, shi2019pfe, moschoglou2017agedb, chen2014cacd, zheng2017calfw, maze2018ijbc, scherhag2019morph, iso30107_3, iso19795_1, kittler1998combining, ross2003fusion, nandakumar2008lr, phillips2018pnas, deb2018child, krishnapriya2020race
+
+===== publication_AAFV-05/references.bib: 48 entries =====
+wang2018oecnn, wang2019dal, huang2021mtlface, wang2025ordcon, zhao2022aim, bestrowden2018longitudinal, alaluf2021sam, karras2020stylegan2, huang2021pfagan, tang2018ipcgan, deng2019arcface, kim2022adaface, meng2021magface, shi2019pfe, poh2009quality, chow1970reject, geifman2017selective, vovk2005alrw, angelopoulos2024crc, tibshirani2019covshift, hanley1983rule3, clopper1934, bolle2004subsets, schuckers2010book, ricanek2006morph, lanitis2002fgnet, moschoglou2017agedb, zheng2017calfw, chen2014cacd, grother2019frvt_part3, deb2018child, dosovitskiy2021vit, parkhi2015vgg, tan2019efficientnet, zhang2018lpips, wang2004ssim, platt1999, iso19795_1, guo2017calibration, chopra2005siamese, chang2020dul, kendall2017uncertainty, huang2022mtlfacetpami, banerjee2023aging, chen2023fading, luevano2025aging, deng2020subcenter, dahan2023wasserstein

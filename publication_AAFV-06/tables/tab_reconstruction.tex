@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\caption{Reconstruction of the frozen decision layer on the MORPH calibration split, and the effect of the four persons removed after the draft calibration. Accept = genuine auto-accept rate. ``None passes'': no impostor passes the guards, which the pipeline encodes as an unattainable threshold.}
+\label{tab:reconstruction}
+\footnotesize
+\fittab{\begin{tabular}{@{}lccc@{}}
+\toprule
+Quantity (official set, $\rho=0.20$, $n=338,871$ pairs) & Recomputed & Published \\
+\midrule
+Accept threshold $T_\mathrm{acc}$ & 0.956438 & 0.956438 \\
+Reject threshold $T_\mathrm{rej}(\beta{=}0.01)$ & 0.007541 & 0.007541 \\
+Genuine auto-accept (\%) & 73.26 & 73.26 \\
+\bottomrule
+\end{tabular}}
+
+\vspace{4pt}
+\fittab{\begin{tabular}{@{}ccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Official set} & \multicolumn{2}{c}{Official $+$ 4 persons} \\
+\cmidrule(lr){2-3}\cmidrule(l){4-5}
+$\rho$ & $T_\mathrm{acc}$ & Accept (\%) & $T_\mathrm{acc}$ & Accept (\%) \\
+\midrule
+0.20 & 0.9564 & 73.26 & 1.0291 & 0.00 \\
+0.35 & 1.0107 & 0.00 & 1.0107 & 0.00 \\
+0.50 & none passes & 0.00 & none passes & 0.00 \\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\caption{External evaluation on FG-NET adults (both ages $\geq 16$; cut-off chosen after child false accepts had been observed) with MORPH-frozen models and thresholds. Genuine pairs per gap bin: 405 / 356 / 261 / 170 / 186 / 78. Impostor pairs re-use images of at most 82 persons and are not independent trials. No per-pair scores were logged, so the two methods cannot be compared at a matched false-match rate.}
+\label{tab:fgnet}
+\footnotesize
+\fittab{\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+ & & & & \multicolumn{6}{c}{Genuine auto-accept by gap (\%)} \\
+\cmidrule(l){5-10}
+Method & Accept (\%) & False reject (\%) & FA & 0--4 & 5--9 & 10--14 & 15--19 & 20--29 & 30+ \\
+\midrule
+AAFV-Net & 51.92 & 18.20 & 0/3,670 & 71.6 & 59.6 & 49.0 & 38.2 & 28.5 & 10.3 \\
+ArcFace, guarded & 40.38 & 0.27 & 0/3,670 & 60.7 & 49.2 & 35.6 & 25.9 & 14.5 & 3.8 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

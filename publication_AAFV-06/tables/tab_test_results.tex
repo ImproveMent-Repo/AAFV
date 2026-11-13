@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{AAFV-Net and comparators on the person-disjoint MORPH test split as logged at the second test look ($\beta=1\%$). Genuine pairs: 24,305; person-disjoint random impostors $\mathcal{D}_\mathrm{random}$: 1,149; random impostors with repeated persons $\mathcal{D}_\mathrm{all\,random}$: 277,822; ArcFace-mined look-alikes $\mathcal{D}_\mathrm{hard}$: 35,735; model-neutral hard set: 2,790 (not scored for the two Siamese models, which mined it). These are the reported outcomes; Section~\ref{sec:reanalysis} examines what produces them.}
+\label{tab:test}
+\footnotesize
+\fittab{\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{3}{c}{Genuine pairs (\%)} & \multicolumn{3}{c}{False accepts (count)} & \multicolumn{2}{c}{Auto-reject (\%)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(l){8-9}
+Method & Accept & Review & Reject & $\mathcal{D}_\mathrm{random}$ & $\mathcal{D}_\mathrm{all\,random}$ & $\mathcal{D}_\mathrm{hard}$ & $\mathcal{D}_\mathrm{hard}$ & Neutral \\
+\midrule
+AAFV-Net (full) & 70.07 & 29.39 & 0.54 & 0 & 0 & 5 & 98.04 & 57.49 \\
+AAFV-Net, no shared targets & 83.91 & 15.64 & 0.44 & 0 & 0 & 0 & 97.85 & 53.98 \\
+ArcFace, guarded & 89.45 & 9.39 & 1.16 & 0 & 0 & 0 & 0.00 & 28.46 \\
+ArcFace, no guards & 93.58 & 5.26 & 1.16 & 0 & 0 & 0 & 0.00 & 28.46 \\
+Direct 5-score LogReg & 87.10 & 11.71 & 1.20 & 0 & 0 & 0 & 0.00 & 22.40 \\
+Direct-only MLP & 0.00 & 99.50 & 0.50 & 0 & 0 & 0 & 97.77 & 49.96 \\
+Siamese ResNet-18 & 0.21 & 99.17 & 0.63 & 0 & 0 & 0 & 9.86 & -- \\
+Siamese ViT-B/16 & 0.00 & 99.23 & 0.77 & 0 & 0 & 0 & 10.04 & -- \\
+\bottomrule
+\end{tabular}}
+\end{table*}

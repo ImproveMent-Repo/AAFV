@@ -1,0 +1,9 @@
+*.aux
+*.log
+*.blg
+*.out
+*.bbl
+build.log
+# Face images from licensed datasets and any PDF that embeds them: local only (public repository)
+figures/faces_*
+main.pdf

@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Decision rate versus ranking quality on the MORPH calibration split. The auto-accept rate depends on where each method's zero-false-accept threshold falls; the threshold-free ranking metrics show that the methods discriminate almost identically. A threshold $\geq 1$ (``none'') admits nobody.}
+\label{tab:decision}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fittab{\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & & & \multicolumn{2}{c}{Random impostors} & \multicolumn{2}{c}{ArcFace-mined} \\
+\cmidrule(lr){4-5}\cmidrule(l){6-7}
+Method & $T_\mathrm{acc}$ & Accept (\%) & TPR@$10^{-3}$ & AUC & TPR@$10^{-3}$ & AUC \\
+\midrule
+AAFV-Net (full) & 0.956 & 73.3 & 0.977 & 0.987 & 0.973 & 0.998 \\
+ArcFace, guarded & 0.850 & 87.7 & 0.980 & 0.992 & 0.969 & 0.980 \\
+ArcFace, no guards & 0.850 & 92.0 & 0.980 & 0.992 & 0.969 & 0.980 \\
+Direct 5-score LogReg & 0.913 & 84.9 & 0.981 & 0.992 & 0.971 & 0.981 \\
+Direct-only MLP (no SAM) & none & 0.0 & 0.977 & 0.987 & 0.971 & 0.998 \\
+AAFV-Net, no shared targets & 0.997 & 83.6 & 0.977 & 0.987 & 0.974 & 0.998 \\
+\bottomrule
+\end{tabular}}
+\end{table}

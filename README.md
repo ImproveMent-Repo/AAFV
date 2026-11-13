@@ -8,17 +8,28 @@ This repository contains the publication manuscripts, revision packages, empiric
 
 ```text
 Project/
-├── publication_AAFV-05/               # Latest AAFV-05 manuscript & re-analysis package
+├── publication_AAFV-06/               # Latest AAFV-06 complete 13-page manuscript package
+│   ├── main.tex                       # Complete 13-page IEEEtran journal manuscript
+│   ├── references.bib                 # Comprehensive audited bibliography (90 verified entries)
+│   ├── REFERENCE_ANALYSIS.md          # Multi-version reference audit and provenance ledger
+│   ├── tables/                        # 12 automated LaTeX tables generated directly from logs
+│   ├── figures/                       # Vector architecture, concept & aggregate diagnostic figures
+│   ├── scripts/                       # Asset builder, table generator, figure generator & claim checker (44/44 verified)
+│   ├── build.sh                       # One-command reproducible build script
+│   ├── CLAIMS_LEDGER.md               # Empirical claims-to-data mapping ledger
+│   ├── CHANGES_FROM_AAFV-05.md        # Detailed evolution log from AAFV-05 to AAFV-06
+│   ├── SUBMISSION_CHECKLIST.md        # Pre-submission author action checklist
+│   ├── supplementary/                 # Pre-registration protocol & analysis index
+│   └── README.md                      # Detailed guide to the AAFV-06 package
+├── publication_AAFV-05/               # AAFV-05 manuscript & re-analysis package
 │   ├── main.tex / main.pdf            # 7-page IEEEtran manuscript & compiled PDF
 │   ├── references.bib                 # Audited & verified bibliography (48 entries)
 │   ├── tables/                        # Automated LaTeX tables generated from analysis CSVs
-│   ├── figures/                       # Vector & aggregate plots (no raw face images)
+│   ├── figures/                       # Vector & aggregate plots
 │   ├── scripts/                       # Asset builder, bib generator & claim checker (33/33 verified)
 │   ├── build.sh                       # One-command reproducible build script
 │   ├── CLAIMS_LEDGER.md               # Empirical claims-to-data mapping ledger
 │   ├── CHANGES_FROM_AAFV-04.md        # Evolution & claim reconciliation log
-│   ├── SUBMISSION_CHECKLIST.md        # Pre-submission author action checklist
-│   ├── supplementary/                 # Pre-registration protocol & analysis script index
 │   └── README.md                      # Detailed guide to AAFV-05 package
 ├── CVPR_redesign/                     # Architectural review & Stage-1 assessment suite
 │   ├── STAGE1_ASSESSMENT.md           # Stage-1 empirical assessment & findings
@@ -53,7 +64,7 @@ Project/
 │   ├── SUBMISSION_AUTHOR_CHECKLIST.md # IEEE submission checklist & action items
 │   └── README.md                      # Detailed TIFS package guide & checksums
 ├── Paper/                             # Early manuscript drafts (Paper-01.tex, Paper-02.tex)
-├── Report/                            # Project report (AAFV-01_Report.pdf)
+├── Report/                            # Project reports (AAFV-01_Report.pdf, AAFV-04_Report.pdf)
 ├── scripts/                           # Early figure generation & testing scripts
 ├── comprehensive_context.md           # Master research continuity & knowledge-base document
 ├── AAFV-01.pdf ... AAFV-04.pdf        # Historical compiled manuscript snapshots (v1–v4)
@@ -78,7 +89,7 @@ Project/
 ## Research Continuity & Master Reference
 
 The authoritative reference for this project is:
-- **[`comprehensive_context.md`](comprehensive_context.md)**: Master knowledge base covering scientific motivation, mathematical formulations, empirical results, expert critique, historical progression (AAFV-01 through AAFV-05), and research roadmap.
+- **[`comprehensive_context.md`](comprehensive_context.md)**: Master knowledge base covering scientific motivation, mathematical formulations, empirical results, expert critique, historical progression (AAFV-01 through AAFV-06), and research roadmap.
 
 ---
 
@@ -96,14 +107,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Building AAFV-05 Package & Manuscript
+### 2. Building AAFV-06 Package & Manuscript
 
-To verify claims, build assets, and compile the AAFV-05 manuscript:
+To verify claims, build assets, and compile the latest AAFV-06 manuscript:
 
 ```bash
-cd publication_AAFV-05
+cd publication_AAFV-06
 
-# Run the complete automated pipeline:
+# Run automated asset generation & claim checking:
+python scripts/build_tables_06.py
 python scripts/build_assets.py
 python scripts/build_bib.py
 python scripts/check_claims.py
@@ -115,7 +127,19 @@ pdflatex -interaction=nonstopmode main.tex
 pdflatex -interaction=nonstopmode main.tex
 ```
 
-### 3. Compiling Earlier Versions
+### 3. Building Earlier Versions
+
+#### AAFV-05 Controlled Re-Analysis:
+```bash
+cd publication_AAFV-05
+python scripts/build_assets.py
+python scripts/build_bib.py
+python scripts/check_claims.py
+pdflatex -interaction=nonstopmode main.tex
+bibtex main
+pdflatex -interaction=nonstopmode main.tex
+pdflatex -interaction=nonstopmode main.tex
+```
 
 #### AAFV-04 Revised Manuscript:
 ```bash
@@ -126,20 +150,11 @@ pdflatex -interaction=nonstopmode main.tex
 pdflatex -interaction=nonstopmode main.tex
 ```
 
-#### AAFV-03 TIFS Submission Package:
-```bash
-cd publication_tifs
-pdflatex -interaction=nonstopmode main.tex
-bibtex main
-pdflatex -interaction=nonstopmode main.tex
-pdflatex -interaction=nonstopmode main.tex
-```
-
 ---
 
 ## Core Implementation & Data Governance
 
-The underlying model training pipeline (`Code/`), raw biometric datasets (MORPH, FG-NET), derived face crops, and heavy binary checkpoints (`*.pkl`, `*.npz`) are maintained separately and excluded via `.gitignore` to comply with dataset licensing and GitHub storage policies. In-progress iterations (`publication_AAFV-06/`) remain excluded from release pushes until finalized.
+The underlying model training pipeline (`Code/`), raw biometric datasets (MORPH, FG-NET), derived face crops, and heavy binary checkpoints (`*.pkl`, `*.npz`) are maintained separately and excluded via `.gitignore` to comply with dataset licensing and GitHub storage policies. In `publication_AAFV-06/`, raw face images and PDFs embedding human subjects remain local-only per research ethics agreements.
 
 ---
 

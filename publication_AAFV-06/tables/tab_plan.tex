@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Planned ablation ladder for the proposed age-transport model (Fig.~\ref{fig:proposed}). Each row changes one component. \emph{No row has been run}; the last column states the outcome that would support the design, not a result.}
+\label{tab:plan}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fittab{\begin{tabular}{@{}clll@{}}
+\toprule
+\# & Variant & Isolates & Supports the design if \\
+\midrule
+1 & Recognizer cosine & -- & reference \\
+2 & + gap/quality-conditioned calibration & context & small gain \\
+3 & + transport head, real pairs only & transport & gain where real long gaps exist \\
+4 & + synthetic targets, unweighted & synthetic data & mixed effect \\
+5 & + synthetic, fixed hand-made weights & hand-made reliability & between rows 4 and 6 \\
+6 & + synthetic, learned reliability & learned reliability & best long-gap TAR \\
+7 & row 6 without $\kappa$ & uncertainty & worse risk--coverage \\
+8 & generator or backbone swap & dependence & same ordering of rows \\
+\bottomrule
+\end{tabular}}
+\end{table}

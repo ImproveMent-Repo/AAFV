@@ -1,0 +1,45 @@
+\begin{table}[t]
+\centering
+\caption{Per-pair comparison at matched false-match rate (FMR $=10^{-3}$) on the MORPH calibration split. $\Delta$ is the difference in TAR from ArcFace on the original pair, with a 95\% paired two-way person-cluster bootstrap interval (300 replicates). For gaps of 15 years and more every score has the same TAR against random impostors (15--19 y: 0.023 (n=44); 20--29 y: 0.091 (n=77); 30+ y: 0.143 (n=35)); those bins are analysed in Section~\ref{sec:labels}.}
+\label{tab:matched}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fittab{\begin{tabular}{@{}llccc@{}}
+\toprule
+Gap, y ($n$ gen.) & Score & TAR & $\Delta$TAR [95\% CI] & AUC \\
+\midrule
+\multicolumn{5}{@{}l}{\emph{Random impostors}} \\
+0--4 (22914) & ArcFace (original pair) & 0.996 & -- & 0.999 \\
+ & ArcFace (generated pair) & 0.920 & -0.076 [-0.112, -0.051] & 0.999 \\
+ & AAFV-Net fused & 0.994 & -0.002 [-0.004, -0.001] & 0.996 \\
+ & LogReg: original $+$ generated & 0.996 & +0.000 [+0.000, +0.000] & 0.999 \\
+\addlinespace[1pt]
+5--9 (594) & ArcFace (original pair) & 0.682 & -- & 0.840 \\
+ & ArcFace (generated pair) & 0.609 & -0.072 [-0.111, -0.032] & 0.883 \\
+ & AAFV-Net fused & 0.668 & -0.013 [-0.024, +0.000] & 0.807 \\
+ & LogReg: original $+$ generated & 0.682 & +0.000 [+0.000, +0.000] & 0.814 \\
+\addlinespace[1pt]
+10--14 (174) & ArcFace (original pair) & 0.655 & -- & 0.813 \\
+ & ArcFace (generated pair) & 0.644 & -0.011 [-0.045, +0.000] & 0.766 \\
+ & AAFV-Net fused & 0.649 & -0.006 [-0.024, +0.000] & 0.821 \\
+ & LogReg: original $+$ generated & 0.655 & +0.000 [+0.000, +0.000] & 0.806 \\
+\addlinespace[1pt]
+\multicolumn{5}{@{}l}{\emph{ArcFace-mined look-alikes}} \\
+0--4 (22914) & ArcFace (original pair) & 0.985 & -- & 0.996 \\
+ & ArcFace (generated pair) & 0.391 & -0.594 [-0.689, -0.513] & 0.974 \\
+ & AAFV-Net fused & 0.988 & +0.003 [+0.001, +0.006] & 0.998 \\
+ & LogReg: original $+$ generated & 0.981 & -0.004 [-0.006, -0.001] & 0.996 \\
+\addlinespace[1pt]
+5--9 (594) & ArcFace (original pair) & 0.653 & -- & 0.682 \\
+ & ArcFace (generated pair) & 0.293 & -0.360 [-0.559, -0.117] & 0.683 \\
+ & AAFV-Net fused & 0.653 & +0.000 [-0.012, +0.014] & 0.988 \\
+ & LogReg: original $+$ generated & 0.653 & +0.000 [-0.012, +0.013] & 0.683 \\
+\addlinespace[1pt]
+10--14 (174) & ArcFace (original pair) & 0.649 & -- & 0.655 \\
+ & ArcFace (generated pair) & 0.397 & -0.253 [-0.479, -0.059] & 0.647 \\
+ & AAFV-Net fused & 0.649 & +0.000 [+0.000, +0.355] & 0.992 \\
+ & LogReg: original $+$ generated & 0.649 & +0.000 [+0.000, +0.000] & 0.655 \\
+\addlinespace[1pt]
+\bottomrule
+\end{tabular}}
+\end{table}

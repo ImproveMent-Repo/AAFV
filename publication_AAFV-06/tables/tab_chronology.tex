@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Protocol chronology reconstructed from logged artifacts and run logs. Steps without a logged time stamp are marked ``not logged''.}
+\label{tab:chronology}
+\footnotesize
+\fittab{\begin{tabular}{@{}p{0.25\linewidth}p{0.68\linewidth}@{}}
+\toprule
+Time (UTC) & Event \\
+\midrule
+not logged & Person-level split; automatic quarantine of 854 persons; pair construction; fusion training (5 networks). \\
+not logged & Draft calibration: at $\rho=0.20$, $T_\mathrm{acc}=1.0129$ (no acceptance); draft chose $\rho=0.50$, $T_\mathrm{acc}=0.7976$. Contact sheets of the top-scoring impostors reviewed; 4 further persons quarantined; calibration frozen at $\rho=0.20$, $T_\mathrm{acc}=0.956575$. \\
+2026-11-05 21:42:09 & Test look 1 (main system; thresholds hash recorded in the log). \\
+not logged & All 26 variants re-trained as 3-network ensembles; reject rule changed to the $\beta$-quantile; baselines trained; neutral hard sets defined. \\
+2026-11-07 19:45:00 & Test look 2 (8 variants $\times$ 3 values of $\beta$; no hash recorded in the log). \\
+after look 2 & FG-NET scored with frozen thresholds; adult cut-off chosen after the child false accepts were seen. \\
+\bottomrule
+\end{tabular}}
+\end{table}

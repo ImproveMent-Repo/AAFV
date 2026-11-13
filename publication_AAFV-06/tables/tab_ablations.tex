@@ -1,0 +1,35 @@
+\begin{table}[t]
+\centering
+\caption{Decision-level ablations of AAFV-Net on the calibration common subset (1,500 genuine, 1,170 random and 1,500 mined impostor pairs; $\beta=1\%$), as logged. A threshold above 1 admits nobody; such variants differ in ranking far less than their acceptance suggests (Table~\ref{tab:decision}, Fig.~\ref{fig:gap}).}
+\label{tab:ablations}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fittab{\begin{tabular}{@{}lcccc@{}}
+\toprule
+Variant & $T_\mathrm{acc}$ & Accept (\%) & $\mathcal{D}_\mathrm{hard}$ rej. (\%) & $\mathcal{D}_\mathrm{random}$ rej. (\%) \\
+\midrule
+\multicolumn{5}{@{}l}{\emph{Full system}} \\
+\quad full & 0.956 & 74.13 & 98.20 & 26.15 \\
+\multicolumn{5}{@{}l}{\emph{Similarity measures}} \\
+\quad drop ArcFace & 0.994 & 0.73 & 17.87 & 52.99 \\
+\quad drop EfficientNet & 0.978 & 81.27 & 97.60 & 20.85 \\
+\quad drop VGG-Face & 0.976 & 73.93 & 97.20 & 19.57 \\
+\quad drop LPIPS & $>1$ & 62.87 & 97.47 & 29.32 \\
+\quad drop SSIM & 0.989 & 72.80 & 97.40 & 23.68 \\
+\quad ArcFace score only & $>1$ & 0.00 & 97.73 & 24.19 \\
+\multicolumn{5}{@{}l}{\emph{Generated evidence}} \\
+\quad direct only (no SAM) & $>1$ & 0.00 & 98.47 & 26.67 \\
+\quad SAM only & $>1$ & 0.00 & 44.80 & 60.77 \\
+\quad no shared targets & 0.997 & 84.80 & 98.27 & 29.23 \\
+\quad forward target only & 0.954 & 75.07 & 98.27 & 25.98 \\
+\quad shared targets only & $>1$ & 0.00 & 98.13 & 19.06 \\
+\quad no $R_\mathrm{sam}$ & 0.989 & 73.27 & 97.80 & 23.85 \\
+\quad no branch masking & 0.593 & 3.60 & 98.40 & 30.94 \\
+\multicolumn{5}{@{}l}{\emph{Fusion and guards}} \\
+\quad logistic fusion (no MLP) & 0.869 & 64.67 & 0.00 & 57.86 \\
+\quad no context ($g$, $Q$, $R_\mathrm{sam}$) & $>1$ & 0.00 & 98.07 & 24.70 \\
+\quad no pair weights & 0.985 & 74.40 & 97.33 & 24.62 \\
+\quad no probability guards & $>1$ & 0.00 & 98.20 & 26.15 \\
+\bottomrule
+\end{tabular}}
+\end{table}
