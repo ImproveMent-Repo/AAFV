@@ -320,9 +320,9 @@ If, after binning, fewer than about 300 genuine pairs at ≥20 y remain across a
 | # | Criticism | Underlying problem | Correction | Evidence needed | Status |
 |---|---|---|---|---|---|
 | W1 | Novelty | No learned visual mechanism | D.1 (or D.2/D.3) after D.0 | D.0 go; D.1 > AdaFace at matched FMR, long gaps | Not started |
-| W2 | Generative branch unproven | ArcFace-circular identity check; no branch study | F1–F6 with independent recognizers and ≥2 generators | Per-bin ΔTAR, identity-preservation curves, qualitative success/failure grid | Not started |
-| W3 | Loses to ArcFace | Over-conservative guards; generic scores hurt | Drop redundant scores; compare at matched FMR/workload | Risk–coverage and DET curves with per-pair logs | Not started |
-| W4 | Short gaps | MORPH composition | AgeDB/FG-NET/(LAG) long-gap bins, pre-registered | ≥15 y and ≥20 y results with CIs, or a stated limitation | Not started |
+| W2 | Generative branch unproven | ArcFace-circular identity check; no branch study | F1–F6 with independent recognizers and ≥2 generators | Per-bin ΔTAR, identity-preservation curves, qualitative success/failure grid | **Log analysis done (M):** no measurable SAM value at matched FPR on MORPH; independent-recognizer test (Experiment 0) pending |
+| W3 | Loses to ArcFace | Decision layer (threshold + guards), not discrimination | Compare at matched FMR/workload | Risk–coverage and DET curves with per-pair logs | **Log analysis done (M):** at matched FPR AAFV-Net = ArcFace; the 70 vs 89% gap is threshold- and guard-driven |
+| W4 | Short gaps | MORPH composition **and probable MORPH long-gap label errors** | AgeDB/FG-NET long-gap bins, pre-registered; MORPH not used for long-gap claims | ≥15 y and ≥20 y results with CIs | **Log analysis done (M):** 95–97% of MORPH 15–29 y genuine pairs impostor-like for two unrelated models; long-gap evidence must come from AgeDB/FG-NET |
 | W5 | Certificate inconsistent | Mixed statements; development-set reuse; relabel path | Section B: one statement per number; fresh calibration for the new method; demote the certificate | Run logs on label corrections; fresh calibration split | **Derivation done**; logs pending |
 | W6 | Weak baselines | Only ArcFace; unconverged ViT | AdaFace, MagFace, AIFR, uncertainty-based selective baselines | Same-protocol table | Not started |
 | W7 | Generalization; post-hoc adult cut | Small external set; cut chosen after failure | Pre-register scope (adult ≥16 *and* a reported child stratum); larger adult sets | AgeDB/CALFW confirmatory looks | Not started |
@@ -396,3 +396,17 @@ I would not estimate acceptance odds before D.0 results exist.
 | TimeBooth, ICCV 2025 | Age editing with an age-invariant identity representation | **Not read** (PDF access refused). Must be checked |
 
 **Still unverified:** FADING's age range; the ECAF statistics and availability; TimeBooth; and the claim seen in a search snippet of a 2019 paper reporting a "10–40%" cross-age verification gain from synthesized faces, which remains unidentified. A full search of CVPR/ICCV/ECCV 2023–2026 proceedings for "cross-age" and "age-invariant" is still to be done before the related-work section is written.
+
+---
+
+## M. Results from the logged artifacts (2026-11-13)
+
+Full write-up: `log_analyses/LOG_FINDINGS.md`; script `log_analyses/run_log_analyses.py`; outputs in `log_analyses/out/`. No model was trained and no threshold was set. The MORPH test outputs were read post hoc only.
+
+1. **At matched FPR, AAFV-Net ranks pairs no better than ArcFace.** TPR@FPR 0.1% on MORPH calibration is 0.992 vs 0.990 (0–4 y), 0.668 vs 0.668 (5–9 y), 0.649 vs 0.649 (10–14 y). The 70% vs 89% auto-accept gap is produced by the threshold and guards, not by discrimination.
+2. **No measurable SAM contribution.** Full vs direct-only MLP: all CIs overlap in every bin. The look-alike advantage exists equally without SAM, so it comes from the fusion trained on mined negatives. SAM-only is worse than direct-only at low FPR where data exist.
+3. **MORPH long-gap genuine pairs are probably mislabelled.** 97% (15–19 y) and 95–98% (20–29 y) of test genuine pairs score below the 99th percentile of same-bin random impostors for *both* AAFV-Net and an independently trained ViT, and every method is at chance at 15–19 y. The audit sheet shows at least one certain identity error and one person id spanning four filename prefixes. MORPH cannot carry any long-gap claim.
+4. **The hard-impostor result reflects the training negatives.** AAFV-Net ranks even the impostor-like long-gap "genuine" pairs above mined look-alikes; the independent ViT does the opposite.
+5. **The calibration top-impostor sheet** (`q/audit/audit_different_top50.jpg`) contains several pairs that look like the same person, including the top pair (P = 0.980 > T_acc). That suggests residual duplicate identities. It also confirms that the label-correction path (B.3-2) was a live issue. Whether it was used is still unknown.
+
+**Effect on the direction.** Nothing in the logged artifacts supports the generated-evidence branch. Experiment 0 on AgeDB/FG-NET is the only remaining test of D.1/D.2. A separate, image-only (no GPU) check of a random sample of MORPH long-gap genuine pairs against the MORPH index would confirm or refute Finding 3.

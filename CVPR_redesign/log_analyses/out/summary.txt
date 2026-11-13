@@ -1,0 +1,102 @@
+
+[LA1] Calibration AUC by age-gap bin (genuine vs all impostors of that bin; n genuine G1..G6 = 22914, 594, 174, 44, 77, 35)
+bin                       G1     G2     G3     G4     G5     G6
+variant                                                        
+arcface_only           0.999  0.817  0.796  0.580  0.656  0.818
+direct5_logreg         0.999  0.816  0.794  0.590  0.676  0.838
+direct_only_mlp        0.996  0.863  0.850  0.432  0.534  0.337
+sam_only_mlp           0.996  0.824  0.833  0.512  0.737  0.782
+full                   0.996  0.833  0.839  0.501  0.639  0.528
+agg_no_shared_targets  0.996  0.849  0.846  0.476  0.571  0.511
+no_reliability         0.996  0.835  0.846  0.491  0.634  0.513
+no_branch_masking      0.996  0.833  0.835  0.486  0.622  0.569
+agg_fwd_only           0.996  0.851  0.857  0.476  0.579  0.589
+agg_shared_only        0.996  0.840  0.834  0.461  0.590  0.430
+guard_none             0.996  0.833  0.838  0.501  0.640  0.528
+
+[LA1] Calibration TPR at FPR = 1e-3 by age-gap bin
+bin                       G1     G2     G3     G4     G5     G6
+variant                                                        
+arcface_only           0.990  0.668  0.649  0.023  0.091  0.143
+direct5_logreg         0.991  0.670  0.649  0.023  0.091  0.143
+direct_only_mlp        0.991  0.667  0.655  0.023  0.091  0.143
+sam_only_mlp           0.862  0.502  0.580  0.023  0.091  0.143
+full                   0.992  0.668  0.649  0.023  0.091  0.143
+agg_no_shared_targets  0.992  0.670  0.649  0.023  0.091  0.143
+no_reliability         0.992  0.668  0.649  0.023  0.104  0.143
+no_branch_masking      0.992  0.667  0.649  0.023  0.091  0.143
+agg_fwd_only           0.992  0.668  0.649  0.023  0.091  0.143
+agg_shared_only        0.992  0.667  0.649  0.023  0.091  0.143
+guard_none             0.992  0.668  0.649  0.023  0.091  0.143
+
+[LA1] Contrasts whose 95% CIs do not overlap (all others overlap):
+                       contrast       metric bin      a      b    diff ci_relation
+         full vs direct5_logreg          AUC  G1 0.9962 0.9987 -0.0025         a<b
+         full vs direct5_logreg          AUC  G6 0.5282 0.8379 -0.3097         a<b
+           full vs arcface_only          AUC  G1 0.9962 0.9987 -0.0025         a<b
+           full vs arcface_only          AUC  G6 0.5282 0.8181 -0.2899         a<b
+sam_only_mlp vs direct_only_mlp          AUC  G5 0.7368 0.5342  0.2026         a>b
+sam_only_mlp vs direct_only_mlp          AUC  G6 0.7815 0.3369  0.4446         a>b
+sam_only_mlp vs direct_only_mlp TPR@FPR0.001  G1 0.8620 0.9910 -0.1290         a<b
+sam_only_mlp vs direct_only_mlp TPR@FPR0.001  G2 0.5020 0.6670 -0.1650         a<b
+
+[LA2/LA3] Calibration: ranking quality per impostor pool (threshold-free) next to the decision-rule auto-accept rate
+                       T_accept  same_accept_all  AUC_D_random  TPR@FPR1e-3_D_random  AUC_D_all_random  TPR@FPR1e-3_D_all_random  AUC_D_hard  TPR@FPR1e-3_D_hard
+variant                                                                                                                                                         
+full                     0.9564           0.7326        0.9872                0.9774            0.9873                    0.9774      0.9981              0.9732
+arcface_only             0.8497           0.8765        0.9920                0.9800            0.9919                    0.9804      0.9802              0.9689
+arcface_only_noguard     0.8497           0.9200        0.9920                0.9800            0.9919                    0.9804      0.9802              0.9689
+direct5_logreg           0.9134           0.8486        0.9920                0.9802            0.9917                    0.9805      0.9805              0.9709
+direct_only_mlp          1.0419           0.0000        0.9868                0.9774            0.9869                    0.9774      0.9982              0.9714
+sam_only_mlp             1.0006           0.0000        0.9900                0.9768            0.9899                    0.9736      0.9826              0.7653
+agg_no_shared_targets    0.9970           0.8361        0.9873                0.9774            0.9874                    0.9775      0.9983              0.9736
+no_reliability           0.9891           0.7170        0.9874                0.9774            0.9875                    0.9774      0.9982              0.9732
+no_branch_masking        0.5928           0.0344        0.9874                0.9770            0.9876                    0.9770      0.9984              0.9732
+guard_none               1.0054           0.0000        0.9872                0.9774            0.9873                    0.9774      0.9981              0.9733
+
+[LA4] MORPH test, post hoc on logged outputs: TPR at matched FMR (1e-3 if >=3000 impostors in the bin, else 1e-2) and AUC,
+      genuine pairs of a bin vs impostors of the same bin; 95% pair-level bootstrap CIs (person ids not logged, so CIs are too narrow)
+        pool bin years                       model  n_genuine  n_impostor   fmr   tar        tar_ci   auc        auc_ci
+D_all_random  G1   0-4         AAFV-Net (Look-1 P)      23631       64159 0.001 0.996 [0.996,0.997] 0.998 [0.998,0.998]
+D_all_random  G1   0-4 Siamese ViT-B/16 (3 epochs)      23631       64159 0.001 0.845 [0.834,0.867] 0.997 [0.996,0.997]
+D_all_random  G2   5-9         AAFV-Net (Look-1 P)        266       60112 0.001 0.835 [0.789,0.876] 0.940 [0.917,0.960]
+D_all_random  G2   5-9 Siamese ViT-B/16 (3 epochs)        266       60112 0.001 0.741 [0.688,0.782] 0.922 [0.899,0.943]
+D_all_random  G3 10-14         AAFV-Net (Look-1 P)        184       49659 0.001 0.755 [0.701,0.815] 0.915 [0.885,0.946]
+D_all_random  G3 10-14 Siamese ViT-B/16 (3 epochs)        184       49659 0.001 0.690 [0.630,0.750] 0.879 [0.837,0.917]
+D_all_random  G4 15-19         AAFV-Net (Look-1 P)         75       41687 0.001 0.027 [0.000,0.080] 0.457 [0.406,0.515]
+D_all_random  G4 15-19 Siamese ViT-B/16 (3 epochs)         75       41687 0.001 0.027 [0.000,0.080] 0.529 [0.467,0.588]
+D_all_random  G5 20-29         AAFV-Net (Look-1 P)        137       47779 0.001 0.022 [0.000,0.044] 0.566 [0.524,0.597]
+D_all_random  G5 20-29 Siamese ViT-B/16 (3 epochs)        137       47779 0.001 0.022 [0.000,0.044] 0.368 [0.328,0.412]
+D_all_random  G6   30+         AAFV-Net (Look-1 P)         12       14426 0.001 1.000 [1.000,1.000] 1.000 [1.000,1.000]
+D_all_random  G6   30+ Siamese ViT-B/16 (3 epochs)         12       14426 0.001 1.000 [1.000,1.000] 1.000 [1.000,1.000]
+      D_hard  G1   0-4         AAFV-Net (Look-1 P)      23631       14856 0.001 0.991 [0.988,0.992] 1.000 [0.999,1.000]
+      D_hard  G1   0-4 Siamese ViT-B/16 (3 epochs)      23631       14856 0.001 0.578 [0.480,0.625] 0.981 [0.980,0.982]
+      D_hard  G2   5-9         AAFV-Net (Look-1 P)        266       10451 0.001 0.827 [0.782,0.876] 0.999 [0.998,0.999]
+      D_hard  G2   5-9 Siamese ViT-B/16 (3 epochs)        266       10451 0.001 0.553 [0.485,0.624] 0.855 [0.824,0.892]
+      D_hard  G3 10-14         AAFV-Net (Look-1 P)        184        5620 0.001 0.750 [0.690,0.810] 0.990 [0.976,0.999]
+      D_hard  G3 10-14 Siamese ViT-B/16 (3 epochs)        184        5620 0.001 0.533 [0.446,0.614] 0.823 [0.782,0.872]
+      D_hard  G4 15-19         AAFV-Net (Look-1 P)         75        2942 0.010 0.933 [0.880,0.987] 0.996 [0.994,0.999]
+      D_hard  G4 15-19 Siamese ViT-B/16 (3 epochs)         75        2942 0.010 0.027 [0.000,0.053] 0.247 [0.200,0.289]
+      D_hard  G5 20-29         AAFV-Net (Look-1 P)        137        1663 0.010 0.985 [0.964,1.000] 0.999 [0.998,1.000]
+      D_hard  G5 20-29 Siamese ViT-B/16 (3 epochs)        137        1663 0.010 0.022 [0.000,0.044] 0.146 [0.114,0.178]
+      D_hard  G6   30+         AAFV-Net (Look-1 P)         12         203 0.010 1.000 [1.000,1.000] 1.000 [1.000,1.000]
+      D_hard  G6   30+ Siamese ViT-B/16 (3 epochs)         12         203 0.010 1.000 [0.915,1.000] 1.000 [0.998,1.000]
+
+[LA4] Genuine pairs scoring below the 99th percentile of same-bin random impostors ('impostor-like'), per model and jointly
+bin years  n_genuine  aafv_impostor_like  vit_impostor_like  both  expected_both_if_independent
+ G1   0-4      23631               0.004              0.043 0.003                         0.000
+ G2   5-9        266               0.139              0.203 0.139                         0.028
+ G3 10-14        184               0.239              0.239 0.223                         0.057
+ G4 15-19         75               0.973              0.973 0.973                         0.947
+ G5 20-29        137               0.949              0.978 0.949                         0.928
+ G6   30+         12               0.000              0.000 0.000                         0.000
+
+[LA5] FG-NET adults (a >= 16, cut-off chosen post hoc), MORPH-frozen thresholds, beta = 0.01: auto-accept by gap bin and false-reject rate
+      genuine counts G1..G6 = 405, 356, 261, 170, 186, 78; every rate is at that method's own zero-calibration-FA threshold
+             variant  T_accept  same_acc  same_acc_lo  same_acc_hi  same_rej  same_acc_G1  same_acc_G2  same_acc_G3  same_acc_G4  same_acc_G5  same_acc_G6
+                full     0.956     0.519        0.445        0.584     0.182        0.716        0.596        0.490        0.382        0.285        0.103
+        arcface_only     0.850     0.404        0.345        0.474     0.003        0.607        0.492        0.356        0.259        0.145        0.038
+     direct_only_mlp     1.042     0.000        0.000        0.000     0.178        0.000        0.000        0.000        0.000        0.000        0.000
+baseline_siamese_cnn     0.982     0.001        0.000        0.002     0.001        0.000        0.000        0.000        0.006        0.000        0.000
+baseline_siamese_vit     1.001     0.000        0.000        0.000     0.005        0.000        0.000        0.000        0.000        0.000        0.000
+        baseline_vlm     0.998     0.000        0.000        0.000     0.072        0.000        0.000        0.000        0.000        0.000        0.000
