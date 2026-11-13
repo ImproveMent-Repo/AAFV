@@ -420,3 +420,12 @@ Full audit: `architecture_review/ARCHITECTURE_REVIEW.md`; frozen-model probe: `a
 - The direct branch learned to use ArcFace alone, and the fused logit is dominated by it (swing 25.1 vs 4.1 for the SAM branch). The SAM and R_sam effects are no larger than those of untrained controls.
 - The Look-2 checkpoint is a 3-seed ensemble, not 5. ArcFace inputs were misaligned (FFHQ crop resized).
 - Proposed: a gap-aware selective verifier on a frozen recognizer as the baseline of record (Section 3.1). The reliability-weighted age-transport model (3.2, direction D.1) is built only if Experiment 0 returns GO.
+
+---
+
+## O. Supplied result images (2026-11-13)
+
+Full audit: `image_audit/IMAGE_AUDIT.md`. Two images were supplied, and no face recognizer is available here, so the findings are qualitative.
+- **SAM-age outputs (2 people × 3 target ages).** The edits concentrate on the eyes (iris colour and shape) and brows. A distinctive joined eyebrow is thinned and split in the younger outputs. Backgrounds and clothing are regenerated, and fine synthetic texture is added to blurry sources. This is consistent with Finding 2 (no measurable SAM value) and gives the qualitative figure W2 asks for.
+- **FG-NET false accepts.** Different children, three of four under 1 year, all short-gap and poorly captured, with fused P of 0.966–1.000. Guarded ArcFace accepted none of the same 20,000 impostor pairs. The logs cannot attribute the cause.
+- **No change to the direction decision.** The quantitative identity-preservation test is still Experiment 0.
