@@ -1290,3 +1290,12 @@ To transition AAFV-Net from its current audited draft (`AAFV-03`) into an unassa
 
 ---
 *End of `comprehensive_context.md` — Master Research Continuity & Handover Document for AAFV-Net.*
+
+---
+
+# 17. Addendum (2026-11-13): AAFV-04 and the CVPR Pivot
+
+- **AAFV-04** (`AAFV-04.pdf`, `AAFV-04_revision/`) was produced after AAFV-03 by Claude cowork: retitled "Reliability-Gated Three-Way Decisions for Adult Cross-Age Face Verification With Audited Random-Impostor False-Accept Risk"; headline claim moved to a calibration-side certificate (0.349%, n = 1,170, delta = 0.05/3) with the test audit (0/1,149) as a check `[VERIFIED]`.
+- **Venue change `[DECIDED by advisor]`:** target changed from IEEE TIFS to CVPR. CVPR-style review (`AAFV_Net_CVPR_2027_Style_Review.docx`): Reject in current form (W1-W10). Turnitin AI-writing report for AAFV-04: 31% (`AAFV-04_Report.pdf`; no similarity report supplied).
+- **Calendar fact `[VERIFIED 2026-11-13]`:** CVPR 2027 registration closed 2026-11-10; paper deadline 2026-11-16 AoE. Next realistic CVF target: ICCV 2027 or CVPR 2028.
+- **Stage-1 assessment:** `CVPR_redesign/STAGE1_ASSESSMENT.md`. It covers the re-derived FAR statements (all numbers arithmetically correct; validity caveats on calibration reuse and the label-correction path), the artifact inventory (no images, SAM outputs, pair vectors or fusion weights are in the repo), four research directions, and the proposed go/no-go Experiment 0 (independent-recognizer test of generated-evidence value). The recommended primary direction (D.1, conditional on Experiment 0) is `[PROPOSED]`, not decided.

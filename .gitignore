@@ -110,3 +110,6 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Experiment 0 outputs (contain derived images of licensed datasets)
+CVPR_redesign/exp0/runs/

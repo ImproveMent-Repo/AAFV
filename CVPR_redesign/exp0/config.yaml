@@ -1,0 +1,62 @@
+# Experiment 0 configuration. Items marked VERIFY must be checked on the compute machine before the pre-registration commit.
+seed: 20261113
+out_dir: runs/exp0                      # every output goes below this directory (relative to the current working directory)
+
+datasets:                               # fill `root`; set use: false to skip a dataset
+  agedb: {kind: agedb, root: "", use: true}         # folder of AgeDB images named <id>_<Name>_<age>_<m|f>.jpg
+  fgnet: {kind: fgnet, root: "", use: true}         # folder of FG-NET images named <ppp>A<aa>[a-z].JPG
+  # extra: {kind: csv, csv: "", use: false}         # generic CSV with columns path, person_id, age[, sex]
+
+align:
+  dlib_predictor: ""                    # path to shape_predictor_68_face_landmarks.dat
+  size: 256
+
+pairs:
+  n_folds: 5
+  gap_edges: [0, 5, 15, 30]             # bins 0-4, 5-14, 15-29, 30+
+  adult_min_age: 16
+  max_genuine_per_person_per_bin: 20
+  impostors_per_genuine: 10
+  impostor_age_tol: 2
+  impostor_age_tol_max: 4
+
+generators:
+  sam:
+    backend: sam
+    decision: true
+    sam_dir: ""                         # clone of github.com/yuval-alaluf/SAM
+    checkpoint: pretrained_models/sam_ffhq_aging.pt     # relative to sam_dir
+    batch_size: 16
+    age_range: [0, 100]
+  fading:
+    backend: command
+    decision: true
+    age_range: [0, 100]                 # VERIFY against the FADING paper/code
+    fading_dir: ""                      # clone of FADING, patched with Code/AAFV_Net/scripts/patch_fading.py
+    specialized_path: ""                # VERIFY: FADING's specialised (finetuned) model directory
+    unknown_gender_word: person         # used when sex is unknown (FG-NET); VERIFY that FADING accepts it
+    # VERIFY the command-line interface of the FADING commit you use. Placeholders: {fading_dir} {specialized_path}
+    # {src} {img_id} {age_init} {gender_word} {tmp_out}; the token "{targets}" expands to one argument per target age.
+    command: ["python", "{fading_dir}/age_editing.py", "--image_path", "{src}", "--age_init", "{age_init}",
+              "--gender", "{gender_word}", "--save_aged_dir", "{tmp_out}", "--specialized_path", "{specialized_path}",
+              "--target_ages", "{targets}"]
+    output_pattern: "{tmp_out}/*{t}*.png"   # VERIFY: glob that finds the output for target age t
+  identity:
+    backend: identity                   # returns the input unchanged; pipeline test only, never part of the decision
+    decision: false
+    age_range: [0, 120]
+
+recognizers:
+  arcface: {backend: insightface, model: buffalo_l, independent: false}
+  adaface: {backend: adaface, repo: "", checkpoint: "", arch: ir_101, independent: true}       # github.com/mk-minchul/AdaFace
+  magface: {backend: magface, repo: "", checkpoint: "", arch: iresnet100, independent: true}   # github.com/IrvingMeng/MagFace (VERIFY loader)
+
+analysis:
+  fmr_primary: 1.0e-3
+  fmr_fallback: 1.0e-2
+  min_impostor_weight_for_primary: 3000
+  bootstrap: 1000
+  alpha: 0.05
+  n_decision_tests: 8
+  decision_bins: ["15-29", "30+"]
+  preflight_min_auc: 0.95
