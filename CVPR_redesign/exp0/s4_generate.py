@@ -61,12 +61,20 @@ def run_sam(todo, crops, dst, g):
 
 
 def run_command(todo, crops, dst, g):
+    """FADING (verified against MunchkinChen/FADING@master age_editing.py): --gender accepts only 'female'/'male';
+    output is <save_aged_dir>/<input stem>_<age>.png, where the stem is taken by splitting the path on '/'.
+    Paths are therefore passed in POSIX form. Images whose sex is unknown are skipped and counted, never guessed."""
+    skipped = 0
     for img_id, grp in todo.groupby("img_id"):
+        r0 = grp.iloc[0]
+        gw = {"M": "male", "F": "female"}.get(r0.sex)
+        if gw is None and g.get("requires_binary_gender", True):
+            skipped += 1
+            continue
         with tempfile.TemporaryDirectory() as tmp:
-            r0 = grp.iloc[0]
-            gw = {"M": "male", "F": "female"}.get(r0.sex, g.get("unknown_gender_word", "person"))
-            ph = dict(fading_dir=g.get("fading_dir", ""), specialized_path=g.get("specialized_path", ""), src=str(crops / f"{img_id}.png"),
-                      img_id=img_id, age_init=str(int(r0.age)), gender_word=gw, tmp_out=tmp)
+            tmp = Path(tmp).as_posix()
+            ph = dict(fading_dir=Path(g.get("fading_dir", "")).as_posix(), specialized_path=Path(g.get("specialized_path", "")).as_posix(),
+                      src=(crops / f"{img_id}.png").resolve().as_posix(), img_id=img_id, age_init=str(int(r0.age)), gender_word=gw, tmp_out=tmp)
             cmd = []
             for tok in g["command"]:
                 if tok == "{targets}":
@@ -83,6 +91,8 @@ def run_command(todo, crops, dst, g):
                     save_256(hits[0], dst / f"{row.job_id}.png")
                 elif len(hits) > 1:
                     print(f"[cmd] {row.job_id}: pattern matched {len(hits)} files, skipped (fix output_pattern)", flush=True)
+    if skipped:
+        print(f"[cmd] skipped {skipped} source images with unknown sex (annotate them via sex_overrides; see PREREGISTRATION.md)", flush=True)
 
 
 BACKENDS = {"identity": run_identity, "sam": run_sam, "command": run_command}

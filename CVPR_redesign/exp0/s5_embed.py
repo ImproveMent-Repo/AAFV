@@ -90,15 +90,23 @@ class AdaFaceRec(TorchRec):
 
 
 class MagFaceRec(TorchRec):
-    """github.com/IrvingMeng/MagFace. VERIFY: loader `inference.network_inf.builder_inf` and preprocessing
-    (cv2 BGR, ToTensor -> [0,1], mean 0 / std 1). The preflight catches a wrong channel order or normalisation."""
+    """github.com/IrvingMeng/MagFace (checked 2026-11-13): builder_inf(args) reads arch, embedding_size, resume, cpu_mode and
+    strips 'features.module.' / 'module.features.' prefixes itself; gen_feat.py feeds cv2 BGR through ToTensor (mean 0, std 1);
+    forward returns the raw embedding (its magnitude is MagFace's quality). builder_inf calls bare torch.load, which
+    defaults to weights_only=True from torch 2.6, so the checkpoint is loaded as a full pickle here (official file only)."""
 
     def __init__(self, c):
         super().__init__()
         sys.path.insert(0, c["repo"])
         from inference.network_inf import builder_inf
-        self.model = builder_inf(Namespace(arch=c.get("arch", "iresnet100"), embedding_size=512, resume=c["checkpoint"],
-                                           cpu_mode=self.dev == "cpu"))
+        torch = self.torch
+        orig = torch.load
+        torch.load = lambda *a, **k: orig(*a, **{"weights_only": False, **k})
+        try:
+            self.model = builder_inf(Namespace(arch=c.get("arch", "iresnet100"), embedding_size=512, resume=c["checkpoint"],
+                                               cpu_mode=self.dev == "cpu"))
+        finally:
+            torch.load = orig
         self.model.eval().to(self.dev)
 
     def __call__(self, bgr):

@@ -22,6 +22,7 @@ This experiment decides whether any generator-centred research direction is purs
 - **Generators:** SAM-age (Alaluf et al. 2021, official FFHQ-aging checkpoint) and FADING (Chen & Lathuilière 2023). The `identity` backend (it returns the input unchanged) is used only to test the pipeline. It is never part of the decision.
 - **Targets:** I₁ is progressed to round(a₂) (forward). I₂, and each impostor I₂′, is regressed to round(a₁) (backward). Target ages are clipped to each generator's range. The forward job is shared between a genuine pair and its impostors, so both receive exactly the same operation on I₁.
 - **Inputs:** the 256×256 FFHQ crop produced by `s2_align.py`, identical for both generators.
+- **Sex for FADING:** FADING requires `--gender female|male`. AgeDB filenames carry sex. FG-NET does not, so one author annotates the sex of the 82 FG-NET persons from the images (`sex_overrides` in `config.yaml`) **before any generation**, and the file is committed with this pre-registration. Images that remain unknown are skipped for FADING and counted as generation failures. Because of the complete-case rule (Section 4), they then leave the primary analysis for both generators.
 
 ## 4. Scores (fixed)
 - **Recognizer input:** every face, real or generated, goes through the same steps: SCRFD detection on the 256 crop, five landmarks, `norm_crop` to 112×112. A detection failure on a generated face counts as a generation failure.

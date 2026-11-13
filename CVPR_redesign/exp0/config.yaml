@@ -4,7 +4,8 @@ out_dir: runs/exp0                      # every output goes below this directory
 
 datasets:                               # fill `root`; set use: false to skip a dataset
   agedb: {kind: agedb, root: "", use: true}         # folder of AgeDB images named <id>_<Name>_<age>_<m|f>.jpg
-  fgnet: {kind: fgnet, root: "", use: true}         # folder of FG-NET images named <ppp>A<aa>[a-z].JPG
+  fgnet: {kind: fgnet, root: "", use: true, sex_overrides: ""}   # FG-NET has no sex labels: CSV person,sex (M/F) for the 82
+                                                                 # persons, annotated before generation (needed by FADING)
   # extra: {kind: csv, csv: "", use: false}         # generic CSV with columns path, person_id, age[, sex]
 
 align:
@@ -31,16 +32,17 @@ generators:
   fading:
     backend: command
     decision: true
-    age_range: [0, 100]                 # VERIFY against the FADING paper/code
-    fading_dir: ""                      # clone of FADING, patched with Code/AAFV_Net/scripts/patch_fading.py
-    specialized_path: ""                # VERIFY: FADING's specialised (finetuned) model directory
-    unknown_gender_word: person         # used when sex is unknown (FG-NET); VERIFY that FADING accepts it
-    # VERIFY the command-line interface of the FADING commit you use. Placeholders: {fading_dir} {specialized_path}
-    # {src} {img_id} {age_init} {gender_word} {tmp_out}; the token "{targets}" expands to one argument per target age.
+    age_range: [0, 100]                 # VERIFY: neither the README nor age_editing.py states a range; check the BMVC 2023 paper
+    fading_dir: ""                      # clone of github.com/MunchkinChen/FADING (branch master), patched with Code/AAFV_Net/scripts/patch_fading.py
+    specialized_path: ""                # diffusers-format directory loaded by StableDiffusionPipeline.from_pretrained (README Google-Drive download)
+    requires_binary_gender: true        # age_editing.py: --gender choices ["female", "male"]; unknown-sex images are skipped, never guessed
+    # Interface checked 2026-11-13 against age_editing.py (master). Placeholders: {fading_dir} {specialized_path} {src} {img_id}
+    # {age_init} {gender_word} {tmp_out}; the token "{targets}" expands to one argument per target age (nargs='+', type=int).
+    # FADING centre-crops and resizes the input to 512x512 itself; our 256 FFHQ crop is centred, and outputs are resized back to 256.
     command: ["python", "{fading_dir}/age_editing.py", "--image_path", "{src}", "--age_init", "{age_init}",
               "--gender", "{gender_word}", "--save_aged_dir", "{tmp_out}", "--specialized_path", "{specialized_path}",
               "--target_ages", "{targets}"]
-    output_pattern: "{tmp_out}/*{t}*.png"   # VERIFY: glob that finds the output for target age t
+    output_pattern: "{tmp_out}/{img_id}_{t}.png"   # from code: os.path.join(save_aged_dir, f'{input_img_name}_{age_new}.png')
   identity:
     backend: identity                   # returns the input unchanged; pipeline test only, never part of the decision
     decision: false
@@ -48,8 +50,12 @@ generators:
 
 recognizers:
   arcface: {backend: insightface, model: buffalo_l, independent: false}
-  adaface: {backend: adaface, repo: "", checkpoint: "", arch: ir_101, independent: true}       # github.com/mk-minchul/AdaFace
-  magface: {backend: magface, repo: "", checkpoint: "", arch: iresnet100, independent: true}   # github.com/IrvingMeng/MagFace (VERIFY loader)
+  # AdaFace: build_model('ir_101') is the README's "R100" row (choose WebFace4M or WebFace12M; record which). Loader and BGR
+  # (x/255-0.5)/0.5 preprocessing checked against inference.py (master), 2026-11-13. Forward returns (unit feature, norm).
+  adaface: {backend: adaface, repo: "", checkpoint: "", arch: ir_101, independent: true}
+  # MagFace: builder_inf(args) reads arch, embedding_size, resume, cpu_mode; input BGR in [0,1] (ToTensor, mean 0 / std 1);
+  # forward returns the raw (unnormalised) embedding. Checked against inference/network_inf.py and gen_feat.py (main), 2026-11-13.
+  magface: {backend: magface, repo: "", checkpoint: "", arch: iresnet100, independent: true}
 
 analysis:
   fmr_primary: 1.0e-3

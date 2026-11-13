@@ -182,9 +182,16 @@ This single experiment answers the reviewer's question "How much improvement doe
 ### D.1 Reliability-weighted generative distillation into a gap-conditioned embedding transport *(recommended primary, conditional on D.0 = go)*
 - **Problem.** Long-gap genuine pairs are scarce in every longitudinal set (MORPH test: 224 pairs ≥ 15 y). Strong recognizers lose genuine similarity with gap. Generators can produce long-gap counterfactuals cheaply, but their identity fidelity varies per sample.
 - **Core idea.** Do *not* run the generator at test time. Use it at training time as a source of unreliable supervision. Learn a small age-transport head on a frozen recognizer that maps an embedding from age a to age t, plus a gap-dependent uncertainty. Train it on real longitudinal pairs and on generated pairs whose influence is set by a **learned per-sample reliability**, the heteroscedastic noise of the synthetic targets. That replaces the hand-made R_sam and puts reliability inside the learning method rather than in a decision guard.
-- **Novelty argument.** OE-CNN, DAL and MTLFace remove age from the representation. AIM and MTLFace train synthesis and recognition jointly. OrdCon aligns feature differences with an ordinal age direction. As far as I know, none uses a *frozen* modern recognizer with a *conditional transport and uncertainty* learned from *reliability-weighted synthetic supervision*. `[VERIFY]`: a targeted literature search on "feature-space face aging", "age transport in embedding space" and learning from noisy synthetic data for face recognition is required before this claim is written. If close prior work exists, the novelty narrows to the reliability-weighting mechanism.
+- **Novelty argument (prior-art check of 2026-11-13, Section L).** OE-CNN, DAL and MTLFace remove age from the representation. AIM and MTLFace train synthesis and recognition jointly. OrdCon aligns feature differences with an ordinal age direction.
+  **Synthetic aged faces as training data are not new.** MTLFace's TPAMI version adds *FT-Sel*, which fine-tunes the recognizer on synthesized faces selected by a two-component GMM over face-quality scores. Banerjee et al. (IJCB 2023) fine-tune ArcFace on diffusion-aged faces after a hard quality threshold.
+  No paper read so far learns an **age transport in the embedding space of a frozen recognizer, with a gap-dependent uncertainty and no test-time generation**. D.1's defensible novelty is therefore narrower than first written. It consists of:
+  1. the embedding-space transport and uncertainty;
+  2. a *continuous, learned* reliability that is *validated against identity preservation measured by an independent recognizer*, as opposed to MTLFace's quality-based selection (a filter);
+  3. evaluation at matched FMR in long-gap bins.
+  
+  MTLFace FT-Sel and Banerjee et al. 2023 are now mandatory baselines and related work. One relevant ICCV 2025 paper (TimeBooth) could not be read and must be checked before writing.
 - **Why it could be CVPR-level.** One clear problem (scarce long-gap supervision), one mechanism, and one probe (D.0). It is generator-agnostic, so it can be tested across generators. Test-time cost is about that of the backbone, which also resolves W10's cost concern.
-- **Validation.** Long-gap TAR@FMR vs AdaFace/MagFace/ArcFace/an AIFR model. Ablations: no synthetic data / synthetic unweighted / fixed R_sam weights / learned reliability; generator swap; reliability vs measured identity preservation (does the learned σ predict cos h(G(I)), h(I))?
+- **Validation.** Long-gap TAR@FMR vs AdaFace/MagFace/ArcFace/an AIFR model, and against the two closest synthetic-data baselines: a recognizer fine-tuned on generated faces with a quality filter (MTLFace FT-Sel style and Banerjee et al. style). Ablations: no synthetic data / synthetic unweighted / fixed R_sam weights / learned reliability; generator swap; reliability vs measured identity preservation (does the learned σ predict cos h(G(I)), h(I))?
 - **Compute.** Embeddings are precomputed once. Generation covers each training image at about 5–8 target ages (about 50k–200k generated faces, several GPU-days for SAM-age, more for diffusion generators). Training the heads takes minutes to hours.
 - **Risks.** (i) D.0 = no-go kills it. (ii) Gains over AdaFace may be small. AgeDB-30 accuracy is near saturation for modern recognizers (`[VERIFY]` exact published numbers), so improvements must be shown at low FMR in long-gap bins, not on the 10-fold accuracy protocol. (iii) Recognizer pretraining sets (MS1M, WebFace) may contain AgeDB/CALFW/CACD celebrities, so the test identities leak into the frozen backbone. Report it and lean on MORPH/FG-NET as cleaner tests.
 
@@ -277,15 +284,16 @@ Train or fine-tune nothing on test data. If Siamese networks are kept at all, tr
 **Fair comparison.** Same aligned crops, same splits, same calibration rule. Report results at (1) matched FMR, (2) matched review workload, (3) matched genuine-accept target, per gap bin. Show risk–coverage and FAR–coverage curves and DET curves.
 The reviewer's question "why prefer 70% over 89%?" can only be answered with curves at matched points. If the new method does not beat AdaFace at matched FMR in the long-gap bins, the paper should report that, and the method must be reconsidered.
 
-**Datasets** (statistics to be verified against the original papers before use):
-| Dataset | Approx. size `[VERIFY]` | Gap character | Role | Caveat |
+**Datasets** (checked 2026-11-13 against secondary sources and the dataset papers' abstracts; see Section L for sources):
+| Dataset | Size | Gap character | Role | Caveat |
 |---|---|---|---|---|
-| MORPH-2 | ~55k images, ~13k persons | 97% < 5 y | Training (real longitudinal pairs) and fresh calibration | Test split spent; booking conditions; demographics |
-| AgeDB | ~16.5k images, 568 persons, ages 1–101 | Long gaps available | **Primary long-gap test** (all within-identity pairs binned by gap, plus AgeDB-30 for comparability) | Celebrity identities may be in recognizer pretraining |
-| FG-NET | 1,002 images, 82 persons, 0–69 | Very long | External test; report children separately | Small; adult cut-off must be pre-registered now, not post hoc |
-| CALFW | ~12k images, 6,000 pairs | Moderate | Unconstrained comparability | Derived from LFW identities; pretraining overlap |
-| CACD-VS | 4,000 pairs | ≲ 10 y span `[VERIFY]` | Medium gaps only | **Cannot support a long-gap claim** |
-| LAG (Large Age-Gap) | ~3.8k images, ~1k persons `[VERIFY]` | Child-to-adult | Candidate very-long-gap test | Includes children; check protocol and licence |
+| MORPH-2 | ~55k images, ~13k persons `[REPORTED in repo]` | 97% < 5 y | Training (real longitudinal pairs) and fresh calibration | Test split spent; booking conditions; demographics |
+| AgeDB | 16,488 images, 568 persons, ages 1–101, ~29 images/person, mean per-person age range 50.3 y | **Plenty of long gaps** | **Primary long-gap test** (all within-identity pairs binned by gap) plus AgeDB-30 (10 folds × 300+300 pairs) for comparability | Celebrities likely in recognizer pretraining. AgeDB-30 accuracy is near saturation (≈98.4–98.6% reported for a strong 2023 method), so gains must be shown at low FMR in long-gap bins |
+| FG-NET | 1,002 images, 82 persons, 0–69 | Very long | External test; children reported separately | Small. **No sex labels**: annotate the 82 persons for FADING and for demographic matching |
+| ECAF (MTLFace benchmark) | ≈5.3k images, 613 persons; ≈6k adult–child and 4k child–child pairs; mean gap ≈41 y (per a summary of the TPAMI paper, `[VERIFY]` on the project page) | Child-to-adult | Very-long-gap stress test, outside the adult scope; report separately | LFW identities, so pretraining overlap; check availability and licence |
+| CALFW | 3,000 positive pairs plus gender- and race-matched negatives; LFW identities | Moderate; ages estimated with DEX | Unconstrained comparability | Pretraining overlap; gap labels are estimates |
+| CACD-VS | 4,000 pairs (2,000+2,000) | Photos from 2004–2013, so **gaps of at most about 9 years** | Medium gaps only | **Cannot support a long-gap claim**. CACD is noisy; year labels are rough |
+| LAG | 3,828 images, 1,010 celebrities | Large, child-to-adult | Pooled large-gap test only | **No age labels**, so it cannot be binned by gap without estimated ages; pair counts unconfirmed |
 
 If, after binning, fewer than about 300 genuine pairs at ≥20 y remain across adult sets, a defensible statement at that gap is not possible. Report it as a limitation and use pooled ≥15-y bins with CIs.
 
@@ -347,4 +355,44 @@ I would not estimate acceptance odds before D.0 results exist.
 2. **GPU budget** (GPU type × days) and data access: MORPH and FG-NET licences in hand? AgeDB, CALFW, CACD, LAG obtainable?
 3. **Venue and timeline.** Accept that CVPR 2027 is not reachable and target ICCV 2027 / CVPR 2028 (or a biometrics venue if D.0 is no-go)?
 4. **Was `label_corrections.csv` or `--extra_people` ever used** on the calibration split? This decides whether the 0.349% statement can be kept at all.
-5. **Approval to run Experiment 0** as the first step. I can write the D.0 scripts (alignment reuse, AdaFace/MagFace embedding, generator calls, binned analysis, pre-registration file) now, so they are ready when compute is confirmed.
+5. ~~Approval to run Experiment 0.~~ The scripts are written (`exp0/`). Still needed: compute, data, and the commit of `exp0/PREREGISTRATION.md` (plus the FG-NET sex annotation) before generated faces are embedded.
+
+---
+
+## L. Verification log (2026-11-13)
+
+**Tool interfaces** (read from source, recorded in `exp0/config.yaml`):
+- **FADING** (`MunchkinChen/FADING@master`, `age_editing.py`):
+  - `--gender` accepts only `female` / `male`.
+  - `--target_ages` takes `nargs='+'` integers.
+  - The output is `<save_aged_dir>/<stem>_<age>.png`, with the stem split on `/`.
+  - The input is centre-cropped to 512×512.
+  - `--specialized_path` is a diffusers directory.
+  - The supported age range is not stated.
+- **SAM-age** (`yuval-alaluf/SAM`):
+  - Output goes to `<exp_dir>/inference_results/<age>/<input basename>`.
+  - `--target_age` is a comma-separated string.
+  - `--resize_outputs` gives 256×256 outputs (1024×1024 otherwise).
+  - Inputs are resized to 256 without alignment, and CUDA is required.
+- **AdaFace** (`mk-minchul/AdaFace`): checkpoint keys prefixed `model.`; input BGR scaled to (x/255 − 0.5)/0.5; forward returns (unit feature, norm). `build_model('ir_101')` corresponds to the README's "R100" rows (MS1MV2 / MS1MV3 / WebFace4M / WebFace12M).
+- **MagFace** (`IrvingMeng/MagFace`): `builder_inf(args)` reads arch, embedding_size, resume and cpu_mode; input BGR in [0, 1]; forward returns the raw embedding. The bare `torch.load` needs a `weights_only=False` shim on torch ≥ 2.6, which is now in `s5_embed.py`.
+
+**Datasets.** Sources:
+- [AgeDB (Papers with Code)](https://ml.paperswithcode.com/dataset/agedb)
+- [MTLFace TPAMI, arXiv 2210.09835](https://arxiv.org/pdf/2210.09835)
+- [CACD / CARC](https://bcsiriuschen.github.io/CARC)
+- [CALFW, arXiv 1708.08197](https://arxiv.org/abs/1708.08197v1)
+- [LAG, arXiv 1602.06149](https://arxiv.org/pdf/1602.06149.pdf)
+- [Wasserstein AIFR, arXiv 2305.02745](https://arxiv.org/abs/2305.02745), for current AgeDB-30 levels
+
+**Closest prior work to D.1/D.2** (abstract and method sections read):
+| Paper | What it does | Overlap |
+|---|---|---|
+| MTLFace TPAMI ([2210.09835](https://arxiv.org/abs/2210.09835)) | Joint AIFR + age synthesis; FT-Sel fine-tunes on synthesized faces selected by a GMM over quality scores; ECAF benchmark | **Synthetic-data component of D.1** (filter, not learned continuous weight; no frozen-recognizer transport) |
+| Banerjee et al., IJCB 2023 ([2307.08585](https://arxiv.org/abs/2307.08585)) | DreamBooth-style diffusion aging with identity loss; ArcFace fine-tuned on about 3,400 age-edited images; checks identity with a recognizer different from the one in its loss | Synthetic-data component; independent-recognizer evaluation (same idea as our Experiment 0) |
+| Luevano et al., IJCB 2025 ([2508.08808](https://arxiv.org/abs/2508.08808)) | Identity-preserving StyleGAN aging; evaluated with two recognizers; releases a synthetic dataset | Candidate third generator; no verification method |
+| DiverAge, arXiv 2026 ([2606.04881](https://arxiv.org/abs/2606.04881)) | Diffusion aging guided by a real-data, age-bin cross-age identity-similarity prior | Gap-dependent prior idea, used for generation guidance |
+| Dahan & Keller 2023 ([2305.02745](https://arxiv.org/abs/2305.02745)) | Trained identity/age embedding disentanglement; reports AgeDB-30 98.4–98.6% | Shows AgeDB-30 saturation; not frozen-recognizer transport |
+| TimeBooth, ICCV 2025 | Age editing with an age-invariant identity representation | **Not read** (PDF access refused). Must be checked |
+
+**Still unverified:** FADING's age range; the ECAF statistics and availability; TimeBooth; and the claim seen in a search snippet of a 2019 paper reporting a "10–40%" cross-age verification gain from synthesized faces, which remains unidentified. A full search of CVPR/ICCV/ECCV 2023–2026 proceedings for "cross-age" and "age-invariant" is still to be done before the related-work section is written.

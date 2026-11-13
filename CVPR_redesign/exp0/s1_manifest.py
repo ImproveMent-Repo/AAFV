@@ -75,6 +75,12 @@ def main():
             raise ValueError(f"unknown dataset kind {d['kind']}")
         if not r:
             raise SystemExit(f"{name}: no images parsed under {d.get('root') or d.get('csv')}")
+        if d.get("sex_overrides"):
+            ov = pd.read_csv(d["sex_overrides"], dtype=str)
+            m = {f"{name}:{p}": s.strip().upper()[:1] for p, s in zip(ov.person, ov.sex) if s.strip().upper()[:1] in ("M", "F")}
+            for x in r:
+                x["sex"] = m.get(x["person_id"], x["sex"])
+            print(f"{name}: sex set for {len(m)} persons from {d['sex_overrides']}")
         print(f"{name}: {len(r)} images, {len({x['person_id'] for x in r})} persons, {len(bad)} unparsed names (e.g. {bad[:3]})")
         rows += r
     df = pd.DataFrame(rows)
